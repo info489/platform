@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 2 — Legal Terminology | Spanish Millennium</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f8f7f4;color:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;padding:24px 16px}
+.wrap{max-width:820px;margin:0 auto}
+.mod-header{background:#fff;border:1px solid #e8e5df;border-radius:14px;padding:28px;margin-bottom:20px}
+.mod-logo{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#c8a96e;font-weight:700;margin-bottom:10px}
+.mod-title{font-size:26px;font-weight:700;color:#1a1a1a;margin-bottom:4px}
+.mod-sub{font-size:14px;color:#6b6878;margin-bottom:18px;line-height:1.5}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pill{padding:5px 12px;border-radius:20px;font-size:12px;border:1px solid #e8e5df;color:#6b6878;background:#f8f7f4}
+.prog-bar{height:7px;background:#e8e5df;border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:#534AB7;border-radius:4px;transition:width .4s ease}
+.prog-label{font-size:12px;color:#8a8799;margin-top:6px}
+.lesson-list{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
+.lesson-btn{display:flex;align-items:center;gap:14px;padding:13px 18px;border-radius:12px;border:1px solid #e8e5df;background:#fff;cursor:pointer;text-align:left;transition:all .15s;width:100%}
+.lesson-btn:hover{background:#f4f2ee;border-color:#534AB7}
+.lesson-btn.active{border-color:#534AB7;background:#EEEDFE}
+.lesson-btn.done .lnum{background:#534AB7;color:#fff;border-color:#534AB7}
+.lnum{width:30px;height:30px;border-radius:50%;border:1px solid #e8e5df;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;color:#8a8799;transition:all .2s}
+.linfo{flex:1}
+.ltitle{font-size:14px;font-weight:600;color:#1a1a1a}
+.ldesc{font-size:12px;color:#8a8799;margin-top:2px}
+.lbadge{font-size:11px;color:#8a8799;padding:3px 9px;border-radius:20px;background:#f4f2ee;white-space:nowrap}
+.lbadge.purple{background:#EEEDFE;color:#3C3489}
+.lbadge.gold{background:#fff8ee;color:#c8a96e;border:1px solid #f0d49a}
+.quiz-nav-btn{display:flex;align-items:center;gap:14px;padding:13px 18px;border-radius:12px;border:2px solid #c8a96e;background:#fff8ee;cursor:pointer;text-align:left;transition:all .15s;width:100%;margin-top:4px}
+.quiz-nav-btn:hover{background:#fff0d0}
+.quiz-nav-btn.locked{opacity:.5;cursor:not-allowed;border-color:#e8e5df;background:#f8f7f4}
+.quiz-nav-btn .lnum{background:#c8a96e;color:#fff;border-color:#c8a96e}
+.quiz-nav-btn.locked .lnum{background:#e8e5df;color:#8a8799}
+.content{background:#fff;border:1px solid #e8e5df;border-radius:14px;padding:28px}
+.sec-title{font-size:20px;font-weight:700;margin-bottom:4px}
+.sec-sub{font-size:13px;color:#6b6878;margin-bottom:20px;line-height:1.5}
+.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.vcard{border:1px solid #e8e5df;border-radius:10px;padding:14px;cursor:pointer;transition:all .2s;min-height:95px;background:#faf9f7;position:relative}
+.vcard:hover{border-color:#534AB7;background:#fff}
+.vcard .ven{display:none;color:#534AB7;font-size:13px;margin-top:8px;font-weight:600;padding-top:8px;border-top:1px solid #e8e5df}
+.vcard.flipped .ven{display:block}
+.vcard.flipped .vtip{display:none}
+.ves{font-size:15px;font-weight:700;color:#1a1a1a}
+.vctx{font-size:11px;color:#8a8799;margin-top:3px;line-height:1.4}
+.vtip{font-size:11px;color:#c8c5d0;margin-top:10px;font-style:italic}
+.ex-box{background:#EEEDFE;border-left:3px solid #534AB7;border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:12px}
+.ex-es{font-size:14px;font-weight:700;color:#1a1a1a;line-height:1.5}
+.ex-en{font-size:13px;color:#6b6878;margin-top:5px;line-height:1.5}
+.ex-ctx{font-size:12px;color:#534AB7;margin-top:6px;font-style:italic;font-weight:500}
+.culture-box{background:#faf9f7;border:1px solid #e8e5df;border-radius:10px;padding:14px;margin-bottom:12px}
+.culture-label{font-size:10px;font-weight:700;color:#534AB7;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.culture-text{font-size:13px;color:#1a1a1a;line-height:1.6}
+.warning-box{background:#fff8ee;border:1px solid #f0d49a;border-radius:10px;padding:14px;margin-bottom:12px}
+.warning-label{font-size:10px;font-weight:700;color:#c8a96e;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.scenario-box{background:#EEEDFE;border:1px solid #AFA9EC;border-radius:10px;padding:14px;margin-bottom:12px}
+.scenario-label{font-size:10px;font-weight:700;color:#534AB7;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.gpt-box{border:2px solid #534AB7;border-radius:12px;padding:20px;text-align:center;background:#EEEDFE;margin-top:16px}
+.gpt-title{font-size:16px;font-weight:700;color:#26215C;margin-bottom:6px}
+.gpt-sub{font-size:13px;color:#534AB7;margin-bottom:16px;line-height:1.5}
+.gpt-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#534AB7;color:#fff;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;transition:all .15s}
+.gpt-btn:hover{background:#3C3489}
+.gpt-note{font-size:12px;color:#6b6878;margin-top:12px;line-height:1.6;background:#fff;border-radius:8px;padding:10px 14px;border:1px solid #AFA9EC;text-align:left}
+.gpt-note em{color:#3C3489;font-style:normal;font-weight:600}
+.quiz-header{background:#fff8ee;border:1px solid #f0d49a;border-radius:10px;padding:16px;margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.quiz-icon{font-size:28px;flex-shrink:0}
+.quiz-header-title{font-size:16px;font-weight:700;color:#1a1a1a}
+.quiz-header-sub{font-size:12px;color:#8a8799;margin-top:2px;line-height:1.4}
+.quiz-progress{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.quiz-dots{display:flex;gap:5px;flex:1}
+.qdot{height:8px;border-radius:4px;background:#e8e5df;transition:all .3s;flex:1}
+.qdot.current{background:#c8a96e}
+.qdot.correct{background:#534AB7}
+.qdot.wrong{background:#e24b4a}
+.quiz-counter{font-size:13px;font-weight:600;color:#6b6878;white-space:nowrap}
+.quiz-q{font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:6px;line-height:1.5}
+.quiz-context{font-size:12px;color:#8a8799;margin-bottom:18px;font-style:italic;padding:8px 12px;background:#f8f7f4;border-radius:8px;border-left:3px solid #e8e5df}
+.quiz-opts{display:flex;flex-direction:column;gap:9px}
+.qopt{padding:13px 16px;border-radius:10px;border:1px solid #e8e5df;background:#faf9f7;cursor:pointer;font-size:13px;text-align:left;transition:all .15s;font-family:inherit;color:#1a1a1a;line-height:1.5}
+.qopt:hover:not(:disabled){background:#f4f2ee;border-color:#534AB7}
+.qopt.correct{border-color:#534AB7;background:#EEEDFE;color:#26215C;font-weight:600}
+.qopt.wrong{border-color:#e24b4a;background:#fcebeb;color:#501313}
+.qopt:disabled{cursor:default}
+.why-wrong{font-size:12px;margin-top:10px;padding:10px 14px;border-radius:8px;background:#fff8ee;border:1px solid #f0d49a;color:#6b4c00;line-height:1.5}
+.result-screen{text-align:center;padding:32px 16px}
+.result-icon{font-size:56px;margin-bottom:16px}
+.result-title{font-size:24px;font-weight:700;margin-bottom:8px}
+.score-big{font-size:52px;font-weight:700;margin-bottom:4px}
+.score-label{font-size:14px;color:#8a8799;margin-bottom:16px}
+.score-pass{color:#534AB7}
+.score-fail{color:#e24b4a}
+.result-sub{font-size:14px;color:#6b6878;margin-bottom:20px;line-height:1.6;max-width:500px;margin-left:auto;margin-right:auto}
+.wrong-review{text-align:left;background:#faf9f7;border:1px solid #e8e5df;border-radius:12px;padding:18px;margin-bottom:20px;max-width:640px;margin-left:auto;margin-right:auto}
+.wrong-review-title{font-size:12px;font-weight:700;color:#e24b4a;margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em}
+.wrong-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e8e5df;font-size:13px;line-height:1.6}
+.wrong-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.wrong-q{color:#1a1a1a;font-weight:600;margin-bottom:5px}
+.wrong-ans{color:#e24b4a;margin-bottom:2px}
+.wrong-correct{color:#534AB7;margin-bottom:4px}
+.wrong-why{color:#8a8799;font-size:12px;font-style:italic}
+.unlock-box{background:#EEEDFE;border:2px solid #534AB7;border-radius:12px;padding:20px;max-width:420px;margin:16px auto 0}
+.unlock-title{font-size:14px;font-weight:700;color:#534AB7;margin-bottom:4px}
+.unlock-sub{font-size:13px;color:#6b6878;line-height:1.5}
+.navrow{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:10px}
+.nbtn{padding:10px 20px;border-radius:10px;border:1px solid #e8e5df;background:#faf9f7;font-size:13px;cursor:pointer;font-family:inherit;font-weight:600;color:#1a1a1a;transition:all .15s}
+.nbtn:hover{background:#f4f2ee}
+.nbtn.primary{background:#534AB7;color:#fff;border-color:#534AB7}
+.nbtn.primary:hover{background:#3C3489}
+.nbtn.gold{background:#c8a96e;color:#fff;border-color:#c8a96e}
+.nbtn.gold:hover{background:#b8956a}
+.done-screen{text-align:center;padding:40px 20px}
+.done-icon{font-size:56px;margin-bottom:16px}
+.done-title{font-size:26px;font-weight:700;margin-bottom:8px}
+.done-sub{font-size:14px;color:#6b6878;margin-bottom:20px;line-height:1.6;max-width:500px;margin-left:auto;margin-right:auto}
+.section-divider{font-size:13px;font-weight:700;color:#534AB7;letter-spacing:.08em;text-transform:uppercase;margin:20px 0 14px;padding-bottom:6px;border-bottom:1px solid #EEEDFE}
+@media(max-width:600px){.vocab-grid{grid-template-columns:1fr}body{padding:12px 8px}.content{padding:18px}.mod-header{padding:18px}}
+
+.back-bar{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid #e8e5df;border-radius:12px;padding:12px 20px;margin-bottom:16px}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#1a1a1a;text-decoration:none;transition:all .15s}
+.back-link:hover{color:#c8a96e}
+.back-breadcrumb{font-size:12px;color:#8a8799}
+.back-breadcrumb span{color:#534AB7;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="back-bar">
+  <a class="back-link" href="SM_Dashboard.html">← Back to Dashboard</a>
+  <div class="back-breadcrumb">Professional Communication · <span>Module 2 — Legal Terminology</span></div>
+</div>
+
+
+<div class="mod-header">
+  <div class="mod-logo">Spanish Millennium · Professional Platform</div>
+  <div class="mod-title">Module 2 — Legal Terminology</div>
+  <div class="mod-sub">The vocabulary, phrases, and cultural protocol that attorneys need to operate professionally in Spanish-speaking legal environments. Contracts, negotiations, depositions, and courtroom language.</div>
+  <div class="meta">
+    <span class="pill">⚖️ 5 lessons + final quiz</span>
+    <span class="pill">⏱ ~60 min</span>
+    <span class="pill">📊 Level B1–B2</span>
+    <span class="pill">👔 Attorneys & legal professionals</span>
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="prog-label" id="progLabel">0 of 5 lessons completed · Quiz locked</div>
+</div>
+
+<div id="lessonList" class="lesson-list"></div>
+<div id="contentBox" class="content"></div>
+
+</div>
+<script>
+const GPT_URL = "https://chatgpt.com/g/g-6vMAfvHz9-my-spanish-teacher-by-spanish-millennium";
+
+const LESSONS = [
+  {
+    id:1,
+    title:"Contract vocabulary — the essentials",
+    desc:"Core terms every attorney needs when reviewing or discussing contracts in Spanish",
+    vocab:[
+      {es:"El contrato", ctx:"The contract — the document itself", en:"The contract"},
+      {es:"La cláusula", ctx:"A clause or provision within a contract", en:"The clause / provision"},
+      {es:"El acuerdo", ctx:"The agreement — broader than a formal contract", en:"The agreement"},
+      {es:"Las partes", ctx:"The parties — 'las partes acuerdan...'", en:"The parties"},
+      {es:"El plazo", ctx:"The deadline or term — 'plazo de entrega', 'plazo de pago'", en:"The deadline / term"},
+      {es:"La vigencia", ctx:"The validity period of the contract", en:"The validity / term of the contract"},
+      {es:"El incumplimiento", ctx:"Breach — 'incumplimiento de contrato'", en:"Breach / non-compliance"},
+      {es:"La rescisión", ctx:"Termination of the contract by one party", en:"Rescission / termination"},
+      {es:"La prórroga", ctx:"Extension of a contract or deadline", en:"Extension / renewal"},
+      {es:"La indemnización", ctx:"Compensation or damages paid for a breach", en:"Indemnification / compensation"},
+    ],
+    examples:[
+      {es:"Las partes acuerdan que el plazo de entrega será de treinta días a partir de la firma del contrato.", en:"The parties agree that the delivery deadline will be thirty days from the signing of the contract.", ctx:"Standard contract clause — delivery terms"},
+      {es:"En caso de incumplimiento, la parte infractora deberá pagar una indemnización equivalente al veinte por ciento del valor total del contrato.", en:"In the event of breach, the defaulting party shall pay compensation equivalent to twenty percent of the total contract value.", ctx:"Penalty clause for breach"},
+      {es:"El contrato tendrá una vigencia de un año, con posibilidad de prórroga automática por períodos iguales.", en:"The contract shall have a validity period of one year, with the possibility of automatic renewal for equal periods.", ctx:"Contract term and renewal clause"},
+    ]
+  },
+  {
+    id:2,
+    title:"Negotiation language",
+    desc:"How to propose, counter-propose, push back, and close in Spanish",
+    vocab:[
+      {es:"Proponer / La propuesta", ctx:"To propose / The proposal — 'quisiera proponer...'", en:"To propose / The proposal"},
+      {es:"Negociar / La negociación", ctx:"To negotiate / The negotiation", en:"To negotiate / The negotiation"},
+      {es:"Llegar a un acuerdo", ctx:"To reach an agreement — the goal of negotiation", en:"To reach an agreement"},
+      {es:"Ceder / La concesión", ctx:"To give in / The concession — strategic use", en:"To concede / The concession"},
+      {es:"Mantener nuestra posición", ctx:"To hold our position — firm negotiation stance", en:"To maintain our position"},
+      {es:"Inaceptable para nuestra parte", ctx:"Unacceptable to our side — formal rejection", en:"Unacceptable to our side"},
+      {es:"Estamos dispuestos a considerar...", ctx:"We are willing to consider... — opens compromise", en:"We are willing to consider..."},
+      {es:"Eso está fuera de discusión", ctx:"That is off the table — firm boundary", en:"That is not up for discussion"},
+      {es:"Sujeto a la aprobación de...", ctx:"Subject to approval by... — used when you need sign-off", en:"Subject to approval by..."},
+      {es:"Sin perjuicio de...", ctx:"Without prejudice to... — legal qualifier, used constantly", en:"Without prejudice to..."},
+    ],
+    examples:[
+      {es:"Nuestra parte está dispuesta a considerar una reducción del plazo, pero la cláusula de indemnización es inaceptable tal como está redactada.", en:"Our side is willing to consider a reduction in the deadline, but the indemnification clause is unacceptable as currently drafted.", ctx:"Counter-proposal in contract negotiation"},
+      {es:"Sin perjuicio de los derechos de nuestro cliente, estamos abiertos a explorar una solución alternativa.", en:"Without prejudice to our client's rights, we are open to exploring an alternative solution.", ctx:"Opening a settlement discussion"},
+      {es:"Eso está fuera de discusión. Podemos hablar del plazo, pero la jurisdicción no es negociable.", en:"That is not up for discussion. We can talk about the deadline, but jurisdiction is non-negotiable.", ctx:"Holding firm on a key clause"},
+    ]
+  },
+  {
+    id:3,
+    title:"Deposition & testimony language",
+    desc:"Taking statements, examining witnesses, and navigating depositions in Spanish",
+    vocab:[
+      {es:"La declaración", ctx:"The statement or testimony — 'tomar una declaración'", en:"The statement / testimony"},
+      {es:"El testigo / La testigo", ctx:"The witness — can be male or female", en:"The witness"},
+      {es:"Bajo juramento", ctx:"Under oath — 'declara bajo juramento que...'", en:"Under oath"},
+      {es:"El interrogatorio", ctx:"The questioning / cross-examination", en:"The examination / questioning"},
+      {es:"Responda solo lo que se le pregunta", ctx:"Answer only what is asked — controlling deposition scope", en:"Answer only what is asked"},
+      {es:"¿Puede aclarar ese punto?", ctx:"Can you clarify that point? — follow-up question", en:"Can you clarify that point?"},
+      {es:"Me reservo el derecho de...", ctx:"I reserve the right to... — formal legal qualifier", en:"I reserve the right to..."},
+      {es:"Objeto / Objeción", ctx:"Objection — used in depositions and court", en:"Objection"},
+      {es:"Consta en actas", ctx:"It is on the record / Let the record show...", en:"It is on the record"},
+      {es:"El deponente declara que...", ctx:"The deponent states that... — formal deposition language", en:"The deponent states that..."},
+    ],
+    examples:[
+      {es:"El testigo declara bajo juramento que no estuvo presente en las oficinas el día de los hechos.", en:"The witness declares under oath that he was not present at the offices on the day of the events.", ctx:"Opening statement in a deposition"},
+      {es:"Objeción. La pregunta es tendenciosa. Solicito que conste en actas.", en:"Objection. The question is leading. I request it be placed on the record.", ctx:"Objecting during a deposition"},
+      {es:"Le pido que responda solo lo que se le pregunta. ¿Firmó usted este documento el día quince de marzo?", en:"I ask that you answer only what is asked. Did you sign this document on the fifteenth of March?", ctx:"Controlling the scope of deposition testimony"},
+    ]
+  },
+  {
+    id:4,
+    title:"Courtroom & procedural language",
+    desc:"Hearings, motions, rulings, and how courts work in Spanish-speaking jurisdictions",
+    vocab:[
+      {es:"El juzgado / El tribunal", ctx:"The court — juzgado is lower, tribunal is higher", en:"The court"},
+      {es:"El juez / La jueza", ctx:"The judge — always use title: 'señoría' or 'su señoría'", en:"The judge"},
+      {es:"La sentencia", ctx:"The ruling or sentence — final decision of the court", en:"The ruling / sentence"},
+      {es:"El fallo", ctx:"The verdict or decision — 'el fallo del tribunal'", en:"The verdict / decision"},
+      {es:"Interponer un recurso", ctx:"To file an appeal — 'interponer recurso de apelación'", en:"To file an appeal"},
+      {es:"La demanda", ctx:"The lawsuit / complaint — 'presentar una demanda'", en:"The lawsuit / complaint"},
+      {es:"El demandante / El demandado", ctx:"The plaintiff / The defendant", en:"The plaintiff / defendant"},
+      {es:"La vista oral", ctx:"The oral hearing — equivalent of trial proceedings", en:"The oral hearing / trial"},
+      {es:"Solicitar medidas cautelares", ctx:"To request injunctive relief / precautionary measures", en:"To request injunctive relief"},
+      {es:"Con todo el respeto, señoría", ctx:"With all due respect, Your Honor — formal address to judge", en:"With all due respect, Your Honor"},
+    ],
+    examples:[
+      {es:"El demandante solicita medidas cautelares para evitar que el demandado transfiera los activos durante el proceso.", en:"The plaintiff requests injunctive relief to prevent the defendant from transferring assets during the proceedings.", ctx:"Filing for emergency injunctive relief"},
+      {es:"Con todo el respeto, señoría, solicitamos que se aplace la vista oral hasta que dispongamos de los documentos solicitados.", en:"With all due respect, Your Honor, we request that the oral hearing be postponed until we have the requested documents.", ctx:"Formal request to the court"},
+      {es:"Nuestra parte interpondrá recurso de apelación contra el fallo del tribunal en el plazo establecido por la ley.", en:"Our side will file an appeal against the court's verdict within the timeframe established by law.", ctx:"Notifying the court of intent to appeal"},
+    ]
+  },
+  {
+    id:5,
+    title:"AI role-play — contract negotiation with a Mexican counterpart",
+    desc:"Practice a full legal negotiation scenario with your Spanish Millennium AI tutor",
+    type:"roleplay",
+    scenario:"You are a US attorney representing a client in a contract dispute with a Mexican company. You are in a negotiation meeting with the opposing attorney, Licenciada Patricia Salinas. The disputed clause relates to jurisdiction and governing law. Your client wants US jurisdiction — her client insists on Mexico City. Use formal register throughout. Your goal: propose a compromise, respond to her counter-proposal, and reach a provisional agreement — or hold firm if the terms are unacceptable.",
+    cultureTip:"In Latin American legal settings, formal language is not just courtesy — it signals competence. Using 'señoría' for a judge, 'licenciado/a' for attorneys, and 'sin perjuicio de' and 'con todo el respeto' correctly will immediately elevate how you are perceived. Aggressive American-style negotiation tactics often backfire — a firm but diplomatic tone achieves more. Never rush to a decision; taking time to consult is expected and respected.",
+    prompt:"Quiero practicar el Módulo 2, Lección 5. Juega el papel de Licenciada Patricia Salinas, abogada mexicana senior, en una negociación de contrato sobre cláusula de jurisdicción. Usa registro formal (usted). Sé firme pero diplomática. Corrige mis errores de español entre paréntesis después de tu respuesta. Empieza la negociación cuando yo entre a la sala."
+  }
+];
+
+const ALL_QUESTIONS = [
+  {
+    q:"In a contract, you need to refer to the section that specifies what happens if one party fails to deliver on time. What is the correct Spanish term?",
+    ctx:"Contract review — identifying specific provisions",
+    opts:[
+      "La cláusula de incumplimiento establece las consecuencias por entrega tardía.",
+      "El acuerdo de entrega especifica las penalizaciones por retraso.",
+      "La sección de plazo indica los términos de la entrega.",
+      "La vigencia del contrato cubre los casos de entrega tardía."
+    ],
+    correct:0,
+    why:"Option B 'acuerdo de entrega' is not a standard legal term — it sounds improvised. Option C confuses 'plazo' (deadline) with penalty provisions. Option D 'vigencia' refers to the validity period of the contract, not consequences for breach."
+  },
+  {
+    q:"Your opposing counsel proposes a clause your client cannot accept. How do you formally reject it while keeping the negotiation open?",
+    ctx:"Contract negotiation — strategic rejection",
+    opts:[
+      "No, eso no es posible para nosotros en ningún caso.",
+      "Esa cláusula es inaceptable para nuestra parte tal como está redactada, pero estamos dispuestos a explorar alternativas.",
+      "Mi cliente no acepta esa propuesta. Necesitamos una nueva oferta.",
+      "Eso está fuera de discusión. Presentaremos una contradeclaración por escrito."
+    ],
+    correct:1,
+    why:"Option A is too blunt — it closes the negotiation without offering a path forward. Option C is informal and puts the burden entirely on the other side. Option D 'contradeclaración' is not standard negotiation terminology and the tone is adversarial when a collaborative approach would be more effective."
+  },
+  {
+    q:"You need to place something formally on the record during a deposition. What is the correct phrase?",
+    ctx:"Deposition procedure — formal record",
+    opts:[
+      "Quiero que esto sea oficial y esté registrado en los documentos.",
+      "Solicito que quede anotado en los archivos del caso.",
+      "Solicito que conste en actas que el testigo no respondió la pregunta.",
+      "Pido que se escriba esto en el informe de la declaración."
+    ],
+    correct:2,
+    why:"Option A 'quiero que esto sea oficial' is informal and not legal language. Option B 'archivos del caso' is an informal substitute for the correct term 'actas'. Option D 'informe de la declaración' is not standard procedural terminology — 'actas' is the correct term for the formal record."
+  },
+  {
+    q:"A witness in a deposition is providing long, volunteered answers beyond what was asked. How do you formally redirect them?",
+    ctx:"Deposition — controlling witness testimony",
+    opts:[
+      "Por favor, sea más breve y concreto en sus respuestas.",
+      "Le pido que responda solo lo que se le pregunta. ¿Firmó usted este documento?",
+      "Necesito que responda directamente, sin dar información adicional.",
+      "Le recuerdo que está aquí para responder preguntas, no para dar explicaciones."
+    ],
+    correct:1,
+    why:"Option A is a general request without legal weight. Option C sounds like a personal instruction rather than a formal procedural statement. Option D is confrontational and disrespectful — this approach can backfire and damage your credibility with the court reporter and later with a judge."
+  },
+  {
+    q:"You are addressing the judge to request a postponement of the hearing. Which is the most appropriate opening?",
+    ctx:"Courtroom procedure — formal address to judge",
+    opts:[
+      "Juez García, necesitamos aplazar la audiencia porque no tenemos los documentos.",
+      "Señor juez, le pedimos que considere aplazar la vista de hoy.",
+      "Con todo el respeto, señoría, solicitamos formalmente el aplazamiento de la vista oral.",
+      "Su Honor, nuestra parte solicita más tiempo para preparar los documentos necesarios."
+    ],
+    correct:2,
+    why:"Option A uses 'Juez García' directly by name — incorrect form of address in a Latin American courtroom. Option B 'señor juez' is acceptable but less formal than 'señoría'. Option D 'Su Honor' is a direct translation from English — in Spanish-speaking courts the correct term is 'señoría', not 'su honor'."
+  },
+  {
+    q:"Your client wants to extend the contract for another year. Which term correctly describes this action?",
+    ctx:"Contract administration — extensions",
+    opts:[
+      "Su cliente desea una renovación automática del acuerdo comercial.",
+      "Su cliente solicita la rescisión del contrato actual y firma de uno nuevo.",
+      "Su cliente requiere una modificación al contrato para extender su duración.",
+      "Su cliente solicita la prórroga del contrato por un período adicional de un año."
+    ],
+    correct:3,
+    why:"Option A 'renovación' implies a new contract is created, not an extension of the existing one. Option B 'rescisión' means termination — the opposite of what is needed. Option C 'modificación' suggests changing terms rather than simply extending the duration — it creates legal ambiguity."
+  },
+  {
+    q:"You want to introduce a legal qualifier that protects your client's existing rights while opening a discussion. Which phrase is correct?",
+    ctx:"Negotiation — protecting rights while discussing",
+    opts:[
+      "A pesar de los derechos de nuestro cliente, queremos discutir una solución.",
+      "Sin perjuicio de los derechos de nuestro cliente, estamos abiertos a explorar alternativas.",
+      "Aunque nuestro cliente tiene derechos, podemos hablar de otras opciones.",
+      "Reservando los derechos de nuestro cliente, proponemos discutir el asunto."
+    ],
+    correct:1,
+    why:"Option A 'a pesar de' means 'despite' — it inadvertently minimizes your client's rights rather than protecting them. Option C 'aunque' (although) creates the same problem — it sounds like the rights are an obstacle. Option D 'reservando' is not the standard legal phrase for this function — 'sin perjuicio de' is the established legal term."
+  },
+  {
+    q:"The plaintiff in a case files an urgent request to prevent the defendant from moving assets during the trial. What is this called?",
+    ctx:"Procedural law — emergency relief",
+    opts:[
+      "El demandante presenta una demanda urgente para proteger los activos del caso.",
+      "El demandante solicita medidas cautelares para impedir la transferencia de activos.",
+      "El demandante interpone un recurso para bloquear las acciones del demandado.",
+      "El demandante pide al tribunal que paralice los movimientos financieros del caso."
+    ],
+    correct:1,
+    why:"Option A 'demanda urgente' is not a legal procedure — it describes a general urgency, not the specific legal mechanism. Option C 'recurso' is an appeal — the wrong procedure for emergency asset protection. Option D 'paralice los movimientos financieros' is descriptive but not legal terminology — it would not be understood as a formal motion."
+  },
+  {
+    q:"At the end of a negotiation you want to signal that any agreement reached is subject to your client's final approval. How do you say this correctly?",
+    ctx:"Closing a negotiation — conditional agreement",
+    opts:[
+      "Este acuerdo necesita la confirmación final de mi cliente antes de ser válido.",
+      "Todo lo discutido hoy está sujeto a la aprobación definitiva de nuestro cliente.",
+      "Mi cliente tendrá que revisar lo que acordamos antes de que sea oficial.",
+      "Nada de lo acordado hoy es definitivo sin que mi cliente lo apruebe primero."
+    ],
+    correct:1,
+    why:"Option A is grammatically correct but lacks the formal register expected in legal negotiations. Option C 'revisar' and 'oficial' are too informal for a legal closing statement. Option D is negatively framed and sounds like you are walking back the entire meeting — poor closing technique."
+  },
+  {
+    q:"You need to tell the opposing attorney that the jurisdiction clause as written is completely non-negotiable for your client. Which response is most effective?",
+    ctx:"Firm negotiation stance — jurisdiction clause",
+    opts:[
+      "La jurisdicción es el punto más importante para nuestro cliente y no podemos cambiarla.",
+      "Mi cliente insiste en que la jurisdicción sea estadounidense. Es su posición final.",
+      "En cuanto a la jurisdicción, nuestra posición es firme. Ese punto está fuera de discusión.",
+      "No aceptaremos ningún cambio a la cláusula de jurisdicción bajo ninguna circunstancia."
+    ],
+    correct:2,
+    why:"Option A explains the reason rather than asserting the position — it invites further argument. Option B 'posición final' signals you may have made concessions to reach this — weak framing. Option D sounds aggressive and absolute — the phrase 'bajo ninguna circunstancia' tends to escalate rather than close discussions professionally."
+  }
+,
+  {
+    q:"The opposing attorney says 'sin perjuicio de nuestros derechos' before a proposal. What does this signal?",
+    ctx:"Legal negotiation — interpreting formal qualifiers",
+    opts:["They are waiving their rights in exchange for settlement.","The proposal is conditional on your prior acceptance of their terms.","They are preserving their rights while remaining open to discussion.","The proposal does not reflect their client's final position."],
+    correct:2,
+    why:"Option A is the opposite — this phrase explicitly means rights are NOT waived. Option B is incorrect — it is a qualifier, not a condition. Option D describes finality, which this phrase says nothing about."
+  },
+  {
+    q:"You need an urgent motion to prevent asset transfer before judgment. What is the correct Spanish procedure?",
+    ctx:"Procedural law — emergency relief",
+    opts:["Presentar una demanda urgente ante el tribunal competente.","Solicitar medidas cautelares para impedir la transferencia de activos.","Interponer un recurso de apelación con carácter de urgencia.","Presentar una objeción formal ante el juzgado de primera instancia."],
+    correct:1,
+    why:"Option A 'demanda urgente' is not a recognized legal procedure. Option C is an appeal of a ruling, not a preventive measure. Option D is used in depositions, not for asset protection orders."
+  },
+  {
+    q:"A deposition witness keeps volunteering information beyond your question. How do you redirect them?",
+    ctx:"Deposition control — scope of testimony",
+    opts:["Le recuerdo que solo debe responder lo que se le pregunta, sin añadir información adicional.","Por favor, céntrese en la pregunta. No necesitamos más detalles de los solicitados.","Le pido que responda únicamente lo que se le pregunta. ¿Firmó usted este documento el quince de marzo?","Necesito que sea más conciso en sus respuestas. Están excediendo el alcance de las preguntas."],
+    correct:2,
+    why:"Option A is a reminder not a redirect — it pauses without advancing. Option B 'no necesitamos más detalles' can antagonize the witness. Option D sounds like a ruling rather than a professional procedural redirect."
+  },
+  {
+    q:"You want to formally notify the court of intent to appeal within the legal timeframe. Which is correct?",
+    ctx:"Post-judgment — notice of appeal",
+    opts:["Nuestra parte notifica al tribunal su intención de interponer recurso de apelación en el plazo legal establecido.","Queremos informar al juzgado que vamos a apelar la decisión dentro del tiempo permitido por ley.","Mi cliente desea recurrir el fallo. Presentaremos los documentos de apelación próximamente.","En nombre de mi cliente, anunciamos que la sentencia será impugnada ante la instancia superior."],
+    correct:0,
+    why:"Option B 'vamos a apelar' is too informal for formal court notification. Option C 'próximamente' is vague — does not cite the legal timeframe. Option D 'instancia superior' is vague — 'recurso de apelación' is the standard term."
+  },
+  {
+    q:"You must hold firm on jurisdiction while staying open on other contract terms. Which response is most effective?",
+    ctx:"Negotiation — firm on one clause, open on others",
+    opts:["La jurisdicción es un tema que no podemos negociar, pero estamos abiertos a discutir los demás términos del contrato.","En cuanto a la jurisdicción, nuestra posición es firme y ese punto está fuera de discusión. El resto de las cláusulas están abiertas a negociación.","Mi cliente insiste en la jurisdicción estadounidense. Podemos hablar de lo demás solo si ese punto se respeta primero.","No aceptaremos ningún cambio en la jurisdicción bajo ninguna circunstancia. Nuestra postura es definitiva e inamovible."],
+    correct:1,
+    why:"Option A 'no podemos negociar' is defensive — 'fuera de discusión' is more authoritative. Option C 'solo si ese punto se respeta primero' sounds like a precondition that invites challenge. Option D repeating 'definitiva e inamovible' is unnecessarily aggressive — stating it once firmly is more professional."
+  }];
+
+let S = {
+  cur:0, done:new Set(), quizActive:false,
+  quizAnswers:[], quizCurrent:0, quizPassed:false,
+  quizAttempts:0, shuffledQ:[]
+};
+
+function shuffleQuiz(){
+  // Pick 10 random from 15 — different every attempt
+  const shuffled=[...ALL_QUESTIONS].sort(()=>Math.random()-.5);
+  S.shuffledQ=shuffled.slice(0,10);
+  S.quizAnswers=[];S.quizCurrent=0;
+}
+
+function updateProg(){
+  const pct=Math.round(S.done.size/LESSONS.length*100);
+  document.getElementById("progFill").style.width=pct+"%";
+  const qs=S.quizPassed?" · Quiz passed ✓":S.done.size===LESSONS.length?" · Quiz unlocked":" · Quiz locked";
+  document.getElementById("progLabel").textContent=S.done.size+" of "+LESSONS.length+" lessons completed"+qs;
+}
+
+function renderList(){
+  const allDone=S.done.size===LESSONS.length;
+  document.getElementById("lessonList").innerHTML=
+    LESSONS.map((l,i)=>`
+      <button class="lesson-btn ${i===S.cur&&!S.quizActive?"active":""} ${S.done.has(i)?"done":""}" onclick="go(${i})">
+        <div class="lnum">${S.done.has(i)?"✓":i+1}</div>
+        <div class="linfo">
+          <div class="ltitle">${l.title}</div>
+          <div class="ldesc">${l.desc}</div>
+        </div>
+        <div class="lbadge ${S.done.has(i)?"purple":""}">${S.done.has(i)?"Done ✓":i===S.cur&&!S.quizActive?"Current":""}</div>
+      </button>
+    `).join("")+
+    `<button class="quiz-nav-btn ${!allDone?"locked":S.quizActive?"active":""}" onclick="${allDone?"startQuiz()":"alert('Complete all 5 lessons first.')"}">
+      <div class="lnum">${S.quizPassed?"✓":"★"}</div>
+      <div class="linfo">
+        <div class="ltitle">Final Quiz — Module 2</div>
+        <div class="ldesc">${S.quizPassed?"Passed — Module 3 unlocked":allDone?"10 of 15 questions drawn randomly · Need 8/10 · No going back":"Complete all 5 lessons to unlock"}</div>
+      </div>
+      <div class="lbadge gold">${S.quizPassed?"Passed ✓":allDone?"Ready":"Locked 🔒"}</div>
+    </button>`;
+}
+
+function go(i){
+  S.cur=i;S.quizActive=false;
+  renderList();renderContent();
+}
+
+function startQuiz(){
+  if(S.done.size<LESSONS.length)return;
+  S.quizActive=true;S.quizAttempts++;
+  shuffleQuiz();renderList();renderQuiz();
+}
+
+function renderContent(){
+  const l=LESSONS[S.cur];
+  const box=document.getElementById("contentBox");
+
+  if(l.type==="roleplay"){
+    box.innerHTML=`
+      <div class="sec-title">${l.title}</div>
+      <div class="sec-sub" style="margin-bottom:18px">${l.desc}</div>
+      <div class="scenario-box">
+        <div class="scenario-label">Your scenario</div>
+        <div class="culture-text">${l.scenario}</div>
+      </div>
+      <div class="culture-box">
+        <div class="culture-label">Culture tip — read before practicing</div>
+        <div class="culture-text">${l.cultureTip}</div>
+      </div>
+      <div class="gpt-box">
+        <div class="gpt-title">Practice with your Spanish Millennium AI Tutor</div>
+        <div class="gpt-sub">Your AI tutor plays Licenciada Patricia Salinas — a senior Mexican attorney. She uses formal legal Spanish, negotiates firmly, and corrects your errors in real time.</div>
+        <a class="gpt-btn" href="${GPT_URL}" target="_blank">Open AI Tutor → Start Negotiation</a>
+        <div class="gpt-note">Copy and paste this to start:<br><br><em>${l.prompt}</em></div>
+      </div>
+      <div class="navrow">
+        <button class="nbtn" onclick="go(${S.cur-1})">← Previous lesson</button>
+        <button class="nbtn primary" onclick="complete(${S.cur})">Mark done · Go to quiz →</button>
+      </div>`;
+    return;
+  }
+
+  box.innerHTML=`
+    <div class="sec-title">${l.title}</div>
+    <div class="sec-sub">Tap each card to reveal the English. Study all in-context examples before marking complete.</div>
+    <div class="vocab-grid">${l.vocab.map(v=>`
+      <div class="vcard" onclick="this.classList.toggle('flipped')">
+        <div class="ves">${v.es}</div>
+        <div class="vctx">${v.ctx}</div>
+        <div class="vtip">Tap to reveal ↓</div>
+        <div class="ven">🇺🇸 ${v.en}</div>
+      </div>
+    `).join("")}</div>
+    <div class="section-divider">In professional context</div>
+    ${l.examples.map(e=>`
+      <div class="ex-box">
+        <div class="ex-es">${e.es}</div>
+        <div class="ex-en">${e.en}</div>
+        <div class="ex-ctx">📍 ${e.ctx}</div>
+      </div>
+    `).join("")}
+    <div class="navrow">
+      ${S.cur>0?`<button class="nbtn" onclick="go(${S.cur-1})">← Previous</button>`:"<div></div>"}
+      <button class="nbtn primary" onclick="complete(${S.cur})">I've studied this · Mark complete →</button>
+    </div>`;
+}
+
+function complete(i){
+  S.done.add(i);updateProg();
+  if(i<LESSONS.length-1){
+    S.cur=i+1;renderList();renderContent();
+  } else {
+    renderList();
+    document.getElementById("contentBox").innerHTML=`
+      <div class="done-screen">
+        <div class="done-icon">⚖️</div>
+        <div class="done-title">All 5 lessons complete!</div>
+        <div class="done-sub">You've covered contracts, negotiations, depositions, and courtroom procedure. Now prove it — 10 questions, no going back, 8/10 to pass.</div>
+        <br>
+        <button class="nbtn gold" style="font-size:15px;padding:14px 32px" onclick="startQuiz()">Take the Final Quiz →</button>
+      </div>`;
+  }
+}
+
+function renderQuiz(){
+  const box=document.getElementById("contentBox");
+  const q=S.shuffledQ[S.quizCurrent];
+  const answered=S.quizAnswers[S.quizCurrent];
+  box.innerHTML=`
+    <div class="quiz-header">
+      <div class="quiz-icon">⚖️</div>
+      <div>
+        <div class="quiz-header-title">Final Quiz — Module 2: Legal Terminology</div>
+        <div class="quiz-header-sub">No going back after answering. 10 of 15 questions drawn randomly. Need 8/10 to pass. Attempt #${S.quizAttempts}.</div>
+      </div>
+    </div>
+    <div class="quiz-progress">
+      <div class="quiz-dots">${S.shuffledQ.map((_,i)=>{
+        let cls="qdot";
+        if(i<S.quizAnswers.length)cls+=S.quizAnswers[i]===S.shuffledQ[i].correct?" correct":" wrong";
+        else if(i===S.quizCurrent)cls+=" current";
+        return`<div class="${cls}"></div>`;
+      }).join("")}</div>
+      <div class="quiz-counter">Q${S.quizCurrent+1} / 10</div>
+    </div>
+    <div class="quiz-q">${q.q}</div>
+    <div class="quiz-context">${q.ctx}</div>
+    <div class="quiz-opts">${q.opts.map((opt,oi)=>{
+      let cls="qopt";
+      if(answered!==undefined){
+        if(oi===q.correct)cls+=" correct";
+        else if(oi===answered&&answered!==q.correct)cls+=" wrong";
+      }
+      return`<button class="${cls}" onclick="quizAnswer(${oi})" ${answered!==undefined?"disabled":""}>${opt}</button>`;
+    }).join("")}</div>
+    ${answered!==undefined?`<div class="why-wrong">💡 ${q.why}</div>`:""}
+    ${answered!==undefined&&S.quizCurrent<S.shuffledQ.length-1?
+      `<div class="navrow"><div></div><button class="nbtn primary" onclick="quizNext()">Next question →</button></div>`:""}
+    ${answered!==undefined&&S.quizCurrent===S.shuffledQ.length-1?
+      `<div class="navrow"><div></div><button class="nbtn gold" onclick="showResults()">See my results →</button></div>`:""}`;
+}
+
+function quizAnswer(oi){
+  if(S.quizAnswers[S.quizCurrent]!==undefined)return;
+  S.quizAnswers[S.quizCurrent]=oi;renderQuiz();
+}
+
+function quizNext(){
+  if(S.quizCurrent<S.shuffledQ.length-1){S.quizCurrent++;renderQuiz();}
+}
+
+function showResults(){
+  const score=S.quizAnswers.filter((a,i)=>a===S.shuffledQ[i].correct).length;
+  const passed=score>=8;
+  S.quizPassed=passed;updateProg();renderList();
+  const wrongItems=S.shuffledQ
+    .map((q,i)=>({q,answered:S.quizAnswers[i]}))
+    .filter(({q,answered})=>answered!==q.correct);
+  document.getElementById("contentBox").innerHTML=`
+    <div class="result-screen">
+      <div class="result-icon">${passed?"🏆":"📚"}</div>
+      <div class="result-title">${passed?"Passed — well done.":"Not this time — try again."}</div>
+      <div class="score-big ${passed?"score-pass":"score-fail"}">${score}/10</div>
+      <div class="score-label">${passed?"Module 3 is now unlocked.":"You need 8/10 to pass."}</div>
+      <div class="result-sub">${passed
+        ?"You've demonstrated solid command of legal Spanish — contracts, negotiation, depositions, and courtroom procedure. You're ready for Module 3."
+        :"Review the questions you missed, go back over the relevant lessons, and retake. Questions are reordered each attempt."
+      }</div>
+      ${wrongItems.length>0?`
+        <div class="wrong-review">
+          <div class="wrong-review-title">Review before retaking</div>
+          ${wrongItems.map(({q,answered})=>`
+            <div class="wrong-item">
+              <div class="wrong-q">${q.q}</div>
+              <div class="wrong-ans">✗ Your answer: ${q.opts[answered]}</div>
+              <div class="wrong-correct">✓ Correct: ${q.opts[q.correct]}</div>
+              <div class="wrong-why">${q.why}</div>
+            </div>
+          `).join("")}
+        </div>
+      `:""}
+      ${passed?`
+        <div class="unlock-box">
+          <div class="unlock-title">🔓 Module 3 Unlocked</div>
+          <div class="unlock-sub">Finance & Banking Spanish — markets, transactions, reporting, and boardroom language for finance professionals.</div>
+        </div>
+      `:`
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px">
+          <button class="nbtn" onclick="go(0)">← Review lessons</button>
+          <button class="nbtn gold" onclick="startQuiz()">Retake — attempt #${S.quizAttempts+1} →</button>
+        </div>
+      `}
+    </div>`;
+}
+
+renderList();renderContent();updateProg();
+</script>
+</body>
+</html>

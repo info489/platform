@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spanish Millennium Platform</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f5f7fa;color:#1a1a1a;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;min-height:100vh}
+
+/* ── BRAND COLORS ──────────────────────────────────────────────────────────── */
+:root{
+  --blue:#0057E1;
+  --blue-dark:#0040B0;
+  --blue-light:#E8F0FE;
+  --blue-mid:#3373E8;
+  --black:#1a1a1a;
+  --gray-text:#4a4a4a;
+  --gray-mid:#767676;
+  --gray-light:#e8e8e8;
+  --bg:#f5f7fa;
+  --white:#ffffff;
+  --gold:#c8a96e;
+  --gold-light:#fff8ee;
+  --gold-border:#f0d49a;
+  --green:#0a7c4e;
+  --green-light:#e6f5ee;
+  --green-border:#5dca9a;
+  --red:#c0392b;
+  --red-light:#fceaea;
+  --red-border:#e88a8a;
+}
+
+/* ── LOGIN ─────────────────────────────────────────────────────────────────── */
+.login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#f5f7fa}
+.login-box{width:400px;background:#fff;border:1px solid var(--gray-light);border-radius:4px;padding:48px 40px;box-shadow:0 2px 16px rgba(0,0,0,.06)}
+.login-logo{text-align:center;margin-bottom:32px}
+.login-logo-mark{display:inline-flex;align-items:center;gap:10px;margin-bottom:8px}
+.login-chevron{width:36px;height:36px;background:var(--blue);border-radius:4px;display:flex;align-items:center;justify-content:center}
+.login-chevron svg{width:20px;height:20px;fill:#fff}
+.login-logo h1{font-size:22px;font-weight:700;color:var(--black);letter-spacing:-.3px}
+.login-logo p{font-size:12px;color:var(--gray-mid);letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+.form-group{margin-bottom:18px}
+.form-label{font-size:12px;font-weight:600;color:var(--gray-text);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;display:block}
+.form-input{width:100%;padding:11px 14px;border:1.5px solid var(--gray-light);border-radius:3px;font-size:14px;font-family:inherit;outline:none;background:#fff;color:var(--black);transition:border-color .15s}
+.form-input:focus{border-color:var(--blue)}
+.login-btn{width:100%;padding:13px;background:var(--blue);color:#fff;border:none;border-radius:3px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s;letter-spacing:.02em;margin-top:4px}
+.login-btn:hover{background:var(--blue-dark)}
+.login-error{background:var(--red-light);color:var(--red);border:1px solid var(--red-border);border-radius:3px;padding:10px 14px;font-size:13px;margin-bottom:16px;display:none}
+.login-demo{text-align:center;font-size:11px;color:#bbb;margin-top:20px;line-height:1.8}
+
+/* ── LAYOUT ─────────────────────────────────────────────────────────────────── */
+.platform{display:flex;min-height:100vh}
+.sidebar{width:240px;background:#fff;border-right:1.5px solid var(--gray-light);display:flex;flex-direction:column;position:fixed;top:0;bottom:0;left:0;z-index:100}
+.sidebar-logo{padding:20px 20px 16px;border-bottom:1px solid var(--gray-light);display:flex;align-items:center;gap:10px}
+.sidebar-chevron{width:28px;height:28px;background:var(--blue);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sidebar-chevron svg{width:16px;height:16px;fill:#fff}
+.sidebar-logo-text h1{font-size:15px;font-weight:700;color:var(--black);letter-spacing:-.2px;line-height:1.2}
+.sidebar-logo-text span{font-size:10px;color:var(--gray-mid);letter-spacing:.08em;text-transform:uppercase}
+.role-badge{margin:10px 16px;padding:5px 10px;border-radius:2px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+.rb-admin{background:var(--blue-light);color:var(--blue)}
+.rb-collab{background:#eef4ff;color:#2d5bba}
+.rb-student{background:var(--green-light);color:var(--green)}
+.rb-corporate{background:#f0eeff;color:#5040b0}
+.sidebar-nav{flex:1;padding:8px 0;overflow-y:auto}
+.nav-section{padding:14px 16px 4px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#bbb;font-weight:700}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 18px;cursor:pointer;color:var(--gray-text);font-size:13px;transition:all .12s;border-left:3px solid transparent;width:100%;background:none;border-top:none;border-right:none;border-bottom:none;text-align:left;font-family:inherit;font-weight:500}
+.nav-item:hover{color:var(--blue);background:var(--blue-light)}
+.nav-item.active{color:var(--blue);background:var(--blue-light);border-left-color:var(--blue);font-weight:700}
+.nav-item .ni{font-size:14px;width:18px;text-align:center}
+.sidebar-footer{padding:14px 16px;border-top:1px solid var(--gray-light)}
+.user-card{display:flex;align-items:center;gap:10px;padding:10px;border-radius:3px;background:var(--bg);cursor:pointer;transition:all .12s}
+.user-card:hover{background:#eaecf0}
+.user-av{width:32px;height:32px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.user-name{font-size:13px;font-weight:600;color:var(--black)}
+.logout-hint{font-size:10px;color:#bbb;margin-top:1px}
+
+/* ── MAIN ───────────────────────────────────────────────────────────────────── */
+.main{margin-left:240px;flex:1;min-height:100vh}
+.topbar{height:56px;background:#fff;border-bottom:1.5px solid var(--gray-light);display:flex;align-items:center;justify-content:space-between;padding:0 32px;position:sticky;top:0;z-index:50}
+.topbar-title{font-size:18px;font-weight:700;color:var(--black);letter-spacing:-.3px}
+.topbar-right{display:flex;align-items:center;gap:10px}
+.page{padding:32px}
+
+/* ── STATS ──────────────────────────────────────────────────────────────────── */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.stat-card{background:#fff;border:1.5px solid var(--gray-light);border-radius:4px;padding:20px 22px;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue)}
+.stat-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-mid);font-weight:700;margin-bottom:8px}
+.stat-value{font-size:28px;font-weight:700;color:var(--black);line-height:1;letter-spacing:-.5px}
+.stat-sub{font-size:11px;color:var(--gray-mid);margin-top:5px}
+.stat-up{color:var(--green)}
+
+/* ── CARDS ──────────────────────────────────────────────────────────────────── */
+.card{background:#fff;border:1.5px solid var(--gray-light);border-radius:4px;overflow:hidden;margin-bottom:20px}
+.card-header{padding:16px 22px;border-bottom:1px solid var(--gray-light);display:flex;align-items:center;justify-content:space-between;background:#fff}
+.card-title{font-size:15px;font-weight:700;color:var(--black);letter-spacing:-.2px}
+.card-body{padding:0}
+
+/* ── TABLE ──────────────────────────────────────────────────────────────────── */
+.data-table{width:100%;border-collapse:collapse}
+.data-table th{text-align:left;padding:10px 18px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-mid);font-weight:700;border-bottom:1.5px solid var(--gray-light);background:#fafbfc}
+.data-table td{padding:13px 18px;font-size:13px;color:var(--gray-text);border-bottom:1px solid #f0f0f0;vertical-align:middle}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:hover td{background:#fafbfc}
+.data-table td strong{color:var(--black);font-weight:600}
+
+/* ── BADGES ─────────────────────────────────────────────────────────────────── */
+.badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:2px;font-size:11px;font-weight:600;letter-spacing:.02em}
+.b-green{background:var(--green-light);color:var(--green);border:1px solid var(--green-border)}
+.b-gold{background:var(--gold-light);color:#8a6020;border:1px solid var(--gold-border)}
+.b-red{background:var(--red-light);color:var(--red);border:1px solid var(--red-border)}
+.b-gray{background:#f0f0f0;color:var(--gray-mid);border:1px solid var(--gray-light)}
+.b-blue{background:var(--blue-light);color:var(--blue);border:1px solid #a8c4f8}
+.b-purple{background:#f0eeff;color:#5040b0;border:1px solid #c0b0f0}
+
+/* ── PROGRESS BAR ───────────────────────────────────────────────────────────── */
+.prog-bar{height:5px;background:#e8e8e8;border-radius:2px;overflow:hidden;margin-top:4px}
+.prog-fill{height:100%;background:var(--blue);border-radius:2px}
+
+/* ── BUTTONS ────────────────────────────────────────────────────────────────── */
+.btn{padding:8px 16px;border-radius:3px;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:all .12s;letter-spacing:.02em}
+.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:var(--blue-dark)}
+.btn-gold{background:var(--blue);color:#fff}.btn-gold:hover{background:var(--blue-dark)}
+.btn-ghost{background:transparent;color:var(--gray-text);border:1.5px solid var(--gray-light)}.btn-ghost:hover{background:#f5f5f5;color:var(--black)}
+.btn-sm{padding:6px 12px;font-size:11px}
+.btn-danger{background:transparent;color:var(--red);border:1.5px solid var(--red-border)}.btn-danger:hover{background:var(--red-light)}
+
+/* ── STUDENT PROFILE ────────────────────────────────────────────────────────── */
+.profile-header{background:#fff;border:1.5px solid var(--gray-light);border-radius:4px;padding:26px;margin-bottom:20px;display:flex;align-items:center;gap:20px}
+.profile-av{width:56px;height:56px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#fff;flex-shrink:0}
+.profile-info{flex:1}
+.profile-name{font-size:20px;font-weight:700;color:var(--black);margin-bottom:4px;letter-spacing:-.3px}
+.profile-meta{font-size:13px;color:var(--gray-mid)}
+.profile-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.ps{background:var(--bg);border:1px solid var(--gray-light);border-radius:3px;padding:12px 14px}
+.ps-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-mid);font-weight:700;margin-bottom:4px}
+.ps-value{font-size:20px;font-weight:700;color:var(--black);letter-spacing:-.3px}
+
+/* ── MODULE STATUS ──────────────────────────────────────────────────────────── */
+.module-status-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.ms-card{background:#fff;border:1.5px solid var(--gray-light);border-radius:4px;padding:18px}
+.ms-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.ms-name{font-size:13px;font-weight:700;color:var(--black)}
+.ms-lessons{font-size:12px;color:var(--gray-mid);margin-bottom:6px}
+
+/* ── USER MANAGEMENT ────────────────────────────────────────────────────────── */
+.user-form{background:#fff;border:1.5px solid var(--gray-light);border-radius:4px;padding:26px;margin-bottom:20px}
+.user-form-title{font-size:15px;font-weight:700;margin-bottom:16px;color:var(--black);letter-spacing:-.2px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-select{width:100%;padding:11px 14px;border:1.5px solid var(--gray-light);border-radius:3px;font-size:14px;font-family:inherit;outline:none;background:#fff;color:var(--black);cursor:pointer}
+.form-select:focus{border-color:var(--blue)}
+
+/* ── BACK BUTTON ────────────────────────────────────────────────────────────── */
+.back-btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--gray-text);cursor:pointer;padding:7px 12px;border-radius:3px;border:1.5px solid var(--gray-light);background:#fff;margin-bottom:20px;transition:all .12s;font-family:inherit}
+.back-btn:hover{color:var(--blue);border-color:var(--blue)}
+
+/* ── EMPTY STATE ────────────────────────────────────────────────────────────── */
+.empty{text-align:center;padding:48px 24px;color:var(--gray-mid)}
+.empty-icon{font-size:40px;margin-bottom:12px}
+
+/* ── TWO COL ────────────────────────────────────────────────────────────────── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+
+/* ── NOTIFICATION ───────────────────────────────────────────────────────────── */
+.notif{background:var(--blue-light);border:1px solid #a8c4f8;border-radius:3px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:var(--blue);display:flex;align-items:center;gap:10px}
+.notif-success{background:var(--green-light);border-color:var(--green-border);color:var(--green)}
+
+/* ── SCHEDULE ───────────────────────────────────────────────────────────────── */
+.sched-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid #f0f0f0}
+.sched-item:last-child{border-bottom:none}
+.sched-time{width:75px;font-size:12px;font-weight:700;color:var(--blue);flex-shrink:0}
+.sched-info{flex:1}
+.sched-name{font-size:13px;font-weight:600;color:var(--black)}
+.sched-detail{font-size:11px;color:var(--gray-mid);margin-top:1px}
+
+@media(max-width:768px){
+  .sidebar{display:none}
+  .main{margin-left:0}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .module-status-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .two-col{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const USERS = [
+  {id:1, name:"JP", email:"jp@spanishmillennium.com", password:"admin2026", role:"admin"},
+  {id:2, name:"Maria Lopez", email:"maria@spanishmillennium.com", password:"collab2026", role:"collaborator"},
+  {id:3, name:"Alexandra Chen", email:"alexandra@mfw.com", password:"student2026", role:"student", company:"Morrison & Foerster LLP", track:"Legal", level:"B1", enrolled:"March 2026"},
+  {id:4, name:"Marcus Williams", email:"marcus@jpmorgan.com", password:"student2026", role:"student", company:"JP Morgan Chase", track:"Finance", level:"A2", enrolled:"April 2026"},
+  {id:5, name:"Sarah Thompson", email:"sarah@deloitte.com", password:"student2026", role:"student", company:"Deloitte", track:"Corporate", level:"B2", enrolled:"January 2026"},
+  {id:6, name:"Jennifer Walsh", email:"jwalsh@mfw.com", password:"corp2026", role:"corporate", company:"Morrison & Foerster LLP"},
+];
+
+const TEACHERS = [
+  {id:1, name:"Carlos Mendoza", origin:"Mexico City", spec:"Corporate & Legal", students:8, rating:4.9, sessions:47, status:"active"},
+  {id:2, name:"Isabel Vargas", origin:"Buenos Aires", spec:"Finance & Banking", students:6, rating:4.8, sessions:38, status:"active"},
+  {id:3, name:"Roberto Silva", origin:"Bogotá", spec:"General Business", students:5, rating:4.7, sessions:29, status:"active"},
+];
+
+const CORP_ACCOUNTS = [
+  {id:1, name:"Morrison & Foerster LLP", employees:8, active:6, plan:"Enterprise", mrr:4800, avgProgress:61},
+  {id:2, name:"JP Morgan Chase", employees:15, active:12, plan:"Enterprise", mrr:8400, avgProgress:42},
+  {id:3, name:"Deloitte Consulting", employees:5, active:5, plan:"Team", mrr:2500, avgProgress:73},
+];
+
+const STUDENT_PROGRESS = {
+  3: { // Alexandra Chen
+    modules: [
+      {id:1, name:"Business Introductions", icon:"🤝", lessons:5, done:5, status:"passed", score:9, attempts:1, date:"May 15, 2026"},
+      {id:2, name:"Legal Terminology", icon:"⚖️", lessons:5, done:5, status:"failed", score:7, attempts:2, date:"May 18, 2026"},
+      {id:3, name:"Finance & Banking", icon:"💰", lessons:3, done:3, status:"inprogress", score:null, attempts:0, date:"May 20, 2026"},
+      {id:4, name:"Sales & Business Dev", icon:"📈", lessons:0, done:0, status:"notstarted", score:null, attempts:0, date:null},
+      {id:5, name:"LATAM Business Culture", icon:"🌎", lessons:0, done:0, status:"notstarted", score:null, attempts:0, date:null},
+      {id:6, name:"Professional Writing", icon:"✍️", lessons:0, done:0, status:"notstarted", score:null, attempts:0, date:null},
+    ],
+    lastActive:"May 20, 2026", totalLessons:11, passedModules:1
+  },
+  4: { // Marcus Williams
+    modules: [
+      {id:1, name:"Business Introductions", icon:"🤝", lessons:5, done:3, status:"inprogress", score:null, attempts:0, date:"May 10, 2026"},
+      {id:2, name:"Legal Terminology", icon:"⚖️", lessons:0, done:0, status:"notstarted", score:null, attempts:0, date:null},
+      {id:3, name:"Finance & Banking", icon:"💰", lessons:5, done:5, status:"passed", score:10, attempts:1, date:"May 19, 2026"},
+      {id:4, name:"Sales & Business Dev", icon:"📈", lessons:0, done:0, status:"notstarted", score:null, attempts:0, date:null},
+      {id:5, name:"LATAM Business Culture", icon:"🌎", lessons:0, done:0, status:"notstarted", score:null, attempts:0, date:null},
+      {id:6, name:"Professional Writing", icon:"✍️", lessons:0, done:0, status:"notstarted", score:null, attempts:0, date:null},
+    ],
+    lastActive:"May 19, 2026", totalLessons:8, passedModules:1
+  },
+  5: { // Sarah Thompson
+    modules: [
+      {id:1, name:"Business Introductions", icon:"🤝", lessons:5, done:5, status:"passed", score:10, attempts:1, date:"Jan 20, 2026"},
+      {id:2, name:"Legal Terminology", icon:"⚖️", lessons:5, done:5, status:"passed", score:9, attempts:1, date:"Feb 5, 2026"},
+      {id:3, name:"Finance & Banking", icon:"💰", lessons:5, done:5, status:"passed", score:8, attempts:2, date:"Mar 1, 2026"},
+      {id:4, name:"Sales & Business Dev", icon:"📈", lessons:2, done:2, status:"inprogress", score:null, attempts:0, date:"May 15, 2026"},
+      {id:5, name:"LATAM Business Culture", icon:"🌎", lessons:0, done:0, status:"notstarted", score:null, attempts:0, date:null},
+      {id:6, name:"Professional Writing", icon:"✍️", lessons:0, done:0, status:"notstarted", score:null, attempts:0, date:null},
+    ],
+    lastActive:"May 15, 2026", totalLessons:22, passedModules:3
+  }
+};
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let S = {
+  user: null,
+  page: "dashboard",
+  viewingStudent: null,
+  showAddUser: false,
+  addUserForm: {name:"", email:"", password:"", role:"student", company:""},
+  loginEmail: "",
+  loginPassword: "",
+  loginError: "",
+  notification: null,
+};
+
+function set(updates){ Object.assign(S, updates); render(); }
+
+// ── AUTH ──────────────────────────────────────────────────────────────────────
+function doLogin(){
+  const user = USERS.find(u => u.email === S.loginEmail && u.password === S.loginPassword);
+  if(user){
+    set({user, page:"dashboard", loginError:""});
+  } else {
+    set({loginError:"Incorrect email or password. Please try again."});
+  }
+}
+
+function doLogout(){ set({user:null, page:"dashboard", loginEmail:"", loginPassword:"", loginError:""}); }
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function statusBadge(status, score){
+  if(status==="passed") return `<span class="badge b-green">✓ Passed${score?" · "+score+"/10":""}</span>`;
+  if(status==="failed") return `<span class="badge b-red">✗ Not passed${score?" · "+score+"/10":""}</span>`;
+  if(status==="inprogress") return `<span class="badge b-gold">● In Progress</span>`;
+  return `<span class="badge b-gray">Not started</span>`;
+}
+
+function progressBar(pct, color="#c8a96e"){
+  return `<div class="prog-bar"><div class="prog-fill" style="width:${pct}%;background:${color}"></div></div>`;
+}
+
+function canAdminUsers(){ return S.user && (S.user.role === "admin"); }
+function canViewAll(){ return S.user && (S.user.role === "admin" || S.user.role === "collaborator"); }
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function render(){
+  document.getElementById("app").innerHTML = S.user ? renderPlatform() : renderLogin();
+}
+
+// ── LOGIN PAGE ────────────────────────────────────────────────────────────────
+function renderLogin(){
+  return `
+  <div class="login-page">
+    <div class="login-box">
+      <div class="login-logo">
+        <div class="login-logo-mark">
+          <div class="login-chevron">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5l8 7-8 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+          <h1>Spanish Millennium</h1>
+        </div>
+        <p>Professional Language Platform</p>
+      </div>
+      ${S.loginError ? `<div class="login-error" style="display:block">${S.loginError}</div>` : ""}
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" placeholder="your@email.com" value="${S.loginEmail}"
+          oninput="S.loginEmail=this.value" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" placeholder="••••••••" value="${S.loginPassword}"
+          oninput="S.loginPassword=this.value" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <button class="login-btn" onclick="doLogin()">Sign In →</button>
+      <div class="login-demo">
+        Demo — admin: jp@spanishmillennium.com / admin2026<br>
+        Student: alexandra@mfw.com / student2026
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── PLATFORM SHELL ────────────────────────────────────────────────────────────
+function renderPlatform(){
+  const u = S.user;
+  const roleClass = {admin:"rb-admin",collaborator:"rb-collab",student:"rb-student",corporate:"rb-corporate"}[u.role];
+  const roleLabel = {admin:"Admin",collaborator:"Collaborator",student:"Student",corporate:"Corporate HR"}[u.role];
+
+  // Build nav based on role
+  let navHTML = "";
+  if(canViewAll()){
+    navHTML += `<div class="nav-section">Platform</div>
+      <button class="nav-item ${S.page==="dashboard"?"active":""}" onclick="set({page:'dashboard',viewingStudent:null})"><span class="ni">⊞</span> Overview</button>
+      <button class="nav-item ${S.page==="students"?"active":""}" onclick="set({page:'students',viewingStudent:null})"><span class="ni">🎓</span> Students</button>
+      <button class="nav-item ${S.page==="teachers"?"active":""}" onclick="set({page:'teachers',viewingStudent:null})"><span class="ni">👨‍🏫</span> Teachers</button>
+      <button class="nav-item ${S.page==="corporate"?"active":""}" onclick="set({page:'corporate',viewingStudent:null})"><span class="ni">🏢</span> Corporate</button>
+      <button class="nav-item ${S.page==="revenue"?"active":""}" onclick="set({page:'revenue',viewingStudent:null})"><span class="ni">💰</span> Revenue</button>`;
+    if(canAdminUsers()){
+      navHTML += `<button class="nav-item ${S.page==="users"?"active":""}" onclick="set({page:'users',viewingStudent:null})"><span class="ni">👥</span> User Management</button>
+      <button class="nav-item ${S.page==="content"?"active":""}" onclick="set({page:'content',viewingStudent:null})"><span class="ni">📚</span> Modules & Content</button>`;
+    }
+    navHTML += `<div class="nav-section">Grammar Track</div>
+      <button class="nav-item ${S.page==="grammar"?"active":""}" onclick="set({page:'grammar',viewingStudent:null})"><span class="ni">🔤</span> Grammar Lab</button>
+      <button class="nav-item ${S.page==="resources"?"active":""}" onclick="set({page:'resources',viewingStudent:null})"><span class="ni">📖</span> Resources & Books</button>
+      <button class="nav-item ${S.page==="feedback"?"active":""}" onclick="set({page:'feedback',viewingStudent:null})"><span class="ni">💬</span> Feedback</button>`;
+  } else if(u.role==="student"){
+    navHTML += `<div class="nav-section">My Learning</div>
+      <button class="nav-item ${S.page==="dashboard"?"active":""}" onclick="set({page:'dashboard'})"><span class="ni">⊞</span> My Dashboard</button>
+      <button class="nav-item ${S.page==="modules"?"active":""}" onclick="set({page:'modules'})"><span class="ni">📚</span> Modules</button>
+      <button class="nav-item ${S.page==="progress"?"active":""}" onclick="set({page:'progress'})"><span class="ni">📈</span> My Progress</button>
+      <div class="nav-section">Grammar Track</div>
+      <button class="nav-item ${S.page==="grammar"?"active":""}" onclick="set({page:'grammar'})"><span class="ni">🔤</span> Grammar Lab</button>
+      <button class="nav-item ${S.page==="resources"?"active":""}" onclick="set({page:'resources'})"><span class="ni">📖</span> Resources & Books</button>
+      <button class="nav-item ${S.page==="feedback"?"active":""}" onclick="set({page:'feedback'})"><span class="ni">💬</span> Feedback</button>`;
+  } else if(u.role==="corporate"){
+    navHTML += `<div class="nav-section">Company</div>
+      <button class="nav-item ${S.page==="dashboard"?"active":""}" onclick="set({page:'dashboard'})"><span class="ni">⊞</span> Overview</button>
+      <button class="nav-item ${S.page==="team"?"active":""}" onclick="set({page:'team'})"><span class="ni">👥</span> Team Progress</button>`;
+  }
+
+  const pageTitles = {
+    dashboard:"Dashboard", students:"Students", teachers:"Teachers",
+    corporate:"Corporate Accounts", revenue:"Revenue", users:"User Management",
+    content:"Modules & Content", resources:"Resources", feedback:"Feedback",
+    modules:"Modules", progress:"My Progress", team:"Team Progress",
+    studentProfile:"Student Profile"
+  };
+
+  let pageContent = "";
+  if(S.viewingStudent && canViewAll()){
+    pageContent = renderStudentProfile(S.viewingStudent);
+  } else {
+    const pages = {
+      dashboard: canViewAll() ? renderAdminDashboard : (u.role==="corporate" ? renderCorpDashboard : renderStudentDashboard),
+      students: renderStudentsPage,
+      teachers: renderTeachersPage,
+      corporate: renderCorporatePage,
+      revenue: renderRevenuePage,
+      users: renderUsersPage,
+      content: renderContentPage,
+      resources: renderResourcesPage,
+      feedback: renderFeedbackPage,
+      grammar: renderGrammarPage,
+      modules: renderStudentModules,
+      progress: renderStudentProgress,
+      progress: renderStudentProgress,
+      team: renderCorpTeam,
+      resources: renderResourcesPage,
+    };
+    pageContent = (pages[S.page] || pages.dashboard)();
+  }
+
+  const topTitle = S.viewingStudent ? `Student: ${S.viewingStudent.name}` : (pageTitles[S.page] || "Dashboard");
+
+  return `
+  <div class="platform">
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-chevron">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5l8 7-8 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </div>
+        <div class="sidebar-logo-text"><h1>Spanish Millennium</h1><span>Learning Platform</span></div>
+      </div>
+      <div class="role-badge ${roleClass}">${roleLabel}</div>
+      <nav class="sidebar-nav">${navHTML}</nav>
+      <div class="sidebar-footer">
+        <div class="user-card" onclick="doLogout()">
+          <div class="user-av">${u.name[0]}</div>
+          <div>
+            <div class="user-name">${u.name}</div>
+            <div class="logout-hint">Click to sign out</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="topbar">
+        <div class="topbar-title">${topTitle}</div>
+        <div class="topbar-right">
+          ${canViewAll() ? `<button class="btn btn-gold btn-sm" onclick="set({page:'students',viewingStudent:null})">+ Add Student</button>` : ""}
+        </div>
+      </div>
+      <div class="page">${pageContent}</div>
+    </div>
+  </div>`;
+}
+
+// ── ADMIN DASHBOARD ───────────────────────────────────────────────────────────
+function renderAdminDashboard(){
+  const totalMRR = CORP_ACCOUNTS.reduce((a,c)=>a+c.mrr,0)+4200;
+  return `
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-label">Total Students</div><div class="stat-value">47</div><div class="stat-sub stat-up">↑ 6 this month</div></div>
+      <div class="stat-card"><div class="stat-label">Active Teachers</div><div class="stat-value">3</div><div class="stat-sub">All active</div></div>
+      <div class="stat-card"><div class="stat-label">Corporate Accounts</div><div class="stat-value">3</div><div class="stat-sub stat-up">↑ 1 new</div></div>
+      <div class="stat-card"><div class="stat-label">MRR</div><div class="stat-value" style="font-size:22px">$${totalMRR.toLocaleString()}</div><div class="stat-sub stat-up">↑ $1,200</div></div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Today's Sessions</div></div>
+        <div class="card-body" style="padding:16px 20px">
+          <div class="sched-item"><div class="sched-time">10:00 AM</div><div class="sched-info"><div class="sched-name">Carlos → Jennifer Rodriguez</div><div class="sched-detail">Legal Terminology</div></div><span class="badge b-green">Live</span></div>
+          <div class="sched-item"><div class="sched-time">2:00 PM</div><div class="sched-info"><div class="sched-name">Isabel → Marcus Williams</div><div class="sched-detail">Finance Vocab</div></div><span class="badge b-gold">Soon</span></div>
+          <div class="sched-item"><div class="sched-time">3:00 PM</div><div class="sched-info"><div class="sched-name">Carlos → Alexandra Chen</div><div class="sched-detail">Legal Module 3</div></div><span class="badge b-gold">Soon</span></div>
+          <div class="sched-item"><div class="sched-time">5:00 PM</div><div class="sched-info"><div class="sched-name">Roberto → David Park</div><div class="sched-detail">Beginner Pro</div></div><span class="badge b-blue">Later</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Corporate Accounts</div></div>
+        <div class="card-body" style="padding:16px 20px">
+          ${CORP_ACCOUNTS.map(c=>`
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(232,229,223,.5)">
+              <div><div style="font-size:13px;font-weight:600;color:#1a1a1a">${c.name}</div><div style="font-size:11px;color:#8a8799">${c.active}/${c.employees} active · ${c.plan}</div></div>
+              <div style="text-align:right"><div style="font-size:15px;font-weight:700;color:#c8a96e">$${c.mrr.toLocaleString()}</div><div style="font-size:10px;color:#8a8799">/mo</div></div>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── STUDENTS PAGE ─────────────────────────────────────────────────────────────
+function renderStudentsPage(){
+  const students = USERS.filter(u=>u.role==="student");
+  return `
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">All Students (${students.length} shown · 47 total)</div>
+        <button class="btn btn-primary btn-sm" onclick="set({page:'users'})">+ Add Student</button>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Name</th><th>Company</th><th>Track</th><th>Level</th><th>Modules Passed</th><th>Last Active</th><th>Action</th></tr></thead>
+        <tbody>
+          ${students.map(s=>{
+            const prog = STUDENT_PROGRESS[s.id];
+            const passed = prog ? prog.passedModules : 0;
+            const last = prog ? prog.lastActive : "—";
+            return `<tr>
+              <td><strong>${s.name}</strong></td>
+              <td>${s.company||"—"}</td>
+              <td>${s.track ? `<span class="badge b-gold">${s.track}</span>` : "—"}</td>
+              <td>${s.level ? `<span class="badge b-blue">${s.level}</span>` : "—"}</td>
+              <td><span class="badge b-green">${passed} passed</span></td>
+              <td style="font-size:12px">${last}</td>
+              <td><button class="btn btn-ghost btn-sm" onclick="viewStudent(${s.id})">View Progress →</button></td>
+            </tr>`;
+          }).join("")}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+// ── STUDENT PROFILE (Admin view) ──────────────────────────────────────────────
+function viewStudent(id){
+  const student = USERS.find(u=>u.id===id);
+  set({viewingStudent: student, page:"studentProfile"});
+}
+
+function renderStudentProfile(student){
+  const prog = STUDENT_PROGRESS[student.id];
+  const passed = prog ? prog.passedModules : 0;
+  const total = prog ? prog.totalLessons : 0;
+
+  return `
+    <button class="back-btn" onclick="set({viewingStudent:null,page:'students'})">← Back to Students</button>
+    <div class="profile-header">
+      <div class="profile-av">${student.name[0]}</div>
+      <div class="profile-info">
+        <div class="profile-name">${student.name}</div>
+        <div class="profile-meta">${student.company||""} · ${student.track||""} Track · Level ${student.level||"—"} · Enrolled ${student.enrolled||"—"}</div>
+        <div class="profile-stats">
+          <div class="ps"><div class="ps-label">Modules Passed</div><div class="ps-value">${passed}</div></div>
+          <div class="ps"><div class="ps-label">Lessons Done</div><div class="ps-value">${total}</div></div>
+          <div class="ps"><div class="ps-label">Last Active</div><div class="ps-value" style="font-size:14px">${prog?prog.lastActive:"—"}</div></div>
+          <div class="ps"><div class="ps-label">Track</div><div class="ps-value" style="font-size:14px">${student.track||"—"}</div></div>
+        </div>
+      </div>
+    </div>
+
+    ${prog ? `
+    <div class="card" style="margin-bottom:18px">
+      <div class="card-header"><div class="card-title">Module Progress Report</div><button class="btn btn-ghost btn-sm" onclick="window.print()">📄 Export PDF</button></div>
+      <table class="data-table">
+        <thead><tr><th>Module</th><th>Lessons</th><th>Status</th><th>Quiz Score</th><th>Attempts</th><th>Last Active</th></tr></thead>
+        <tbody>
+          ${prog.modules.map(m=>`
+            <tr>
+              <td><strong>${m.icon} ${m.name}</strong></td>
+              <td>${m.done} / ${m.lessons}</td>
+              <td>${statusBadge(m.status, m.score)}</td>
+              <td style="font-weight:600;color:${m.score>=8?"#085041":m.score?"#B03030":"#8a8799"}">${m.score?m.score+"/10":"—"}</td>
+              <td>${m.attempts||"—"}</td>
+              <td style="font-size:12px">${m.date||"—"}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="background:#fff8ee;border-color:#f0d49a">
+      <div class="card-header" style="background:#fff8ee;border-color:#f0d49a"><div class="card-title" style="color:#6b4c00">📋 Instructor Notes</div></div>
+      <div class="card-body" style="padding:16px 20px">
+        <textarea style="width:100%;padding:10px;border:1px solid #f0d49a;border-radius:8px;font-family:inherit;font-size:13px;color:#1a1a1a;background:#fff;min-height:80px;outline:none;resize:vertical" placeholder="Add instructor notes for ${student.name}..."></textarea>
+        <button class="btn btn-gold btn-sm" style="margin-top:8px">Save Notes</button>
+      </div>
+    </div>
+    ` : `<div class="empty"><div class="empty-icon">📊</div><p>No progress data yet for this student.</p></div>`}
+  `;
+}
+
+// ── TEACHERS PAGE ─────────────────────────────────────────────────────────────
+function renderTeachersPage(){
+  return `
+    <div class="card">
+      <div class="card-header"><div class="card-title">Teaching Staff</div><button class="btn btn-primary btn-sm">+ Add Teacher</button></div>
+      <table class="data-table">
+        <thead><tr><th>Name</th><th>Origin</th><th>Specialization</th><th>Students</th><th>Sessions</th><th>Rating</th><th>Status</th></tr></thead>
+        <tbody>
+          ${TEACHERS.map(t=>`<tr>
+            <td><strong>${t.name}</strong></td>
+            <td>${t.origin}</td>
+            <td>${t.spec}</td>
+            <td>${t.students}</td>
+            <td>${t.sessions}</td>
+            <td style="color:#c8a96e;font-weight:700">★ ${t.rating}</td>
+            <td><span class="badge b-green">Active</span></td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+// ── CORPORATE PAGE ────────────────────────────────────────────────────────────
+function renderCorporatePage(){
+  return `
+    <div class="card">
+      <div class="card-header"><div class="card-title">Corporate Accounts</div><button class="btn btn-primary btn-sm">+ New Account</button></div>
+      <table class="data-table">
+        <thead><tr><th>Company</th><th>Employees</th><th>Active</th><th>Avg Progress</th><th>Plan</th><th>MRR</th></tr></thead>
+        <tbody>
+          ${CORP_ACCOUNTS.map(c=>`<tr>
+            <td><strong>${c.name}</strong></td>
+            <td>${c.employees}</td>
+            <td>${c.active}</td>
+            <td>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:70px">${progressBar(c.avgProgress)}</div>
+                <span style="font-size:12px;font-weight:600;color:#c8a96e">${c.avgProgress}%</span>
+              </div>
+            </td>
+            <td><span class="badge b-purple">${c.plan}</span></td>
+            <td style="font-weight:700;color:#c8a96e">$${c.mrr.toLocaleString()}</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+// ── REVENUE DATA (manually entered, persists in session) ─────────────────────
+let REVENUE_ACCOUNTS = [
+  {id:1, name:"Morrison & Foerster LLP", type:"corporate", seats:8, mrr:2400, plan:"Enterprise", status:"active", notes:"8 seats × $300"},
+  {id:2, name:"JP Morgan Chase", type:"corporate", seats:15, mrr:4500, plan:"Enterprise", status:"active", notes:"15 seats × $300"},
+  {id:3, name:"Deloitte Consulting", type:"corporate", seats:5, mrr:1250, plan:"Team", status:"active", notes:"5 seats × $250"},
+  {id:4, name:"Individual Students", type:"individual", seats:44, mrr:3520, plan:"Individual", status:"active", notes:"44 students × $80"},
+];
+let revenueForm = {name:"", type:"corporate", seats:"", mrr:"", plan:"", notes:""};
+let revenueNotif = null;
+
+function totalMRR(){ return REVENUE_ACCOUNTS.filter(a=>a.status==="active").reduce((s,a)=>s+a.mrr,0); }
+function corpMRR(){ return REVENUE_ACCOUNTS.filter(a=>a.type==="corporate"&&a.status==="active").reduce((s,a)=>s+a.mrr,0); }
+
+function renderRevenuePage(){
+  const total = totalMRR();
+  const corp = corpMRR();
+  const ind = total - corp;
+  const corpPct = total ? Math.round(corp/total*100) : 0;
+  const indPct = 100 - corpPct;
+
+  return `
+    ${revenueNotif ? `<div class="notif notif-success" style="margin-bottom:16px">✓ ${revenueNotif}</div>` : ""}
+
+    <div class="stats-grid" style="margin-bottom:24px">
+      <div class="stat-card"><div class="stat-label">Total MRR</div><div class="stat-value" style="font-size:22px">$${total.toLocaleString()}</div><div class="stat-sub">Monthly recurring revenue</div></div>
+      <div class="stat-card"><div class="stat-label">ARR Projection</div><div class="stat-value" style="font-size:20px">$${(total*12).toLocaleString()}</div><div class="stat-sub">Based on current MRR</div></div>
+      <div class="stat-card"><div class="stat-label">Corporate</div><div class="stat-value">$${corp.toLocaleString()}</div><div class="stat-sub">${corpPct}% of revenue</div></div>
+      <div class="stat-card"><div class="stat-label">Individual</div><div class="stat-value">$${ind.toLocaleString()}</div><div class="stat-sub">${indPct}% of revenue</div></div>
+    </div>
+
+    <!-- ADD ACCOUNT FORM -->
+    <div style="background:#fff;border:1px solid #e8e5df;border-radius:12px;padding:22px;margin-bottom:20px">
+      <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:16px">+ Add Revenue Account</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px">
+        <div>
+          <label class="form-label">Account Name</label>
+          <input class="form-input" placeholder="e.g. Kirkland & Ellis" value="${revenueForm.name}" oninput="revenueForm.name=this.value">
+        </div>
+        <div>
+          <label class="form-label">Type</label>
+          <select class="form-select" onchange="revenueForm.type=this.value">
+            <option value="corporate" ${revenueForm.type==="corporate"?"selected":""}>Corporate</option>
+            <option value="individual" ${revenueForm.type==="individual"?"selected":""}>Individual Students</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Plan</label>
+          <select class="form-select" onchange="revenueForm.plan=this.value">
+            <option value="Enterprise">Enterprise</option>
+            <option value="Team">Team</option>
+            <option value="Individual">Individual</option>
+            <option value="Custom">Custom</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px">
+        <div>
+          <label class="form-label">Seats / Students</label>
+          <input class="form-input" type="number" placeholder="e.g. 10" value="${revenueForm.seats}" oninput="revenueForm.seats=this.value">
+        </div>
+        <div>
+          <label class="form-label">Monthly Amount ($)</label>
+          <input class="form-input" type="number" placeholder="e.g. 3000" value="${revenueForm.mrr}" oninput="revenueForm.mrr=this.value">
+        </div>
+        <div>
+          <label class="form-label">Notes (optional)</label>
+          <input class="form-input" placeholder="e.g. 10 seats × $300" value="${revenueForm.notes}" oninput="revenueForm.notes=this.value">
+        </div>
+      </div>
+      <button class="btn btn-gold" onclick="addRevenueAccount()">Add Account →</button>
+    </div>
+
+    <!-- ACCOUNTS TABLE -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">All Revenue Accounts</div>
+        <div style="font-size:12px;color:#8a8799">Total MRR: <strong style="color:#c8a96e">$${total.toLocaleString()}</strong></div>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Account</th><th>Type</th><th>Seats</th><th>Plan</th><th>Monthly ($)</th><th>% of Total</th><th>Notes</th><th>Status</th><th></th></tr></thead>
+        <tbody>
+          ${REVENUE_ACCOUNTS.map(a=>`<tr>
+            <td><strong>${a.name}</strong></td>
+            <td><span class="badge ${a.type==="corporate"?"b-purple":"b-blue"}">${a.type==="corporate"?"Corporate":"Individual"}</span></td>
+            <td>${a.seats}</td>
+            <td>${a.plan}</td>
+            <td style="font-weight:700;color:#c8a96e;font-size:14px">$${a.mrr.toLocaleString()}</td>
+            <td>
+              <div style="display:flex;align-items:center;gap:6px">
+                <div style="width:50px">${progressBar(total?Math.round(a.mrr/total*100):0)}</div>
+                <span style="font-size:11px;color:#8a8799">${total?Math.round(a.mrr/total*100):0}%</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:#8a8799">${a.notes||"—"}</td>
+            <td><span class="badge ${a.status==="active"?"b-green":"b-gray"}">${a.status}</span></td>
+            <td>
+              <button class="btn btn-danger btn-sm" onclick="toggleRevenueStatus(${a.id})">${a.status==="active"?"Pause":"Activate"}</button>
+              <button class="btn btn-ghost btn-sm" style="margin-left:4px" onclick="removeRevenueAccount(${a.id})">✕</button>
+            </td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+
+    <div style="background:#f8f7f4;border:1px solid #e8e5df;border-radius:10px;padding:14px;font-size:12px;color:#8a8799;line-height:1.6">
+      💡 <strong style="color:#1a1a1a">Note:</strong> These numbers are entered manually. When you're ready, we can connect Stripe to pull real payment data automatically — every charge, subscription, and cancellation shows up here in real time.
+    </div>
+  `;
+}
+
+function addRevenueAccount(){
+  if(!revenueForm.name||!revenueForm.mrr){ alert("Please enter at least an account name and monthly amount."); return; }
+  const newAcc = {
+    id: REVENUE_ACCOUNTS.length + 1,
+    name: revenueForm.name,
+    type: revenueForm.type,
+    seats: parseInt(revenueForm.seats)||0,
+    mrr: parseInt(revenueForm.mrr)||0,
+    plan: revenueForm.plan||"Custom",
+    status: "active",
+    notes: revenueForm.notes
+  };
+  REVENUE_ACCOUNTS.push(newAcc);
+  revenueForm = {name:"", type:"corporate", seats:"", mrr:"", plan:"", notes:""};
+  revenueNotif = `${newAcc.name} added — $${newAcc.mrr.toLocaleString()}/mo`;
+  render();
+  setTimeout(()=>{ revenueNotif=null; render(); }, 3000);
+}
+
+function toggleRevenueStatus(id){
+  const acc = REVENUE_ACCOUNTS.find(a=>a.id===id);
+  if(acc){ acc.status = acc.status==="active" ? "paused" : "active"; render(); }
+}
+
+function removeRevenueAccount(id){
+  if(!confirm("Remove this account from revenue tracking?")) return;
+  REVENUE_ACCOUNTS = REVENUE_ACCOUNTS.filter(a=>a.id!==id);
+  render();
+}
+
+// ── USER MANAGEMENT PAGE ──────────────────────────────────────────────────────
+function renderUsersPage(){
+  const form = S.addUserForm;
+  return `
+    ${S.notification ? `<div class="notif notif-success">✓ ${S.notification}</div>` : ""}
+    <div class="user-form">
+      <div class="user-form-title">Add New User</div>
+      <div class="form-row">
+        <div><label class="form-label">Full Name</label><input class="form-input" placeholder="Jane Smith" value="${form.name}" oninput="S.addUserForm.name=this.value"></div>
+        <div><label class="form-label">Email</label><input class="form-input" type="email" placeholder="jane@company.com" value="${form.email}" oninput="S.addUserForm.email=this.value"></div>
+      </div>
+      <div class="form-row">
+        <div><label class="form-label">Temporary Password</label><input class="form-input" type="text" placeholder="temppass2026" value="${form.password}" oninput="S.addUserForm.password=this.value"></div>
+        <div><label class="form-label">Role</label>
+          <select class="form-select" onchange="S.addUserForm.role=this.value">
+            <option value="student" ${form.role==="student"?"selected":""}>Student</option>
+            <option value="collaborator" ${form.role==="collaborator"?"selected":""}>Collaborator (can view all, no admin)</option>
+            <option value="admin" ${form.role==="admin"?"selected":""}>Admin (full access)</option>
+            <option value="corporate" ${form.role==="corporate"?"selected":""}>Corporate HR</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div><label class="form-label">Company (optional)</label><input class="form-input" placeholder="Company name" value="${form.company}" oninput="S.addUserForm.company=this.value"></div>
+        <div style="display:flex;align-items:flex-end"><button class="btn btn-gold" style="width:100%;padding:10px" onclick="addUser()">Add User →</button></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-title">All Users & Access Levels</div></div>
+      <table class="data-table">
+        <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Company</th><th>Access</th><th>Action</th></tr></thead>
+        <tbody>
+          ${USERS.map(u=>`<tr>
+            <td><strong>${u.name}</strong>${u.id===S.user.id?" <span style='font-size:10px;color:#8a8799'>(you)</span>":""}</td>
+            <td style="font-size:12px">${u.email}</td>
+            <td>${{admin:`<span class="badge b-gold">Admin</span>`,collaborator:`<span class="badge b-blue">Collaborator</span>`,student:`<span class="badge b-green">Student</span>`,corporate:`<span class="badge b-purple">Corporate HR</span>`}[u.role]}</td>
+            <td>${u.company||"—"}</td>
+            <td style="font-size:12px;color:#8a8799">${{
+              admin:"Full access · Can manage users",
+              collaborator:"View all · No user management",
+              student:"Own dashboard only",
+              corporate:"Own company only"
+            }[u.role]}</td>
+            <td>${u.id!==S.user.id?`<button class="btn btn-danger btn-sm" onclick="removeUser(${u.id})">Remove</button>`:`<span style="font-size:11px;color:#c8c5d0">—</span>`}</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+function addUser(){
+  const f = S.addUserForm;
+  if(!f.name||!f.email||!f.password){ alert("Please fill in all required fields."); return; }
+  const newUser = {id: USERS.length+1, name:f.name, email:f.email, password:f.password, role:f.role, company:f.company};
+  USERS.push(newUser);
+  set({addUserForm:{name:"",email:"",password:"",role:"student",company:""}, notification:`${f.name} added as ${f.role}.`});
+  setTimeout(()=>set({notification:null}), 3000);
+}
+
+function removeUser(id){
+  if(!confirm("Remove this user?")) return;
+  const idx = USERS.findIndex(u=>u.id===id);
+  if(idx>-1){ USERS.splice(idx,1); render(); }
+}
+
+// ── STUDENT VIEWS ─────────────────────────────────────────────────────────────
+function renderStudentDashboard(){
+  const u = S.user;
+  const prog = STUDENT_PROGRESS[u.id];
+  if(!prog) return `<div class="empty"><div class="empty-icon">🎓</div><p>Welcome! Your progress will appear here once you start a module.</p></div>`;
+  return `
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-label">Modules Passed</div><div class="stat-value">${prog.passedModules}</div></div>
+      <div class="stat-card"><div class="stat-label">Lessons Done</div><div class="stat-value">${prog.totalLessons}</div></div>
+      <div class="stat-card"><div class="stat-label">Last Active</div><div class="stat-value" style="font-size:18px">Today</div></div>
+      <div class="stat-card"><div class="stat-label">Track</div><div class="stat-value" style="font-size:18px">${u.track||"—"}</div></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">My Module Progress</div></div>
+      <table class="data-table">
+        <thead><tr><th>Module</th><th>Lessons</th><th>Status</th><th>Quiz</th></tr></thead>
+        <tbody>
+          ${prog.modules.map(m=>`<tr>
+            <td><strong>${m.icon} ${m.name}</strong></td>
+            <td>${m.done}/${m.lessons}</td>
+            <td>${statusBadge(m.status)}</td>
+            <td style="font-weight:600;color:${m.score>=8?"#085041":m.score?"#B03030":"#8a8799"}">${m.score?m.score+"/10":"—"}</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+function renderStudentModules(){
+  const moduleFiles = [
+    {id:1, name:"Business Introductions", file:"SM_Module1_v3.html", icon:"🤝", level:"A2–B1"},
+    {id:2, name:"Legal Terminology", file:"SM_Module2_LegalTerminology.html", icon:"⚖️", level:"B1–B2"},
+    {id:3, name:"Finance & Banking", file:"SM_Module3_FinanceBanking.html", icon:"💰", level:"B1–B2"},
+    {id:4, name:"Healthcare Spanish", file:"SM_Module4_Healthcare.html", icon:"🏥", level:"B1–B2"},
+    {id:5, name:"LATAM Business Culture", file:"SM_Module5_LATAM.html", icon:"🌎", level:"B1+"},
+    {id:6, name:"Professional Writing", file:"SM_Module6_Writing.html", icon:"✍️", level:"B1–B2"},
+    {id:7, name:"Finance Survival Kit", file:"SM_Module9_FinanceSurvivalKit.html", icon:"💵", level:"A1–B2"},
+    {id:8, name:"Sales & Business Dev", file:null, icon:"📈", level:"B1–B2"},
+    {id:9, name:"Corporate Executive Spanish", file:null, icon:"💼", level:"B2–C1"},
+  ];
+  return `
+    <div class="notif">💡 You can access any module in any order. Your progress is tracked automatically.</div>
+    <div class="module-status-grid">
+      ${moduleFiles.map(m=>`
+        <div class="ms-card">
+          <div class="ms-top">
+            <div><div class="ms-name">${m.icon} ${m.name}</div><div class="ms-lessons">Level ${m.level}</div></div>
+            ${m.file ? `<a href="${m.file}" class="btn btn-gold btn-sm">Open →</a>` : `<span class="badge b-gray">Coming soon</span>`}
+          </div>
+        </div>
+      `).join("")}
+    </div>`;
+}
+
+function renderStudentProgress(){
+  return renderStudentDashboard();
+}
+
+// ── CORPORATE VIEWS ───────────────────────────────────────────────────────────
+function renderCorpDashboard(){
+  const u = S.user;
+  const corp = CORP_ACCOUNTS.find(c=>c.name===u.company)||CORP_ACCOUNTS[0];
+  return `
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-label">Enrolled</div><div class="stat-value">${corp.employees}</div><div class="stat-sub">${corp.active} active</div></div>
+      <div class="stat-card"><div class="stat-label">Avg Progress</div><div class="stat-value">${corp.avgProgress}%</div><div class="stat-sub stat-up">↑ 8% this month</div></div>
+      <div class="stat-card"><div class="stat-label">Plan</div><div class="stat-value" style="font-size:18px">${corp.plan}</div></div>
+      <div class="stat-card"><div class="stat-label">Monthly</div><div class="stat-value" style="font-size:20px">$${corp.mrr.toLocaleString()}</div></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">Team Overview</div></div>
+      <table class="data-table">
+        <thead><tr><th>Employee</th><th>Track</th><th>Level</th><th>Modules Passed</th><th>Last Active</th></tr></thead>
+        <tbody>
+          ${USERS.filter(u=>u.role==="student"&&u.company===corp.name).map(s=>{
+            const prog = STUDENT_PROGRESS[s.id];
+            return `<tr>
+              <td><strong>${s.name}</strong></td>
+              <td>${s.track||"—"}</td>
+              <td>${s.level ? `<span class="badge b-blue">${s.level}</span>` : "—"}</td>
+              <td><span class="badge b-green">${prog?prog.passedModules:0} passed</span></td>
+              <td style="font-size:12px">${prog?prog.lastActive:"—"}</td>
+            </tr>`;
+          }).join("")}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+function renderCorpTeam(){ return renderCorpDashboard(); }
+
+
+// ── CONTENT MANAGEMENT PAGE ───────────────────────────────────────────────────
+const CONTENT_DATA = [
+  {
+    id:1, name:"Business Introductions", icon:"🤝", level:"A2–B1", status:"live",
+    file:"SM_Module1_v3.html",
+    track:"Professional Communication",
+    lessons:[
+      {name:"Greetings & formality levels", vocab:8, examples:3, status:"approved"},
+      {name:"Titles & professional forms of address", vocab:8, examples:3, status:"approved"},
+      {name:"Introducing yourself professionally", vocab:8, examples:3, status:"approved"},
+      {name:"Small talk & building rapport", vocab:8, examples:3, status:"approved"},
+      {name:"AI role-play — first client meeting", vocab:0, examples:0, status:"approved"},
+    ],
+    quiz:{questions:15, passing:8, attempts_avg:1.2},
+    students_active:24, students_passed:18,
+    notes:""
+  },
+  {
+    id:2, name:"Legal Terminology", icon:"⚖️", level:"B1–B2", status:"live",
+    file:"SM_Module2_LegalTerminology.html",
+    track:"Professional Communication",
+    lessons:[
+      {name:"Contract vocabulary — the essentials", vocab:10, examples:3, status:"approved"},
+      {name:"Negotiation language", vocab:10, examples:3, status:"approved"},
+      {name:"Deposition & testimony language", vocab:10, examples:3, status:"approved"},
+      {name:"Courtroom & procedural language", vocab:10, examples:3, status:"approved"},
+      {name:"AI role-play — contract negotiation", vocab:0, examples:0, status:"approved"},
+    ],
+    quiz:{questions:15, passing:8, attempts_avg:1.8},
+    students_active:18, students_passed:11,
+    notes:""
+  },
+  {
+    id:3, name:"Finance & Banking Spanish", icon:"💰", level:"B1–B2", status:"live",
+    file:"SM_Module3_FinanceBanking.html",
+    track:"Professional Communication",
+    lessons:[
+      {name:"Core financial vocabulary", vocab:10, examples:3, status:"approved"},
+      {name:"Banking operations & transactions", vocab:10, examples:3, status:"approved"},
+      {name:"Presenting financial results", vocab:10, examples:3, status:"approved"},
+      {name:"Investment & capital markets language", vocab:10, examples:3, status:"approved"},
+      {name:"AI role-play — board presentation", vocab:0, examples:0, status:"approved"},
+    ],
+    quiz:{questions:15, passing:8, attempts_avg:1.3},
+    students_active:14, students_passed:9,
+    notes:""
+  },
+  {
+    id:4, name:"Healthcare Spanish", icon:"🏥", level:"B1–B2", status:"live",
+    file:"SM_Module4_Healthcare.html", track:"Specialization",
+    lessons:[
+      {name:"Patient intake & history taking", vocab:10, examples:3, status:"approved"},
+      {name:"Clinical examination language", vocab:10, examples:3, status:"approved"},
+      {name:"Diagnosis, treatment & prescriptions", vocab:10, examples:3, status:"approved"},
+      {name:"Sensitive conversations & cultural protocols", vocab:10, examples:3, status:"approved"},
+      {name:"AI role-play — patient consultation", vocab:0, examples:0, status:"approved"},
+    ],
+    quiz:{questions:15, passing:8, attempts_avg:0},
+    students_active:0, students_passed:0,
+    notes:""
+  },
+  {
+    id:5, name:"LATAM Business Culture", icon:"🌎", level:"B1–B2", status:"live",
+    file:"SM_Module5_LATAM.html", track:"Cultural Intelligence",
+    lessons:[
+      {name:"Universal LATAM business principles", vocab:10, examples:3, status:"approved"},
+      {name:"Mexico — protocols & business culture", vocab:8, examples:3, status:"approved"},
+      {name:"Colombia & the Andean region", vocab:8, examples:2, status:"approved"},
+      {name:"Argentina & the Southern Cone", vocab:8, examples:3, status:"approved"},
+      {name:"AI role-play — cross-cultural meeting", vocab:0, examples:0, status:"approved"},
+    ],
+    quiz:{questions:15, passing:8, attempts_avg:0},
+    students_active:0, students_passed:0,
+    notes:""
+  },
+  {
+    id:6, name:"Professional Writing", icon:"✍️", level:"B1–B2", status:"live",
+    file:"SM_Module6_Writing.html", track:"Professional Communication",
+    lessons:[
+      {name:"Formal email structure & language", vocab:10, examples:2, status:"approved"},
+      {name:"Business reports & executive summaries", vocab:10, examples:3, status:"approved"},
+      {name:"Proposals & formal letters", vocab:10, examples:2, status:"approved"},
+      {name:"Common writing errors & register mistakes", vocab:10, examples:3, status:"approved"},
+      {name:"AI role-play — written communication review", vocab:0, examples:0, status:"approved"},
+    ],
+    quiz:{questions:15, passing:8, attempts_avg:0},
+    students_active:0, students_passed:0,
+    notes:""
+  },
+  {
+    id:7, name:"Sales & Business Development", icon:"📈", level:"B1–B2", status:"building",
+    file:null, track:"Professional Communication",
+    lessons:[
+      {name:"Prospecting and cold outreach in Spanish", vocab:0, examples:0, status:"pending"},
+      {name:"Pitching your product or service", vocab:0, examples:0, status:"pending"},
+      {name:"Handling objections professionally", vocab:0, examples:0, status:"pending"},
+      {name:"Closing and follow-up language", vocab:0, examples:0, status:"pending"},
+      {name:"AI role-play — sales call scenario", vocab:0, examples:0, status:"pending"},
+    ],
+    quiz:{questions:0, passing:8, attempts_avg:0},
+    students_active:0, students_passed:0,
+    notes:""
+  },
+  {
+    id:8, name:"Corporate Executive Spanish", icon:"💼", level:"B2–C1", status:"planned",
+    file:null, track:"Specialization",
+    lessons:[
+      {name:"Board communication & governance language", vocab:0, examples:0, status:"planned"},
+      {name:"Strategic planning vocabulary", vocab:0, examples:0, status:"planned"},
+      {name:"Managing Latin American teams", vocab:0, examples:0, status:"planned"},
+      {name:"Executive presentations", vocab:0, examples:0, status:"planned"},
+      {name:"AI role-play — executive scenario", vocab:0, examples:0, status:"planned"},
+    ],
+    quiz:{questions:0, passing:8, attempts_avg:0},
+    students_active:0, students_passed:0,
+    notes:""
+  },
+];
+
+let selectedModule = null;
+let moduleNotes = {};
+
+function renderContentPage(){
+  if(selectedModule !== null){
+    return renderModuleDetail(selectedModule);
+  }
+
+  const live = CONTENT_DATA.filter(m=>m.status==="live");
+  const building = CONTENT_DATA.filter(m=>m.status==="building");
+  const planned = CONTENT_DATA.filter(m=>m.status==="planned");
+
+  return `
+    <div style="margin-bottom:20px;display:flex;align-items:center;justify-content:space-between">
+      <div style="font-size:13px;color:#8a8799">${CONTENT_DATA.length} modules total · ${live.length} live · ${building.length} in development · ${planned.length} planned</div>
+      <button class="btn btn-gold btn-sm" onclick="alert('Build Module 4 — tell JP to ask Claude!')">+ Request New Module</button>
+    </div>
+
+    <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c8a96e;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #fff8ee">● Live — Available to Students</div>
+    ${live.map(m=>moduleRow(m)).join("")}
+
+    <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1A6BB5;margin:20px 0 10px;padding-bottom:6px;border-bottom:2px solid #EEF4FC">◐ In Development</div>
+    ${building.map(m=>moduleRow(m)).join("")}
+
+    <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8799;margin:20px 0 10px;padding-bottom:6px;border-bottom:2px solid #f4f2ee">○ Planned</div>
+    ${planned.map(m=>moduleRow(m)).join("")}
+  `;
+}
+
+function moduleRow(m){
+  const statusBadgeMap = {
+    live:`<span class="badge b-green">● Live</span>`,
+    building:`<span class="badge b-blue">◐ Building</span>`,
+    planned:`<span class="badge b-gray">○ Planned</span>`
+  };
+  return `
+    <div style="background:#fff;border:1px solid #e8e5df;border-radius:10px;padding:16px 20px;margin-bottom:10px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:all .15s" onclick="openModule(${m.id})" onmouseover="this.style.borderColor='#c8a96e'" onmouseout="this.style.borderColor='#e8e5df'">
+      <div style="font-size:26px;flex-shrink:0">${m.icon}</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+          <div style="font-size:14px;font-weight:700;color:#1a1a1a">${m.name}</div>
+          ${statusBadgeMap[m.status]}
+          <span class="badge b-gray" style="font-size:10px">${m.track}</span>
+        </div>
+        <div style="font-size:12px;color:#8a8799">Level ${m.level} · ${m.lessons.length} lessons · ${m.quiz.questions} quiz questions</div>
+      </div>
+      <div style="text-align:center;min-width:60px">
+        <div style="font-size:18px;font-weight:700;color:#1a1a1a">${m.students_active}</div>
+        <div style="font-size:10px;color:#8a8799">students</div>
+      </div>
+      <div style="text-align:center;min-width:60px">
+        <div style="font-size:18px;font-weight:700;color:#1D9E75">${m.students_passed}</div>
+        <div style="font-size:10px;color:#8a8799">passed</div>
+      </div>
+      <div style="color:#8a8799;font-size:18px">›</div>
+    </div>`;
+}
+
+function openModule(id){
+  selectedModule = id;
+  render();
+}
+
+function renderModuleDetail(id){
+  const m = CONTENT_DATA.find(x=>x.id===id);
+  if(!m) return "";
+
+  const statusColor = {live:"#1D9E75", building:"#1A6BB5", planned:"#8a8799"}[m.status];
+  const lessonStatusBadge = {
+    approved:`<span class="badge b-green" style="font-size:10px">✓ Approved</span>`,
+    pending:`<span class="badge b-gold" style="font-size:10px">⏳ Pending</span>`,
+    planned:`<span class="badge b-gray" style="font-size:10px">○ Planned</span>`,
+  };
+
+  return `
+    <button class="back-btn" onclick="selectedModule=null;render()">← Back to All Modules</button>
+
+    <div style="background:#fff;border:1px solid #e8e5df;border-radius:12px;padding:24px;margin-bottom:18px">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px">
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="font-size:36px">${m.icon}</div>
+          <div>
+            <div style="font-size:20px;font-weight:700;color:#1a1a1a;margin-bottom:4px">${m.name}</div>
+            <div style="font-size:13px;color:#8a8799">Level ${m.level} · ${m.track} · <span style="color:${statusColor};font-weight:600">${m.status.charAt(0).toUpperCase()+m.status.slice(1)}</span></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px">
+          ${m.file ? `<a href="${m.file}" class="btn btn-gold btn-sm" target="_blank">Preview Module →</a>` : ""}
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <div style="background:#f8f7f4;border:1px solid #e8e5df;border-radius:8px;padding:12px">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#8a8799;font-weight:600;margin-bottom:4px">Lessons</div>
+          <div style="font-size:22px;font-weight:700">${m.lessons.length}</div>
+        </div>
+        <div style="background:#f8f7f4;border:1px solid #e8e5df;border-radius:8px;padding:12px">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#8a8799;font-weight:600;margin-bottom:4px">Quiz Questions</div>
+          <div style="font-size:22px;font-weight:700">${m.quiz.questions}</div>
+        </div>
+        <div style="background:#f8f7f4;border:1px solid #e8e5df;border-radius:8px;padding:12px">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#8a8799;font-weight:600;margin-bottom:4px">Students Active</div>
+          <div style="font-size:22px;font-weight:700">${m.students_active}</div>
+        </div>
+        <div style="background:#f8f7f4;border:1px solid #e8e5df;border-radius:8px;padding:12px">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#8a8799;font-weight:600;margin-bottom:4px">Passed Quiz</div>
+          <div style="font-size:22px;font-weight:700;color:#1D9E75">${m.students_passed}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:18px">
+      <div class="card-header"><div class="card-title">Lessons</div></div>
+      <table class="data-table">
+        <thead><tr><th>#</th><th>Lesson Name</th><th>Vocab Cards</th><th>Context Examples</th><th>Status</th></tr></thead>
+        <tbody>
+          ${m.lessons.map((l,i)=>`<tr>
+            <td style="color:#8a8799;font-weight:600">${i+1}</td>
+            <td><strong>${l.name}</strong></td>
+            <td>${l.vocab > 0 ? l.vocab+" cards" : l.name.includes("role-play") ? "<span style='color:#534AB7;font-size:12px'>AI Practice</span>" : "—"}</td>
+            <td>${l.examples > 0 ? l.examples+" examples" : "—"}</td>
+            <td>${lessonStatusBadge[l.status]||""}</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+
+    ${m.quiz.questions > 0 ? `
+    <div class="card" style="margin-bottom:18px">
+      <div class="card-header"><div class="card-title">Quiz Details</div></div>
+      <div style="padding:16px 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;font-size:13px">
+        <div><div style="color:#8a8799;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:4px">Question Bank</div><div style="font-size:18px;font-weight:700">${m.quiz.questions} questions</div><div style="font-size:11px;color:#8a8799">10 drawn randomly per attempt</div></div>
+        <div><div style="color:#8a8799;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:4px">Passing Score</div><div style="font-size:18px;font-weight:700">${m.quiz.passing}/10</div><div style="font-size:11px;color:#8a8799">Required to pass module</div></div>
+        <div><div style="color:#8a8799;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:4px">Avg Attempts</div><div style="font-size:18px;font-weight:700">${m.quiz.attempts_avg}</div><div style="font-size:11px;color:#8a8799">Per student to pass</div></div>
+      </div>
+    </div>
+    ` : ""}
+
+    <div style="background:#fff;border:1px solid #e8e5df;border-radius:12px;padding:20px">
+      <div style="font-size:15px;font-weight:700;margin-bottom:12px;color:#1a1a1a">📝 Admin Notes</div>
+      <textarea id="moduleNotes_${m.id}" style="width:100%;padding:10px;border:1px solid #e8e5df;border-radius:8px;font-family:inherit;font-size:13px;color:#1a1a1a;background:#faf9f7;min-height:80px;outline:none;resize:vertical;line-height:1.6" placeholder="Add notes about this module — what needs updating, what to add, what to remove...">${moduleNotes[m.id]||""}</textarea>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="btn btn-gold btn-sm" onclick="saveModuleNotes(${m.id})">Save Notes</button>
+        <button class="btn btn-ghost btn-sm" onclick="selectedModule=null;render()">← Back to All Modules</button>
+      </div>
+    </div>
+  `;
+}
+
+function saveModuleNotes(id){
+  const textarea = document.getElementById('moduleNotes_'+id);
+  if(textarea){ moduleNotes[id] = textarea.value; alert("Notes saved."); }
+}
+
+
+// ── RESOURCES PAGE ────────────────────────────────────────────────────────────
+function renderResourcesPage(){
+  return `
+    <div class="notif" style="background:#e1f5ee;border-color:#5DCAA5;color:#085041">
+      ✓ These are Spanish Millennium's published resources. All rights reserved © Juan-Luis Panizo. For institutional licensing inquiries: info@spanishmillennium.com
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">
+
+      <div style="background:#fff;border:1px solid #e8e5df;border-radius:14px;overflow:hidden">
+        <div style="background:linear-gradient(135deg,#1a1a2e,#2D4A8A);padding:28px 24px;color:#fff">
+          <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:8px">Spanish Millennium · Survival Kit Series</div>
+          <div style="font-size:20px;font-weight:700;margin-bottom:4px;line-height:1.3">Spanish Survival Kit for Finance Professionals</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.7);margin-top:6px">Essential phrases, vocabulary & cultural notes for finance, banking, wealth management, and M&A</div>
+        </div>
+        <div style="padding:20px 24px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+            <div style="background:#f8f7f4;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#8a8799;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:2px">Pages</div><div style="font-size:16px;font-weight:700">73</div></div>
+            <div style="background:#f8f7f4;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#8a8799;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:2px">Sections</div><div style="font-size:16px;font-weight:700">23</div></div>
+            <div style="background:#f8f7f4;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#8a8799;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:2px">ISBN</div><div style="font-size:13px;font-weight:700">9798296686749</div></div>
+            <div style="background:#f8f7f4;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#8a8799;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:2px">Edition</div><div style="font-size:16px;font-weight:700">2025</div></div>
+          </div>
+          <div style="font-size:12px;color:#8a8799;margin-bottom:14px;line-height:1.6">Covers banking, taxes, investments, wealth management, M&A, financial statements, compliance, real estate finance, bilingual dialogues, and role-based sections for 5 professional types.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <a href="survival_kit_for_Finance_professionals.pdf" target="_blank" class="btn btn-primary" style="text-decoration:none;font-size:12px;padding:8px 16px">📥 Download PDF</a>
+            <button class="btn btn-ghost btn-sm" onclick="alert('Module 9 — Finance Survival Kit is built from this book. Go to Modules & Content to see it.')">🎓 View as Module →</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border:2px dashed #e8e5df;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center">
+        <div style="font-size:36px;margin-bottom:12px">📗</div>
+        <div style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:6px">Spanish Survival Kit for Legal Professionals</div>
+        <div style="font-size:13px;color:#8a8799;margin-bottom:16px;line-height:1.5">Contract vocabulary, courtroom language, negotiation, deposition, and LATAM legal protocols. Coming soon.</div>
+        <span class="badge b-gold">In Development</span>
+      </div>
+
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-title">How to Use These Resources</div></div>
+      <div style="padding:18px 20px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+        <div style="background:#f8f7f4;border-radius:10px;padding:14px">
+          <div style="font-size:14px;font-weight:700;margin-bottom:6px">👨‍🏫 For Teachers</div>
+          <div style="font-size:13px;color:#6b6878;line-height:1.6">Use as a reference during sessions. Assign specific sections as pre-reading before vocabulary lessons. The bilingual dialogues in Section 17 are great for role-play warm-ups.</div>
+        </div>
+        <div style="background:#f8f7f4;border-radius:10px;padding:14px">
+          <div style="font-size:14px;font-weight:700;margin-bottom:6px">🎓 For Students</div>
+          <div style="font-size:13px;color:#6b6878;line-height:1.6">Download and keep it as a desk reference. The pronunciation guide in Section 11 is especially useful before client calls. The role-based sections (23) go straight to your job type.</div>
+        </div>
+        <div style="background:#f8f7f4;border-radius:10px;padding:14px">
+          <div style="font-size:14px;font-weight:700;margin-bottom:6px">🏢 For Corporate HR</div>
+          <div style="font-size:13px;color:#6b6878;line-height:1.6">Distribute to all enrolled employees as a supplement to their modules. The bilingual financial templates (Section 19) can be used directly in client intake workflows.</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+
+// ── FEEDBACK SYSTEM ───────────────────────────────────────────────────────────
+let FEEDBACK_ITEMS = [
+  {id:1, user:"Alexandra Chen", role:"student", date:"May 18, 2026", type:"suggestion", module:"Legal Terminology", text:"Would love more examples of contract negotiation phrases in context — the vocab cards are great but I want to see them in longer conversations.", status:"pending"},
+  {id:2, user:"Marcus Williams", role:"student", date:"May 19, 2026", type:"issue", module:"Finance & Banking", text:"The quiz retake button didn't appear after failing. Had to refresh the page to try again.", status:"pending"},
+  {id:3, user:"Sarah Thompson", role:"student", date:"May 20, 2026", type:"suggestion", module:"General", text:"Can we add a progress certificate or badge when all 6 core modules are completed? Would be great to share on LinkedIn.", status:"in review"},
+];
+let feedbackForm = {type:"suggestion", module:"General", text:""};
+let feedbackNotif = null;
+
+function renderFeedbackPage(){
+  const isAdmin = canViewAll();
+  const userFeedback = isAdmin ? FEEDBACK_ITEMS : FEEDBACK_ITEMS.filter(f=>f.user===S.user.name);
+  const pending = FEEDBACK_ITEMS.filter(f=>f.status==="pending").length;
+
+  return `
+    ${feedbackNotif ? `<div class="notif notif-success" style="margin-bottom:16px">✓ ${feedbackNotif}</div>` : ""}
+
+    <!-- SUBMIT FORM -->
+    <div style="background:#fff;border:1px solid #e8e5df;border-radius:12px;padding:22px;margin-bottom:20px">
+      <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px">💬 Send Feedback or Suggestion</div>
+      <div style="font-size:13px;color:#8a8799;margin-bottom:16px;line-height:1.5">Tell us what you need, what's not working, or what would make this platform better. We read everything and update the platform based on your input.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div>
+          <label class="form-label">Type</label>
+          <select class="form-select" onchange="feedbackForm.type=this.value">
+            <option value="suggestion">💡 Suggestion — I want something added or improved</option>
+            <option value="issue">🐛 Issue — Something isn't working correctly</option>
+            <option value="content">📝 Content feedback — Wrong or missing information</option>
+            <option value="praise">⭐ Praise — Something I love about the platform</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Module (if relevant)</label>
+          <select class="form-select" onchange="feedbackForm.module=this.value">
+            <option>General</option>
+            <option>Business Introductions</option>
+            <option>Legal Terminology</option>
+            <option>Finance & Banking</option>
+            <option>Healthcare Spanish</option>
+            <option>LATAM Business Culture</option>
+            <option>Professional Writing</option>
+            <option>Finance Survival Kit</option>
+            <option>Platform / Dashboard</option>
+            <option>Quiz system</option>
+            <option>AI Tutor</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-bottom:14px">
+        <label class="form-label">Your feedback</label>
+        <textarea style="width:100%;padding:10px;border:1px solid #e8e5df;border-radius:8px;font-family:inherit;font-size:13px;color:#1a1a1a;background:#faf9f7;min-height:90px;outline:none;resize:vertical;line-height:1.6" placeholder="Describe your suggestion, issue, or idea in as much detail as you can..." oninput="feedbackForm.text=this.value"></textarea>
+      </div>
+      <button class="btn btn-gold" onclick="submitFeedback()">Submit Feedback →</button>
+    </div>
+
+    ${isAdmin ? `
+    <!-- ADMIN VIEW -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px">
+      <div class="stat-card"><div class="stat-label">Total Submissions</div><div class="stat-value">${FEEDBACK_ITEMS.length}</div></div>
+      <div class="stat-card"><div class="stat-label">Pending Review</div><div class="stat-value" style="color:#c8a96e">${pending}</div></div>
+      <div class="stat-card"><div class="stat-label">In Review</div><div class="stat-value" style="color:#2D4A8A">${FEEDBACK_ITEMS.filter(f=>f.status==="in review").length}</div></div>
+    </div>
+    ` : ""}
+
+    <!-- FEEDBACK LIST -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">${isAdmin ? "All Feedback" : "My Submissions"}</div>
+        ${isAdmin ? `<div style="font-size:12px;color:#8a8799">All student and user feedback — review and mark status</div>` : ""}
+      </div>
+      ${userFeedback.length===0 ? `<div class="empty" style="padding:32px"><div class="empty-icon">💬</div><p>No feedback submitted yet.</p></div>` :
+        `<div style="padding:0">
+          ${userFeedback.map(f=>`
+            <div style="padding:16px 20px;border-bottom:1px solid rgba(232,229,223,.6)">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px">
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                  <span style="font-size:13px;font-weight:700;color:#1a1a1a">${f.user}</span>
+                  <span class="badge ${{suggestion:"b-gold",issue:"b-red",content:"b-blue",praise:"b-green"}[f.type]||"b-gray"}" style="font-size:10px">${{suggestion:"💡 Suggestion",issue:"🐛 Issue",content:"📝 Content",praise:"⭐ Praise"}[f.type]||f.type}</span>
+                  <span class="badge b-gray" style="font-size:10px">${f.module}</span>
+                  ${isAdmin ? `<select style="font-size:11px;padding:2px 8px;border-radius:20px;border:1px solid #e8e5df;background:#f8f7f4;cursor:pointer;color:#6b6878" onchange="updateFeedbackStatus(${f.id},this.value)">
+                    <option ${f.status==="pending"?"selected":""}>pending</option>
+                    <option ${f.status==="in review"?"selected":""}>in review</option>
+                    <option ${f.status==="done"?"selected":""}>done</option>
+                    <option ${f.status==="wont fix"?"selected":""}>wont fix</option>
+                  </select>` : `<span class="badge ${{pending:"b-gray","in review":"b-blue",done:"b-green","wont fix":"b-red"}[f.status]||"b-gray"}" style="font-size:10px">${f.status}</span>`}
+                </div>
+                <span style="font-size:11px;color:#c8c5d0;white-space:nowrap">${f.date}</span>
+              </div>
+              <div style="font-size:13px;color:#1a1a1a;line-height:1.6">${f.text}</div>
+            </div>
+          `).join("")}
+        </div>`}
+    </div>
+  `;
+}
+
+function submitFeedback(){
+  if(!feedbackForm.text.trim()){ alert("Please write your feedback before submitting."); return; }
+  const newItem = {
+    id: FEEDBACK_ITEMS.length+1,
+    user: S.user.name,
+    role: S.user.role,
+    date: new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}),
+    type: feedbackForm.type,
+    module: feedbackForm.module,
+    text: feedbackForm.text,
+    status: "pending"
+  };
+  FEEDBACK_ITEMS.unshift(newItem);
+  feedbackForm = {type:"suggestion", module:"General", text:""};
+  feedbackNotif = "Your feedback was submitted. Thank you — we read everything.";
+  render();
+  setTimeout(()=>{ feedbackNotif=null; render(); }, 4000);
+}
+
+function updateFeedbackStatus(id, status){
+  const item = FEEDBACK_ITEMS.find(f=>f.id===id);
+  if(item){ item.status=status; }
+}
+
+// ── RESOURCES PAGE ────────────────────────────────────────────────────────────
+function renderResourcesPage(){
+  return `
+    <div style="margin-bottom:20px">
+      <div style="font-size:15px;color:#6b6878;line-height:1.6">Downloadable guides, reference sheets, and study tools created by Spanish Millennium. All materials are included in your subscription.</div>
+    </div>
+
+    <!-- SURVIVAL KITS -->
+    <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c8a96e;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #fff8ee">📚 Spanish Survival Kit Series</div>
+
+    <div style="background:#fff;border:1px solid #e8e5df;border-radius:12px;padding:22px;margin-bottom:14px">
+      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+        <div style="font-size:36px;flex-shrink:0">💵</div>
+        <div style="flex:1">
+          <div style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px">Spanish Survival Kit for Finance Professionals</div>
+          <div style="font-size:13px;color:#8a8799;margin-bottom:10px;line-height:1.5">73-page bilingual reference guide covering banking, investments, taxes, M&A, wealth management, and financial jargon. Formal phrases, vocabulary, pronunciation help, and sample dialogues.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <span class="badge b-gold">73 pages</span>
+            <span class="badge b-green">Published 2025</span>
+            <span class="badge b-blue">ISBN 9798296686749</span>
+            <span class="badge b-gray">All levels</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;flex-shrink:0">
+          <a href="survival_kit_for_Finance_professionals.pdf" target="_blank" class="btn btn-gold" style="text-decoration:none;text-align:center">📥 Download PDF</a>
+          <a href="SM_Module9_FinanceSurvivalKit.html" class="btn btn-ghost" style="text-decoration:none;text-align:center;font-size:12px">Open as Module →</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#f8f7f4;border:1px dashed #e8e5df;border-radius:12px;padding:20px;margin-bottom:24px;text-align:center">
+      <div style="font-size:13px;font-weight:600;color:#8a8799;margin-bottom:4px">📖 Spanish Survival Kit for Legal Professionals</div>
+      <div style="font-size:12px;color:#c8c5d0">Coming soon</div>
+    </div>
+
+    <!-- QUICK REFERENCE -->
+    <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2D4A8A;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #EEF1FA">📋 Quick Reference Sheets</div>
+
+    ${["Business Introductions — Key Phrases","Legal Terminology — Contract Vocabulary","Finance & Banking — Core Vocab","Healthcare Spanish — Patient Communication Phrases","LATAM Business Culture — Country-by-Country Cheat Sheet","Professional Writing — Email Templates & Closings"].map((title,i)=>`
+      <div style="background:#fff;border:1px solid #e8e5df;border-radius:10px;padding:14px 18px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#1a1a1a">Module ${i+1} — ${title}</div>
+          <div style="font-size:11px;color:#8a8799;margin-top:2px">1-page printable reference · PDF</div>
+        </div>
+        <span class="badge b-gray" style="font-size:10px">Coming soon</span>
+      </div>
+    `).join("")}
+
+    <!-- SUGGEST A RESOURCE -->
+    <div style="background:#f8f7f4;border:1px solid #e8e5df;border-radius:12px;padding:18px;margin-top:20px;text-align:center">
+      <div style="font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:6px">Need a specific reference guide?</div>
+      <div style="font-size:13px;color:#8a8799;margin-bottom:12px">Tell us what would help you — vocabulary sheet, phrase guide, grammar reference — and we'll build it.</div>
+      <button class="btn btn-gold" onclick="set({page:'feedback'})">Request a Resource →</button>
+    </div>
+  `;
+}
+
+
+// ── GRAMMAR LAB PAGE ─────────────────────────────────────────────────────────
+function renderGrammarPage(){
+  const modules = [
+    {code:"G1", title:"Nouns, Articles & Numbers", file:"SM_Grammar_G1.html", level:"A1", status:"live", desc:"Noun gender, articles, plurals, adjective agreement, numbers, possession"},
+    {code:"G2", title:"Ser & Estar", file:"SM_Grammar_G2.html", level:"A1", status:"live", desc:"Both mean 'to be' — but never interchangeable. Identity vs states, possessive pronouns"},
+    {code:"G3", title:"Present Tense", file:"SM_Grammar_G3.html", level:"A1–A2", status:"live", desc:"Regular verbs, stem-changing verbs, ir a + infinitive, tener que, direct object pronouns"},
+    {code:"G4", title:"The Preterite", file:"SM_Grammar_G4.html", level:"A2–B1", status:"building", desc:"Completed past actions — regular and irregular preterite conjugations"},
+    {code:"G5", title:"Reflexive Verbs & Por vs Para", file:"SM_Grammar_G5.html", level:"B1", status:"building", desc:"Reflexive verbs, reflexive pronouns, por vs para — all uses"},
+    {code:"G6", title:"The Imperfect Tense", file:"SM_Grammar_G6.html", level:"B1", status:"building", desc:"Ongoing past states, habits, background context — and when to use vs preterite"},
+  ];
+
+  const live = modules.filter(m=>m.status==="live");
+  const building = modules.filter(m=>m.status==="building");
+
+  return `
+    <div style="background:var(--blue);border-radius:4px;padding:22px;margin-bottom:24px;color:#fff">
+      <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:700;margin-bottom:6px">Spanish Millennium · Grammar Track</div>
+      <div style="font-size:20px;font-weight:700;margin-bottom:4px;letter-spacing:-.3px">Grammar Lab — Book 1</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.8);line-height:1.5">A1 to B1. Complete these modules in order. Each one builds on the previous. After the quiz, submit writing for personal instructor feedback.</div>
+    </div>
+
+    <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--blue-light)">● Available now</div>
+    ${live.map(m=>`
+      <div style="background:#fff;border:1.5px solid var(--gray-light);border-radius:4px;padding:18px 20px;margin-bottom:10px;display:flex;align-items:center;gap:16px">
+        <div style="width:40px;height:40px;background:var(--blue);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0">${m.code}</div>
+        <div style="flex:1">
+          <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:3px">${m.title}</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.5">${m.desc}</div>
+          <div style="margin-top:6px"><span style="font-size:11px;font-weight:700;background:var(--blue-light);color:var(--blue);padding:2px 8px;border-radius:2px">${m.level}</span></div>
+        </div>
+        <a href="${m.file}" style="text-decoration:none"><button style="padding:9px 18px;background:var(--blue);color:#fff;border:none;border-radius:3px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap">Open →</button></a>
+      </div>
+    `).join("")}
+
+    <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-mid);margin:20px 0 12px;padding-bottom:6px;border-bottom:2px solid #f0f0f0">◐ In development</div>
+    ${building.map(m=>`
+      <div style="background:#fafbfc;border:1.5px solid #f0f0f0;border-radius:4px;padding:18px 20px;margin-bottom:10px;display:flex;align-items:center;gap:16px;opacity:.7">
+        <div style="width:40px;height:40px;background:#e8e8e8;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gray-mid);flex-shrink:0">${m.code}</div>
+        <div style="flex:1">
+          <div style="font-size:14px;font-weight:700;color:var(--gray);margin-bottom:3px">${m.title}</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.5">${m.desc}</div>
+          <div style="margin-top:6px"><span style="font-size:11px;font-weight:700;background:#f0f0f0;color:var(--gray-mid);padding:2px 8px;border-radius:2px">${m.level}</span></div>
+        </div>
+        <span style="font-size:11px;font-weight:700;color:var(--gray-mid);padding:9px 18px;border:1.5px solid #e8e8e8;border-radius:3px;white-space:nowrap">Coming soon</span>
+      </div>
+    `).join("")}
+
+    <div style="background:var(--blue-light);border:1px solid #a8c4f8;border-radius:4px;padding:16px;margin-top:8px;font-size:13px;color:var(--blue);line-height:1.6">
+      💡 <strong style="color:var(--black)">How it works:</strong> Complete all lessons in a module → take the quiz (8/10 to pass) → write 8–10 sentences → submit for personal teacher feedback within 48 hours.
+    </div>
+  `;
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>

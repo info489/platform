@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 — Business Introductions | Spanish Millennium</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f8f7f4;color:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;padding:24px 16px}
+.wrap{max-width:820px;margin:0 auto}
+.mod-header{background:#fff;border:1px solid #e8e5df;border-radius:14px;padding:28px;margin-bottom:20px}
+.mod-logo{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#c8a96e;font-weight:700;margin-bottom:10px}
+.mod-title{font-size:26px;font-weight:700;color:#1a1a1a;margin-bottom:4px}
+.mod-sub{font-size:14px;color:#6b6878;margin-bottom:18px;line-height:1.5}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pill{padding:5px 12px;border-radius:20px;font-size:12px;border:1px solid #e8e5df;color:#6b6878;background:#f8f7f4}
+.prog-bar{height:7px;background:#e8e5df;border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:#1D9E75;border-radius:4px;transition:width .4s ease}
+.prog-label{font-size:12px;color:#8a8799;margin-top:6px}
+.lesson-list{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
+.lesson-btn{display:flex;align-items:center;gap:14px;padding:13px 18px;border-radius:12px;border:1px solid #e8e5df;background:#fff;cursor:pointer;text-align:left;transition:all .15s;width:100%}
+.lesson-btn:hover{background:#f4f2ee;border-color:#c8a96e}
+.lesson-btn.active{border-color:#1D9E75;background:#f0faf6}
+.lesson-btn.done .lnum{background:#1D9E75;color:#fff;border-color:#1D9E75}
+.lnum{width:30px;height:30px;border-radius:50%;border:1px solid #e8e5df;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;color:#8a8799;transition:all .2s}
+.linfo{flex:1}
+.ltitle{font-size:14px;font-weight:600;color:#1a1a1a}
+.ldesc{font-size:12px;color:#8a8799;margin-top:2px}
+.lbadge{font-size:11px;color:#8a8799;padding:3px 9px;border-radius:20px;background:#f4f2ee;white-space:nowrap}
+.lbadge.green{background:#e1f5ee;color:#085041}
+.lbadge.gold{background:#fff8ee;color:#c8a96e;border:1px solid #f0d49a}
+.quiz-nav-btn{display:flex;align-items:center;gap:14px;padding:13px 18px;border-radius:12px;border:2px solid #c8a96e;background:#fff8ee;cursor:pointer;text-align:left;transition:all .15s;width:100%;margin-top:4px}
+.quiz-nav-btn:hover{background:#fff0d0}
+.quiz-nav-btn.locked{opacity:.5;cursor:not-allowed;border-color:#e8e5df;background:#f8f7f4}
+.quiz-nav-btn .lnum{background:#c8a96e;color:#fff;border-color:#c8a96e}
+.quiz-nav-btn.locked .lnum{background:#e8e5df;color:#8a8799}
+.content{background:#fff;border:1px solid #e8e5df;border-radius:14px;padding:28px}
+.sec-title{font-size:20px;font-weight:700;margin-bottom:4px}
+.sec-sub{font-size:13px;color:#6b6878;margin-bottom:20px;line-height:1.5}
+.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.vcard{border:1px solid #e8e5df;border-radius:10px;padding:14px;cursor:pointer;transition:all .2s;min-height:95px;background:#faf9f7;position:relative}
+.vcard:hover{border-color:#c8a96e;background:#fff}
+.vcard .ven{display:none;color:#1D9E75;font-size:13px;margin-top:8px;font-weight:600;padding-top:8px;border-top:1px solid #e8e5df}
+.vcard.flipped .ven{display:block}
+.vcard.flipped .vtip{display:none}
+.ves{font-size:16px;font-weight:700;color:#1a1a1a}
+.vctx{font-size:11px;color:#8a8799;margin-top:3px;line-height:1.4}
+.vtip{font-size:11px;color:#c8c5d0;margin-top:10px;font-style:italic}
+.ex-box{background:#f0faf6;border-left:3px solid #1D9E75;border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:12px}
+.ex-es{font-size:14px;font-weight:700;color:#1a1a1a;line-height:1.5}
+.ex-en{font-size:13px;color:#6b6878;margin-top:5px;line-height:1.5}
+.ex-ctx{font-size:12px;color:#1D9E75;margin-top:6px;font-style:italic;font-weight:500}
+.culture-box{background:#faf9f7;border:1px solid #e8e5df;border-radius:10px;padding:14px;margin-bottom:12px}
+.culture-label{font-size:10px;font-weight:700;color:#1D9E75;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.culture-text{font-size:13px;color:#1a1a1a;line-height:1.6}
+.scenario-box{background:#fff8ee;border:1px solid #f0d49a;border-radius:10px;padding:14px;margin-bottom:12px}
+.scenario-label{font-size:10px;font-weight:700;color:#c8a96e;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.gpt-box{border:2px solid #1D9E75;border-radius:12px;padding:20px;text-align:center;background:#f0faf6;margin-top:16px}
+.gpt-title{font-size:16px;font-weight:700;color:#085041;margin-bottom:6px}
+.gpt-sub{font-size:13px;color:#1D9E75;margin-bottom:16px;line-height:1.5}
+.gpt-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#1D9E75;color:#fff;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;transition:all .15s}
+.gpt-btn:hover{background:#0F6E56}
+.gpt-note{font-size:12px;color:#6b6878;margin-top:12px;line-height:1.6;background:#fff;border-radius:8px;padding:10px 14px;border:1px solid #c3e8d8;text-align:left}
+.gpt-note em{color:#085041;font-style:normal;font-weight:600}
+
+/* QUIZ */
+.quiz-header{background:#fff8ee;border:1px solid #f0d49a;border-radius:10px;padding:16px;margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.quiz-icon{font-size:28px;flex-shrink:0}
+.quiz-header-title{font-size:16px;font-weight:700;color:#1a1a1a}
+.quiz-header-sub{font-size:12px;color:#8a8799;margin-top:2px;line-height:1.4}
+.quiz-progress{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.quiz-dots{display:flex;gap:5px;flex:1}
+.qdot{height:8px;border-radius:4px;background:#e8e5df;transition:all .3s;flex:1}
+.qdot.current{background:#c8a96e}
+.qdot.correct{background:#1D9E75}
+.qdot.wrong{background:#e24b4a}
+.quiz-counter{font-size:13px;font-weight:600;color:#6b6878;white-space:nowrap}
+.quiz-q{font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:6px;line-height:1.5}
+.quiz-context{font-size:12px;color:#8a8799;margin-bottom:18px;font-style:italic;padding:8px 12px;background:#f8f7f4;border-radius:8px;border-left:3px solid #e8e5df}
+.quiz-opts{display:flex;flex-direction:column;gap:9px}
+.qopt{padding:13px 16px;border-radius:10px;border:1px solid #e8e5df;background:#faf9f7;cursor:pointer;font-size:13px;text-align:left;transition:all .15s;font-family:inherit;color:#1a1a1a;line-height:1.5}
+.qopt:hover:not(:disabled){background:#f4f2ee;border-color:#c8a96e}
+.qopt.correct{border-color:#1D9E75;background:#e1f5ee;color:#085041;font-weight:600}
+.qopt.wrong{border-color:#e24b4a;background:#fcebeb;color:#501313}
+.qopt:disabled{cursor:default}
+.why-wrong{font-size:12px;margin-top:10px;padding:10px 14px;border-radius:8px;background:#fff8ee;border:1px solid #f0d49a;color:#6b4c00;line-height:1.5}
+.result-screen{text-align:center;padding:32px 16px}
+.result-icon{font-size:56px;margin-bottom:16px}
+.result-title{font-size:24px;font-weight:700;margin-bottom:8px}
+.score-big{font-size:52px;font-weight:700;margin-bottom:4px}
+.score-label{font-size:14px;color:#8a8799;margin-bottom:16px}
+.score-pass{color:#1D9E75}
+.score-fail{color:#e24b4a}
+.result-sub{font-size:14px;color:#6b6878;margin-bottom:20px;line-height:1.6;max-width:500px;margin-left:auto;margin-right:auto}
+.wrong-review{text-align:left;background:#faf9f7;border:1px solid #e8e5df;border-radius:12px;padding:18px;margin-bottom:20px;max-width:640px;margin-left:auto;margin-right:auto}
+.wrong-review-title{font-size:12px;font-weight:700;color:#e24b4a;margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em}
+.wrong-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e8e5df;font-size:13px;line-height:1.6}
+.wrong-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.wrong-q{color:#1a1a1a;font-weight:600;margin-bottom:5px}
+.wrong-ans{color:#e24b4a;margin-bottom:2px}
+.wrong-correct{color:#1D9E75;margin-bottom:4px}
+.wrong-why{color:#8a8799;font-size:12px;font-style:italic}
+.unlock-box{background:#fff8ee;border:2px solid #c8a96e;border-radius:12px;padding:20px;max-width:420px;margin:16px auto 0}
+.unlock-title{font-size:14px;font-weight:700;color:#c8a96e;margin-bottom:4px}
+.unlock-sub{font-size:13px;color:#6b6878;line-height:1.5}
+.navrow{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:10px}
+.nbtn{padding:10px 20px;border-radius:10px;border:1px solid #e8e5df;background:#faf9f7;font-size:13px;cursor:pointer;font-family:inherit;font-weight:600;color:#1a1a1a;transition:all .15s}
+.nbtn:hover{background:#f4f2ee}
+.nbtn.primary{background:#1D9E75;color:#fff;border-color:#1D9E75}
+.nbtn.primary:hover{background:#0F6E56}
+.nbtn.gold{background:#c8a96e;color:#fff;border-color:#c8a96e}
+.nbtn.gold:hover{background:#b8956a}
+.done-screen{text-align:center;padding:40px 20px}
+.done-icon{font-size:56px;margin-bottom:16px}
+.done-title{font-size:26px;font-weight:700;margin-bottom:8px}
+.done-sub{font-size:14px;color:#6b6878;margin-bottom:20px;line-height:1.6;max-width:500px;margin-left:auto;margin-right:auto}
+@media(max-width:600px){.vocab-grid{grid-template-columns:1fr}body{padding:12px 8px}.content{padding:18px}.mod-header{padding:18px}}
+
+.back-bar{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid #e8e5df;border-radius:12px;padding:12px 20px;margin-bottom:16px}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#1a1a1a;text-decoration:none;transition:all .15s}
+.back-link:hover{color:#c8a96e}
+.back-breadcrumb{font-size:12px;color:#8a8799}
+.back-breadcrumb span{color:#c8a96e;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="back-bar">
+  <a class="back-link" href="SM_Dashboard.html">← Back to Dashboard</a>
+  <div class="back-breadcrumb">Professional Communication · <span>Module 1 — Business Introductions</span></div>
+</div>
+
+
+<div class="mod-header">
+  <div class="mod-logo">Spanish Millennium · Professional Platform</div>
+  <div class="mod-title">Module 1 — Business Introductions</div>
+  <div class="mod-sub">Professional greetings, titles, self-introductions, small talk, and cultural protocol for first meetings. Complete all 5 lessons then pass the final quiz (8/10) to unlock Module 2.</div>
+  <div class="meta">
+    <span class="pill">📚 5 lessons + final quiz</span>
+    <span class="pill">⏱ ~50 min</span>
+    <span class="pill">📊 Level B1+</span>
+    <span class="pill">💼 All professionals</span>
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="prog-label" id="progLabel">0 of 5 lessons completed · Quiz locked</div>
+</div>
+
+<div id="lessonList" class="lesson-list"></div>
+<div id="contentBox" class="content"></div>
+
+</div>
+<script>
+const GPT_URL = "https://chatgpt.com/g/g-6vMAfvHz9-my-spanish-teacher-by-spanish-millennium";
+
+const LESSONS = [
+  {
+    id:1, title:"Greetings & formality levels", desc:"Formal vs informal, time-of-day greetings",
+    vocab:[
+      {es:"Buenos días", ctx:"Morning — always formal in first meetings", en:"Good morning"},
+      {es:"Buenas tardes", ctx:"Afternoon greeting — formal", en:"Good afternoon"},
+      {es:"Buenas noches", ctx:"Evening greeting — formal", en:"Good evening"},
+      {es:"Mucho gusto", ctx:"First meeting — the most essential phrase", en:"Pleased to meet you"},
+      {es:"Encantado / Encantada", ctx:"More personal first meeting (m/f)", en:"Delighted to meet you"},
+      {es:"¿Cómo está usted?", ctx:"Formal 'How are you?' — usted mandatory first meeting", en:"How are you? (formal)"},
+      {es:"Un placer conocerle", ctx:"High-formality — senior executives, first meetings", en:"A pleasure to meet you"},
+      {es:"Igualmente", ctx:"The correct response to 'mucho gusto'", en:"Likewise / Same here"},
+    ],
+    examples:[
+      {es:"Buenos días, señor García. Mucho gusto en conocerle.", en:"Good morning, Mr. García. Pleased to meet you.", ctx:"Entering a first client meeting"},
+      {es:"Encantada de conocerla, doctora Ramírez. El placer es mío.", en:"Delighted to meet you, Dr. Ramírez. The pleasure is mine.", ctx:"Meeting a senior female colleague"},
+      {es:"Bienvenido a nuestras oficinas. ¿Cómo estuvo su vuelo?", en:"Welcome to our offices. How was your flight?", ctx:"Welcoming a visiting international client"},
+    ]
+  },
+  {
+    id:2, title:"Titles & professional forms of address", desc:"Licenciado, Doctor, Ingeniero — when and how to use them",
+    vocab:[
+      {es:"Licenciado / Licenciada", ctx:"Lawyers & university graduates in LATAM (Lic.)", en:"Graduate / Attorney"},
+      {es:"Doctor / Doctora", ctx:"Medical AND academic professionals (Dr./Dra.)", en:"Doctor"},
+      {es:"Ingeniero / Ingeniera", ctx:"Engineers and technical professionals (Ing.)", en:"Engineer"},
+      {es:"Señor / Señora", ctx:"Mr./Mrs. — always safe when unsure of title", en:"Mr. / Mrs."},
+      {es:"Usted", ctx:"Formal 'you' — mandatory in all first professional meetings", en:"You (formal)"},
+      {es:"Tutear", ctx:"Switching to tú — WAIT to be invited by the senior person", en:"To address someone informally"},
+      {es:"Mi colega", ctx:"Neutral, professional way to refer to a coworker", en:"My colleague"},
+      {es:"El socio / La socia", ctx:"Partner — law firm or business partnership", en:"Partner"},
+    ],
+    examples:[
+      {es:"Licenciado Herrera, le presento a nuestra directora de operaciones.", en:"Mr. Herrera, allow me to introduce our director of operations.", ctx:"Formal introductions in a law firm"},
+      {es:"Con su permiso, Ingeniero Soto. Tengo otra reunión en cinco minutos.", en:"With your permission, Engineer Soto. I have another meeting in five minutes.", ctx:"Excusing yourself formally"},
+      {es:"¿Prefiere que le llame doctora Vargas o simplemente por su nombre?", en:"Do you prefer I call you Dr. Vargas or simply by your first name?", ctx:"Establishing the right formality level early"},
+    ]
+  },
+  {
+    id:3, title:"Introducing yourself professionally", desc:"Job titles, companies, purpose of visit",
+    vocab:[
+      {es:"Me llamo...", ctx:"Standard professional self-introduction", en:"My name is..."},
+      {es:"Soy abogado/a en...", ctx:"I'm a lawyer at... (name the firm)", en:"I'm a lawyer at..."},
+      {es:"Trabajo para...", ctx:"I work for... (company name follows)", en:"I work for..."},
+      {es:"Represento a...", ctx:"I represent... (client or firm)", en:"I represent..."},
+      {es:"Estoy a cargo de...", ctx:"I'm in charge of... (department or matter)", en:"I'm in charge of..."},
+      {es:"Vengo de parte de...", ctx:"I come on behalf of... (who sent you)", en:"I come on behalf of..."},
+      {es:"Mi especialidad es...", ctx:"My area of professional expertise", en:"My specialty is..."},
+      {es:"Le entrego mi tarjeta", ctx:"Presenting your card — both hands in LATAM", en:"Here is my business card"},
+    ],
+    examples:[
+      {es:"Buenos días. Me llamo Sarah Thompson. Soy socia de Deloitte y vengo de parte de nuestro equipo de fusiones.", en:"Good morning. My name is Sarah Thompson. I'm a partner at Deloitte and I come on behalf of our M&A team.", ctx:"Opening a high-stakes corporate meeting"},
+      {es:"Soy el asesor legal externo de la empresa. Mi especialidad es el derecho contractual internacional.", en:"I'm the company's external legal advisor. My specialty is international contract law.", ctx:"Self-introduction at an industry conference"},
+      {es:"Trabajo para JP Morgan. Estoy a cargo de las relaciones con clientes institucionales en América Latina.", en:"I work for JP Morgan. I'm in charge of institutional client relations in Latin America.", ctx:"Finance professional introducing themselves"},
+    ]
+  },
+  {
+    id:4, title:"Small talk & building rapport", desc:"Professional small talk that actually works",
+    vocab:[
+      {es:"¿Cómo estuvo su viaje?", ctx:"How was your journey? — broader than just flight", en:"How was your trip?"},
+      {es:"Es un placer tenerle aquí", ctx:"Warm welcome — use when hosting a client", en:"It's a pleasure to have you here"},
+      {es:"¿Es su primera vez en [ciudad]?", ctx:"Opens natural conversation about their experience", en:"Is this your first time in [city]?"},
+      {es:"Espero que tengamos tiempo para...", ctx:"Polite way to suggest activities or a meal", en:"I hope we'll have time to..."},
+      {es:"¿Qué le parece si continuamos en la sala?", ctx:"Moving from reception to the meeting room", en:"Shall we continue in the conference room?"},
+      {es:"¿Le apetece un café antes de empezar?", ctx:"Always offer refreshments — essential in LATAM", en:"Would you like a coffee before we start?"},
+      {es:"Tenemos toda la tarde para usted", ctx:"Shows there's no rush — signals hospitality", en:"We have the whole afternoon for you"},
+      {es:"¿Cómo van las cosas en [ciudad/empresa]?", ctx:"Warm opener for a business conversation", en:"How are things going in [city/company]?"},
+    ],
+    examples:[
+      {es:"Bienvenido, señor Kim. Es un placer tenerle aquí. ¿Le apetece un café antes de empezar?", en:"Welcome, Mr. Kim. It's a pleasure to have you here. Would you like a coffee before we start?", ctx:"Hosting a client — warmth and hospitality first"},
+      {es:"¿Es su primera vez en Washington? Espero que tengamos tiempo para mostrarle la ciudad.", en:"Is this your first time in Washington? I hope we'll have time to show you the city.", ctx:"Building personal rapport before the meeting"},
+      {es:"¿Qué le parece si continuamos en la sala de juntas? Tenemos todo preparado.", en:"Shall we continue in the boardroom? We have everything prepared.", ctx:"Transitioning from small talk to business"},
+    ]
+  },
+  {
+    id:5, title:"AI role-play — your first client meeting", desc:"Practice everything with your Spanish Millennium AI tutor",
+    type:"roleplay",
+    scenario:"You are a corporate attorney or finance professional meeting a new client from Mexico City for the first time. The client is a senior executive — use usted throughout. Your goal: introduce yourself, exchange pleasantries, offer coffee, and transition to the business topic. Your AI tutor plays the Mexican executive and corrects your Spanish in real time.",
+    cultureTip:"In Mexico and most of Latin America, the relationship comes before the business. Rushing straight to the agenda signals disrespect. Always offer refreshments, ask about their trip, and spend at least 5 minutes on genuine small talk before opening your laptop. Use titles (Licenciado, Doctor, Ingeniero) until they invite you to use their first name — and always let them make that move first."
+  }
+];
+
+// QUIZ — all options same length, plausible, wrong for specific reasons
+const ALL_QUESTIONS = [
+  {
+    q:"You meet a Mexican attorney named Alejandro Reyes for the first time at 9am. How do you greet him?",
+    ctx:"First professional meeting, morning, Mexico City office",
+    opts:[
+      "Buenos días, señor Reyes. Mucho gusto en conocerle.",
+      "Buenas, Alejandro. ¿Cómo estás? Mucho gusto.",
+      "Buenos días, señor Reyes. ¿Cómo está tu familia?",
+      "Hola, licenciado Reyes. Encantado de conocerte."
+    ],
+    correct:0,
+    why:"Option B uses informal 'estás' and first name without invitation. Option C asking about family is too personal for a first meeting. Option D mixes formal title with informal 'conocerte' — contradictory register."
+  },
+  {
+    q:"Your client says 'Mucho gusto' after your introduction. What is the most appropriate response?",
+    ctx:"First professional meeting, responding to a formal greeting",
+    opts:[
+      "Sí, gracias por venir a nuestra oficina hoy.",
+      "Igualmente. El placer es mío, licenciado Torres.",
+      "De nada, fue fácil encontrar la dirección.",
+      "Claro, yo también. ¿Ya conoce a mi colega?"
+    ],
+    correct:1,
+    why:"Option A thanks them instead of responding to the greeting. Option C responds as if to 'gracias' — wrong context. Option D is abrupt and skips the proper acknowledgment before moving on."
+  },
+  {
+    q:"You are introducing yourself at a conference in Bogotá. You work for a law firm and handle contracts. Which introduction is correct?",
+    ctx:"Professional self-introduction, Colombian business conference",
+    opts:[
+      "Hola, soy abogado y trabajo con contratos en mi firma.",
+      "Me llamo David Chen. Represento a Morrison & Foerster. Mi especialidad es el derecho contractual.",
+      "Me llamo David. Soy abogado corporativo y vengo de los Estados Unidos.",
+      "Buenos días. Trabajo para una firma americana de abogados en Washington."
+    ],
+    correct:1,
+    why:"Option A uses informal 'Hola' and vague description. Option C omits the firm name — low professional impact. Option D doesn't mention your name or specialty — incomplete for a conference introduction."
+  },
+  {
+    q:"A senior executive visits your Washington office for the first time. What do you say as they arrive?",
+    ctx:"Hosting a visiting Latin American client, first arrival",
+    opts:[
+      "Bienvenida, doctora Fuentes. Es un placer tenerla aquí. ¿Le apetece un café antes de empezar?",
+      "Hola doctora Fuentes. Bienvenida. Ya tenemos todo listo en la sala de reuniones.",
+      "Buenas tardes, doctora Fuentes. ¿Tuvo buen vuelo? Pasemos directamente a la sala.",
+      "Bienvenida, doctora Fuentes. Siéntese, por favor. Empezamos en unos minutos."
+    ],
+    correct:0,
+    why:"Option B skips the pleasantries and rushes to the room — too abrupt for LATAM protocol. Option C goes straight to the meeting without offering refreshments — poor hospitality. Option D offers no warmth or refreshment — misses the relationship-first protocol."
+  },
+  {
+    q:"You want to find out if this is your client's first visit to Washington. How do you ask this formally?",
+    ctx:"Small talk during client welcome, formal register",
+    opts:[
+      "¿Ya conoces Washington? Es una ciudad muy interesante.",
+      "¿Ha visitado Washington antes, señor Morales?",
+      "¿Es su primera vez en Washington, señor Morales?",
+      "¿Qué piensas de Washington? ¿La conocías?"
+    ],
+    correct:2,
+    why:"Option A uses informal 'conoces' — wrong register. Option B is grammatically correct but sounds like an interrogation rather than warm small talk. Option D uses informal 'piensas' and 'conocías' — inconsistent register throughout."
+  },
+  {
+    q:"You need to address an engineer named Roberto Soto at a formal meeting. Which is correct?",
+    ctx:"Using professional titles, formal meeting in Mexico",
+    opts:[
+      "Señor Soto, ¿podría explicarnos el proyecto?",
+      "Roberto, ¿nos puede explicar el proyecto?",
+      "Ingeniero Soto, ¿podría explicarnos el avance del proyecto?",
+      "Don Roberto, si me permite, ¿cómo va el proyecto?"
+    ],
+    correct:2,
+    why:"Option A uses 'Señor' when the professional title 'Ingeniero' is more appropriate and shows respect. Option B uses first name only — too informal for a formal meeting. Option D 'Don Roberto' is used in some LATAM contexts but is informal and regional — not appropriate universally."
+  },
+  {
+    q:"You want to transition the conversation from small talk to the meeting. Which phrase is most professional?",
+    ctx:"Moving from welcome conversation to business, formal setting",
+    opts:[
+      "Bueno, ya hablamos suficiente. Vamos al tema.",
+      "Perdone, pero ya es hora de empezar con la reunión.",
+      "¿Qué le parece si continuamos en la sala de juntas? Tenemos todo preparado para usted.",
+      "Cuando quiera podemos empezar. ¿Le parece bien ahora mismo?"
+    ],
+    correct:2,
+    why:"Option A 'ya hablamos suficiente' is abrupt and rude. Option B 'Perdone' implies the small talk was an inconvenience. Option D is grammatically fine but weak — puts the decision entirely on the client rather than guiding them professionally."
+  },
+  {
+    q:"A colleague says they want to use 'tú' with a new client from the first meeting to seem friendly. What is correct?",
+    ctx:"Formality protocol, first client meeting in Latin America",
+    opts:[
+      "It's fine — younger Latin American professionals prefer tú from the start.",
+      "Only use tú if the client works in a creative or tech industry.",
+      "Always wait for the senior or client to invite the switch to tú first.",
+      "You can use tú after exchanging business cards — that signals informality is acceptable."
+    ],
+    correct:2,
+    why:"Option A is a generalization that causes real problems — many younger professionals still expect formality initially. Option B is an oversimplification — industry doesn't determine this. Option D inventing a 'business card rule' — this does not exist in any Latin American business culture."
+  },
+  {
+    q:"How do you correctly say you come on behalf of your firm's M&A team?",
+    ctx:"Opening statement in a corporate meeting",
+    opts:[
+      "Vengo por el equipo de fusiones de mi firma.",
+      "Estoy aquí representando fusiones y adquisiciones.",
+      "Vengo de parte del equipo de fusiones y adquisiciones de nuestra firma.",
+      "Trabajo con el equipo de M&A y ellos me mandaron."
+    ],
+    correct:2,
+    why:"Option A 'vengo por' is grammatically incorrect in this context — 'por' here implies picking something up, not representing. Option B is missing the full structure and sounds incomplete. Option D is too casual — 'me mandaron' is informal and sounds like you were sent on an errand."
+  },
+  {
+    q:"You overhear a colleague introduce a client by their first name without using their title. What is the issue?",
+    ctx:"Protocol awareness — titles and professional respect",
+    opts:[
+      "No issue — Latin American professionals generally prefer first names in business.",
+      "It is only a problem if the client is from Mexico or Colombia specifically.",
+      "Using first name without title skips the formal register and can signal disrespect to a senior professional.",
+      "It depends on the client's age — younger clients don't mind, older ones might."
+    ],
+    correct:2,
+    why:"Option A is incorrect — the default in formal Latin American business settings is titles until invited otherwise. Option B is wrong — the protocol applies broadly across LATAM, not just specific countries. Option D oversimplifies — age is not the deciding factor, professional context and seniority are."
+  }
+  ,{
+    q:"A Latin American client calls you 'señor' instead of using your professional title. How do you gently correct this?",
+    ctx:"Professional protocol — correcting title usage diplomatically",
+    opts:[
+      "Actually, the correct form of address is licenciado — please use that going forward.",
+      "No worries, señor is also fine in informal settings with clients.",
+      "You may call me licenciado Chen — though please don't worry, we can keep things relaxed.",
+      "In our firm we don't use titles, so señor is perfectly appropriate here."
+    ],
+    correct:2,
+    why:"Option A is too abrupt — it sounds like a correction rather than a gentle guide. Option B is wrong — in a formal first meeting señor is not equivalent to a professional title. Option D gives incorrect information — professional titles are standard in LATAM business regardless of firm culture."
+  },
+  {
+    q:"You are hosting a client from Bogotá and want to offer to show them around Washington after the meeting. Which phrase is most appropriate?",
+    ctx:"Small talk — extending hospitality to a visiting client",
+    opts:[
+      "Después de la reunión, si tiene tiempo, podría mostrarle algunos lugares interesantes de la ciudad.",
+      "Espero que tengamos tiempo para mostrarle la ciudad después de terminar.",
+      "Si quiere, después lo llevo a conocer Washington.",
+      "¿Le gustaría que le acompañara a conocer la ciudad esta tarde si terminamos a tiempo?"
+    ],
+    correct:1,
+    why:"Option A is grammatically correct but the conditional 'podría' makes it sound like an obligation on your part rather than a warm offer. Option C 'lo llevo' is too informal — 'le acompañaría' or formal phrasing is expected. Option D 'si terminamos a tiempo' implies the meeting might run long — this creates subtle pressure and is poor hosting etiquette."
+  },
+  {
+    q:"You want to smoothly end the small talk and open the meeting agenda. Which transition works best?",
+    ctx:"Meeting facilitation — opening the agenda after welcome",
+    opts:[
+      "Bien, ya creo que podemos comenzar con los temas de hoy.",
+      "Cuando quieran, podemos empezar. ¿Listos?",
+      "¿Les parece bien si pasamos a los puntos de la agenda? Tenemos mucho que tratar hoy.",
+      "Bueno, sin más preámbulos, ¿empezamos ya con la reunión?"
+    ],
+    correct:2,
+    why:"Option A 'ya creo que podemos' is hesitant — a professional host opens the meeting with confidence. Option B 'cuando quieran' defers entirely to the guests — this abandons your role as host. Option D 'sin más preámbulos' literally means 'without further preamble' — this signals the small talk was a waste of time, which is rude in LATAM business culture."
+  },
+  {
+    q:"Your client's business card shows 'Ing. Roberto Vargas'. How do you address him throughout the meeting?",
+    ctx:"Using correct professional titles — engineering professional",
+    opts:[
+      "Señor Vargas throughout — it is the safest universal form of address.",
+      "Roberto — since you have now been introduced, first names are standard after exchanging cards.",
+      "Ingeniero Vargas — the card signals his professional title and it should be used.",
+      "Don Roberto — this shows respect for his seniority in the Latin American tradition."
+    ],
+    correct:2,
+    why:"Option A uses señor when a professional title is displayed on the card — ignoring the title signals you didn't notice or don't value it. Option B first names after card exchange is an Anglo assumption — it does not apply in formal Latin American business settings. Option D 'Don Roberto' is informal and regional — appropriate in some social settings but not professional first meetings."
+  },
+  {
+    q:"You want to formally introduce your junior colleague Maria to the visiting client. Which introduction is correct?",
+    ctx:"Third-party introduction — formal business setting",
+    opts:[
+      "Le presento a mi colega María Soto, quien se encargará del seguimiento de este proyecto.",
+      "Esta es María, mi compañera. Ella va a llevar el seguimiento del proyecto.",
+      "María, saluda al señor Kim. Ella es de nuestro equipo de seguimiento.",
+      "Le quiero presentar a María de nuestro equipo, que va a ayudarle con el proyecto."
+    ],
+    correct:0,
+    why:"Option B 'esta es María' and 'compañera' are too informal for a client introduction — 'le presento' is the formal introduction formula. Option C addresses María directly mid-introduction rather than addressing the client — incorrect protocol. Option D 'que va a ayudarle' implies María is a helper rather than a professional — this diminishes her role in front of the client."
+  }
+
+];
+
+let S = {
+  cur: 0,
+  done: new Set(),
+  quizActive: false,
+  quizAnswers: [],
+  quizCurrent: 0,
+  quizPassed: false,
+  quizAttempts: 0,
+  shuffledQ: []
+};
+
+function shuffleQuiz() {
+  // Pick 10 random from 15 — different every attempt
+  const shuffled = [...ALL_QUESTIONS].sort(() => Math.random() - 0.5);
+  S.shuffledQ = shuffled.slice(0, 10);
+  S.quizAnswers = [];
+  S.quizCurrent = 0;
+}
+
+function updateProg() {
+  const pct = Math.round((S.done.size / LESSONS.length) * 100);
+  document.getElementById("progFill").style.width = pct + "%";
+  const qs = S.quizPassed ? " · Quiz passed ✓" : S.done.size === LESSONS.length ? " · Quiz unlocked" : " · Quiz locked";
+  document.getElementById("progLabel").textContent = S.done.size + " of " + LESSONS.length + " lessons completed" + qs;
+}
+
+function renderList() {
+  const allDone = S.done.size === LESSONS.length;
+  document.getElementById("lessonList").innerHTML =
+    LESSONS.map((l, i) => `
+      <button class="lesson-btn ${i === S.cur && !S.quizActive ? "active" : ""} ${S.done.has(i) ? "done" : ""}" onclick="go(${i})">
+        <div class="lnum">${S.done.has(i) ? "✓" : i + 1}</div>
+        <div class="linfo">
+          <div class="ltitle">${l.title}</div>
+          <div class="ldesc">${l.desc}</div>
+        </div>
+        <div class="lbadge ${S.done.has(i) ? "green" : ""}">${S.done.has(i) ? "Done ✓" : i === S.cur && !S.quizActive ? "Current" : ""}</div>
+      </button>
+    `).join("") +
+    `<button class="quiz-nav-btn ${!allDone ? "locked" : S.quizActive ? "active" : ""}" onclick="${allDone ? "startQuiz()" : "alert('Complete all 5 lessons first.')"}">
+      <div class="lnum">${S.quizPassed ? "✓" : "★"}</div>
+      <div class="linfo">
+        <div class="ltitle">Final Quiz — Module 1</div>
+        <div class="ldesc">${S.quizPassed ? "Passed — Module 2 unlocked" : allDone ? "10 of 15 questions drawn randomly · Need 8/10 · No going back" : "Complete all 5 lessons to unlock"}</div>
+      </div>
+      <div class="lbadge gold">${S.quizPassed ? "Passed ✓" : allDone ? "Ready" : "Locked 🔒"}</div>
+    </button>`;
+}
+
+function go(i) {
+  S.cur = i;
+  S.quizActive = false;
+  renderList();
+  renderContent();
+}
+
+function startQuiz() {
+  if (S.done.size < LESSONS.length) return;
+  S.quizActive = true;
+  S.quizAttempts++;
+  shuffleQuiz();
+  renderList();
+  renderQuiz();
+}
+
+function renderContent() {
+  const l = LESSONS[S.cur];
+  const box = document.getElementById("contentBox");
+
+  if (l.type === "roleplay") {
+    box.innerHTML = `
+      <div class="sec-title">${l.title}</div>
+      <div class="sec-sub" style="margin-bottom:18px">${l.desc}</div>
+      <div class="scenario-box">
+        <div class="scenario-label">Your scenario</div>
+        <div class="culture-text">${l.scenario}</div>
+      </div>
+      <div class="culture-box">
+        <div class="culture-label">Culture tip — read before practicing</div>
+        <div class="culture-text">${l.cultureTip}</div>
+      </div>
+      <div class="gpt-box">
+        <div class="gpt-title">Practice with your Spanish Millennium AI Tutor</div>
+        <div class="gpt-sub">Your AI tutor will play Carlos Fuentes, a senior Mexican executive visiting your Washington DC office. It speaks formal Spanish and corrects your errors in real time.</div>
+        <a class="gpt-btn" href="${GPT_URL}" target="_blank">Open AI Tutor → Start Role-Play</a>
+        <div class="gpt-note">Copy and paste this to start:<br><br><em>"Quiero practicar el Módulo 1, Lección 5. Juega el papel de Carlos Fuentes, un ejecutivo mexicano senior que visita mi oficina en Washington DC por primera vez. Usa registro formal (usted). Corrige mis errores de español entre paréntesis. Empieza cuando yo entre a la sala de reuniones."</em></div>
+      </div>
+      <div class="navrow">
+        <button class="nbtn" onclick="go(${S.cur - 1})">← Previous lesson</button>
+        <button class="nbtn primary" onclick="complete(${S.cur})">Mark done · Go to quiz →</button>
+      </div>`;
+    return;
+  }
+
+  box.innerHTML = `
+    <div class="sec-title">${l.title}</div>
+    <div class="sec-sub">Tap each card to reveal the English translation. Study all in-context examples before marking complete.</div>
+    <div class="vocab-grid">${l.vocab.map(v => `
+      <div class="vcard" onclick="this.classList.toggle('flipped')">
+        <div class="ves">${v.es}</div>
+        <div class="vctx">${v.ctx}</div>
+        <div class="vtip">Tap to reveal ↓</div>
+        <div class="ven">🇺🇸 ${v.en}</div>
+      </div>
+    `).join("")}</div>
+    <div style="font-size:16px;font-weight:700;margin-bottom:14px;margin-top:4px">In professional context</div>
+    ${l.examples.map(e => `
+      <div class="ex-box">
+        <div class="ex-es">${e.es}</div>
+        <div class="ex-en">${e.en}</div>
+        <div class="ex-ctx">📍 ${e.ctx}</div>
+      </div>
+    `).join("")}
+    <div class="navrow">
+      ${S.cur > 0 ? `<button class="nbtn" onclick="go(${S.cur - 1})">← Previous</button>` : "<div></div>"}
+      <button class="nbtn primary" onclick="complete(${S.cur})">I've studied this · Mark complete →</button>
+    </div>`;
+}
+
+function complete(i) {
+  S.done.add(i);
+  updateProg();
+  if (i < LESSONS.length - 1) {
+    S.cur = i + 1;
+    renderList();
+    renderContent();
+  } else {
+    renderList();
+    document.getElementById("contentBox").innerHTML = `
+      <div class="done-screen">
+        <div class="done-icon">🎓</div>
+        <div class="done-title">All 5 lessons complete!</div>
+        <div class="done-sub">Now prove it. The final quiz has 10 questions covering all lessons. You cannot go back once you answer. You need 8 out of 10 to pass and unlock Module 2.</div>
+        <br>
+        <button class="nbtn gold" style="font-size:15px;padding:14px 32px" onclick="startQuiz()">Take the Final Quiz →</button>
+      </div>`;
+  }
+}
+
+function renderQuiz() {
+  const box = document.getElementById("contentBox");
+  const q = S.shuffledQ[S.quizCurrent];
+  const answered = S.quizAnswers[S.quizCurrent];
+
+  box.innerHTML = `
+    <div class="quiz-header">
+      <div class="quiz-icon">📝</div>
+      <div>
+        <div class="quiz-header-title">Final Quiz — Module 1: Business Introductions</div>
+        <div class="quiz-header-sub">No going back after answering. 10 of 15 questions drawn randomly. Need 8/10 to pass. No going back. Attempt #${S.quizAttempts}.</div>
+      </div>
+    </div>
+    <div class="quiz-progress">
+      <div class="quiz-dots">${S.shuffledQ.map((_, i) => {
+        let cls = "qdot";
+        if (i < S.quizAnswers.length) cls += S.quizAnswers[i] === S.shuffledQ[i].correct ? " correct" : " wrong";
+        else if (i === S.quizCurrent) cls += " current";
+        return `<div class="${cls}"></div>`;
+      }).join("")}</div>
+      <div class="quiz-counter">Q${S.quizCurrent + 1} / 10</div>
+    </div>
+    <div class="quiz-q">${q.q}</div>
+    <div class="quiz-context">${q.ctx}</div>
+    <div class="quiz-opts">${q.opts.map((opt, oi) => {
+      let cls = "qopt";
+      if (answered !== undefined) {
+        if (oi === q.correct) cls += " correct";
+        else if (oi === answered && answered !== q.correct) cls += " wrong";
+      }
+      return `<button class="${cls}" onclick="quizAnswer(${oi})" ${answered !== undefined ? "disabled" : ""}>${opt}</button>`;
+    }).join("")}</div>
+    ${answered !== undefined ? `<div class="why-wrong">💡 ${q.why}</div>` : ""}
+    ${answered !== undefined && S.quizCurrent < S.shuffledQ.length - 1 ?
+      `<div class="navrow"><div></div><button class="nbtn primary" onclick="quizNext()">Next question →</button></div>` : ""}
+    ${answered !== undefined && S.quizCurrent === S.shuffledQ.length - 1 ?
+      `<div class="navrow"><div></div><button class="nbtn gold" onclick="showResults()">See my results →</button></div>` : ""}`;
+}
+
+function quizAnswer(oi) {
+  if (S.quizAnswers[S.quizCurrent] !== undefined) return;
+  S.quizAnswers[S.quizCurrent] = oi;
+  renderQuiz();
+}
+
+function quizNext() {
+  if (S.quizCurrent < S.shuffledQ.length - 1) {
+    S.quizCurrent++;
+    renderQuiz();
+  }
+}
+
+function showResults() {
+  const score = S.quizAnswers.filter((a, i) => a === S.shuffledQ[i].correct).length;
+  const passed = score >= 8;
+  S.quizPassed = passed;
+  updateProg();
+  renderList();
+
+  const wrongItems = S.shuffledQ
+    .map((q, i) => ({ q, answered: S.quizAnswers[i] }))
+    .filter(({ q, answered }) => answered !== q.correct);
+
+  document.getElementById("contentBox").innerHTML = `
+    <div class="result-screen">
+      <div class="result-icon">${passed ? "🏆" : "📚"}</div>
+      <div class="result-title">${passed ? "Passed — well done." : "Not this time — try again."}</div>
+      <div class="score-big ${passed ? "score-pass" : "score-fail"}">${score}/10</div>
+      <div class="score-label">${passed ? "Module 2 is now unlocked." : "You need 8/10 to pass."}</div>
+      <div class="result-sub">${passed
+        ? "You've demonstrated solid command of professional Spanish introductions, titles, and cultural protocol. You're ready for Module 2 — Legal Terminology."
+        : "Review the questions you got wrong, go back over the relevant lessons, and retake. Each attempt uses a different order of questions."
+      }</div>
+
+      ${wrongItems.length > 0 ? `
+        <div class="wrong-review">
+          <div class="wrong-review-title">What to review before retaking</div>
+          ${wrongItems.map(({ q, answered }) => `
+            <div class="wrong-item">
+              <div class="wrong-q">${q.q}</div>
+              <div class="wrong-ans">✗ Your answer: ${q.opts[answered]}</div>
+              <div class="wrong-correct">✓ Correct: ${q.opts[q.correct]}</div>
+              <div class="wrong-why">${q.why}</div>
+            </div>
+          `).join("")}
+        </div>
+      ` : ""}
+
+      ${passed ? `
+        <div class="unlock-box">
+          <div class="unlock-title">🔓 Module 2 Unlocked</div>
+          <div class="unlock-sub">Legal Terminology — Contracts, depositions, negotiations, and courtroom Spanish for attorneys and legal professionals.</div>
+        </div>
+      ` : `
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px">
+          <button class="nbtn" onclick="go(0)">← Review lessons</button>
+          <button class="nbtn gold" onclick="startQuiz()">Retake quiz — attempt #${S.quizAttempts + 1} →</button>
+        </div>
+      `}
+    </div>`;
+}
+
+renderList();
+renderContent();
+updateProg();
+</script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 6 — Professional Writing | Spanish Millennium</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f8f7f4;color:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;padding:24px 16px}
+.wrap{max-width:820px;margin:0 auto}
+.back-bar{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid #e8e5df;border-radius:12px;padding:12px 20px;margin-bottom:16px}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#1a1a1a;text-decoration:none}
+.back-link:hover{color:#2D4A8A}
+.back-breadcrumb{font-size:12px;color:#8a8799}
+.back-breadcrumb span{color:#2D4A8A;font-weight:600}
+.mod-header{background:#fff;border:1px solid #e8e5df;border-radius:14px;padding:28px;margin-bottom:20px}
+.mod-logo{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#c8a96e;font-weight:700;margin-bottom:10px}
+.mod-title{font-size:26px;font-weight:700;color:#1a1a1a;margin-bottom:4px}
+.mod-sub{font-size:14px;color:#6b6878;margin-bottom:18px;line-height:1.5}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pill{padding:5px 12px;border-radius:20px;font-size:12px;border:1px solid #e8e5df;color:#6b6878;background:#f8f7f4}
+.prog-bar{height:7px;background:#e8e5df;border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:#2D4A8A;border-radius:4px;transition:width .4s ease}
+.prog-label{font-size:12px;color:#8a8799;margin-top:6px}
+.lesson-list{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
+.lesson-btn{display:flex;align-items:center;gap:14px;padding:13px 18px;border-radius:12px;border:1px solid #e8e5df;background:#fff;cursor:pointer;text-align:left;transition:all .15s;width:100%}
+.lesson-btn:hover{background:#EEF1FA;border-color:#2D4A8A}
+.lesson-btn.active{border-color:#2D4A8A;background:#EEF1FA}
+.lesson-btn.done .lnum{background:#2D4A8A;color:#fff;border-color:#2D4A8A}
+.lnum{width:30px;height:30px;border-radius:50%;border:1px solid #e8e5df;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;color:#8a8799}
+.linfo{flex:1}
+.ltitle{font-size:14px;font-weight:600;color:#1a1a1a}
+.ldesc{font-size:12px;color:#8a8799;margin-top:2px}
+.lbadge{font-size:11px;color:#8a8799;padding:3px 9px;border-radius:20px;background:#f4f2ee;white-space:nowrap}
+.lbadge.navy{background:#EEF1FA;color:#2D4A8A;border:1px solid #A0B0D8}
+.lbadge.gold{background:#fff8ee;color:#c8a96e;border:1px solid #f0d49a}
+.quiz-nav-btn{display:flex;align-items:center;gap:14px;padding:13px 18px;border-radius:12px;border:2px solid #c8a96e;background:#fff8ee;cursor:pointer;text-align:left;transition:all .15s;width:100%;margin-top:4px}
+.quiz-nav-btn:hover{background:#fff0d0}
+.quiz-nav-btn.locked{opacity:.5;cursor:not-allowed;border-color:#e8e5df;background:#f8f7f4}
+.quiz-nav-btn .lnum{background:#c8a96e;color:#fff}
+.quiz-nav-btn.locked .lnum{background:#e8e5df;color:#8a8799}
+.content{background:#fff;border:1px solid #e8e5df;border-radius:14px;padding:28px}
+.sec-title{font-size:20px;font-weight:700;margin-bottom:4px}
+.sec-sub{font-size:13px;color:#6b6878;margin-bottom:20px;line-height:1.5}
+.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.vcard{border:1px solid #e8e5df;border-radius:10px;padding:14px;cursor:pointer;transition:all .2s;min-height:95px;background:#faf9f7}
+.vcard:hover{border-color:#2D4A8A;background:#fff}
+.vcard .ven{display:none;color:#2D4A8A;font-size:13px;margin-top:8px;font-weight:600;padding-top:8px;border-top:1px solid #e8e5df}
+.vcard.flipped .ven{display:block}
+.vcard.flipped .vtip{display:none}
+.ves{font-size:15px;font-weight:700;color:#1a1a1a}
+.vctx{font-size:11px;color:#8a8799;margin-top:3px;line-height:1.4}
+.vtip{font-size:11px;color:#c8c5d0;margin-top:10px;font-style:italic}
+.ex-box{background:#EEF1FA;border-left:3px solid #2D4A8A;border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:12px}
+.ex-es{font-size:14px;font-weight:700;color:#1a1a1a;line-height:1.5}
+.ex-en{font-size:13px;color:#6b6878;margin-top:5px;line-height:1.5}
+.ex-ctx{font-size:12px;color:#2D4A8A;margin-top:6px;font-style:italic;font-weight:500}
+.culture-box{background:#faf9f7;border:1px solid #e8e5df;border-radius:10px;padding:14px;margin-bottom:12px}
+.culture-label{font-size:10px;font-weight:700;color:#2D4A8A;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.culture-text{font-size:13px;color:#1a1a1a;line-height:1.6}
+.template-box{background:#EEF1FA;border:1px solid #A0B0D8;border-radius:10px;padding:16px;margin-bottom:14px;font-size:13px;line-height:1.8;color:#1a1a1a}
+.template-label{font-size:10px;font-weight:700;color:#2D4A8A;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.template-highlight{color:#2D4A8A;font-weight:600}
+.scenario-box{background:#EEF1FA;border:1px solid #A0B0D8;border-radius:10px;padding:14px;margin-bottom:12px}
+.scenario-label{font-size:10px;font-weight:700;color:#2D4A8A;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.gpt-box{border:2px solid #2D4A8A;border-radius:12px;padding:20px;text-align:center;background:#EEF1FA;margin-top:16px}
+.gpt-title{font-size:16px;font-weight:700;color:#1A2D5A;margin-bottom:6px}
+.gpt-sub{font-size:13px;color:#2D4A8A;margin-bottom:16px;line-height:1.5}
+.gpt-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#2D4A8A;color:#fff;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;transition:all .15s}
+.gpt-btn:hover{background:#1A2D5A}
+.gpt-note{font-size:12px;color:#6b6878;margin-top:12px;line-height:1.6;background:#fff;border-radius:8px;padding:10px 14px;border:1px solid #A0B0D8;text-align:left}
+.gpt-note em{color:#1A2D5A;font-style:normal;font-weight:600}
+.quiz-header{background:#fff8ee;border:1px solid #f0d49a;border-radius:10px;padding:16px;margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.quiz-icon{font-size:28px;flex-shrink:0}
+.quiz-header-title{font-size:16px;font-weight:700}
+.quiz-header-sub{font-size:12px;color:#8a8799;margin-top:2px;line-height:1.4}
+.quiz-progress{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.quiz-dots{display:flex;gap:5px;flex:1}
+.qdot{height:8px;border-radius:4px;background:#e8e5df;transition:all .3s;flex:1}
+.qdot.current{background:#c8a96e}
+.qdot.correct{background:#2D4A8A}
+.qdot.wrong{background:#e24b4a}
+.quiz-counter{font-size:13px;font-weight:600;color:#6b6878;white-space:nowrap}
+.quiz-q{font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:6px;line-height:1.5}
+.quiz-context{font-size:12px;color:#8a8799;margin-bottom:18px;font-style:italic;padding:8px 12px;background:#f8f7f4;border-radius:8px;border-left:3px solid #e8e5df}
+.quiz-opts{display:flex;flex-direction:column;gap:9px}
+.qopt{padding:13px 16px;border-radius:10px;border:1px solid #e8e5df;background:#faf9f7;cursor:pointer;font-size:13px;text-align:left;transition:all .15s;font-family:inherit;color:#1a1a1a;line-height:1.5}
+.qopt:hover:not(:disabled){background:#EEF1FA;border-color:#2D4A8A}
+.qopt.correct{border-color:#2D4A8A;background:#EEF1FA;color:#1A2D5A;font-weight:600}
+.qopt.wrong{border-color:#e24b4a;background:#fcebeb;color:#501313}
+.qopt:disabled{cursor:default}
+.why-wrong{font-size:12px;margin-top:10px;padding:10px 14px;border-radius:8px;background:#fff8ee;border:1px solid #f0d49a;color:#6b4c00;line-height:1.5}
+.result-screen{text-align:center;padding:32px 16px}
+.result-icon{font-size:56px;margin-bottom:16px}
+.result-title{font-size:24px;font-weight:700;margin-bottom:8px}
+.score-big{font-size:52px;font-weight:700;margin-bottom:4px}
+.score-label{font-size:14px;color:#8a8799;margin-bottom:16px}
+.score-pass{color:#2D4A8A}
+.score-fail{color:#e24b4a}
+.result-sub{font-size:14px;color:#6b6878;margin-bottom:20px;line-height:1.6;max-width:500px;margin-left:auto;margin-right:auto}
+.wrong-review{text-align:left;background:#faf9f7;border:1px solid #e8e5df;border-radius:12px;padding:18px;margin-bottom:20px;max-width:640px;margin-left:auto;margin-right:auto}
+.wrong-review-title{font-size:12px;font-weight:700;color:#e24b4a;margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em}
+.wrong-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e8e5df;font-size:13px;line-height:1.6}
+.wrong-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.wrong-q{color:#1a1a1a;font-weight:600;margin-bottom:5px}
+.wrong-ans{color:#e24b4a;margin-bottom:2px}
+.wrong-correct{color:#2D4A8A;margin-bottom:4px}
+.wrong-why{color:#8a8799;font-size:12px;font-style:italic}
+.unlock-box{background:#EEF1FA;border:2px solid #2D4A8A;border-radius:12px;padding:20px;max-width:420px;margin:16px auto 0}
+.unlock-title{font-size:14px;font-weight:700;color:#2D4A8A;margin-bottom:4px}
+.unlock-sub{font-size:13px;color:#6b6878;line-height:1.5}
+.navrow{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:10px}
+.nbtn{padding:10px 20px;border-radius:10px;border:1px solid #e8e5df;background:#faf9f7;font-size:13px;cursor:pointer;font-family:inherit;font-weight:600;color:#1a1a1a;transition:all .15s}
+.nbtn:hover{background:#f4f2ee}
+.nbtn.primary{background:#2D4A8A;color:#fff;border-color:#2D4A8A}
+.nbtn.primary:hover{background:#1A2D5A}
+.nbtn.gold{background:#c8a96e;color:#fff;border-color:#c8a96e}
+.nbtn.gold:hover{background:#b8956a}
+.section-divider{font-size:13px;font-weight:700;color:#2D4A8A;letter-spacing:.08em;text-transform:uppercase;margin:20px 0 14px;padding-bottom:6px;border-bottom:1px solid #EEF1FA}
+@media(max-width:600px){.vocab-grid{grid-template-columns:1fr}body{padding:12px 8px}.content{padding:18px}.mod-header{padding:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="back-bar">
+  <a class="back-link" href="SM_Platform.html">← Back to Dashboard</a>
+  <div class="back-breadcrumb">Professional Communication · <span>Module 6 — Professional Writing</span></div>
+</div>
+<div class="mod-header">
+  <div class="mod-logo">Spanish Millennium · Professional Platform</div>
+  <div class="mod-title">Module 6 — Professional Writing</div>
+  <div class="mod-sub">Master written professional Spanish — formal emails, business reports, executive summaries, proposals, and formal correspondence. The written register is stricter than spoken Spanish and mistakes here are highly visible.</div>
+  <div class="meta">
+    <span class="pill">✍️ 5 lessons + final quiz</span>
+    <span class="pill">⏱ ~55 min</span>
+    <span class="pill">📊 Level B1–B2</span>
+    <span class="pill">💼 All professionals</span>
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="prog-label" id="progLabel">0 of 5 lessons completed · Quiz locked</div>
+</div>
+<div id="lessonList" class="lesson-list"></div>
+<div id="contentBox" class="content"></div>
+</div>
+<script>
+const GPT_URL="https://chatgpt.com/g/g-6vMAfvHz9-my-spanish-teacher-by-spanish-millennium";
+const LESSONS=[
+  {id:1,title:"Formal email structure & language",desc:"Openings, closings, subject lines, and formal register for business emails",
+   vocab:[
+     {es:"Estimado/a señor/a",ctx:"Dear Mr./Ms. — formal email opening when you know the name",en:"Dear Mr./Ms."},
+     {es:"A quien corresponda",ctx:"To whom it may concern — when recipient is unknown",en:"To whom it may concern"},
+     {es:"Me dirijo a usted para...",ctx:"I am writing to you to... — formal email opening",en:"I am writing to you to..."},
+     {es:"En relación con...",ctx:"With regard to... / Regarding... — referencing a topic",en:"With regard to... / Regarding..."},
+     {es:"Adjunto encontrará...",ctx:"Please find attached... — sending documents",en:"Please find attached..."},
+     {es:"Quedo a su disposición",ctx:"I remain at your disposal — formal closing availability",en:"I remain at your disposal"},
+     {es:"En espera de su respuesta",ctx:"Awaiting your response — closing phrase",en:"Awaiting your response"},
+     {es:"Atentamente",ctx:"Sincerely / Regards — most common formal closing",en:"Sincerely / Kind regards"},
+     {es:"Un cordial saludo",ctx:"Best regards — slightly warmer than atentamente",en:"Best regards / Warm regards"},
+     {es:"Sin otro particular",ctx:"Without further ado / That is all for now — formal closing phrase",en:"Without further ado / That concludes"},
+   ],
+   examples:[
+     {es:"Estimada señora Vargas:\n\nMe dirijo a usted para solicitar información sobre los términos del contrato adjunto. En relación con la cláusula 4.2, quisiera confirmar si las condiciones aplican también a las subsidiarias.\n\nAdjunto encontrará el documento en cuestión. Quedo a su disposición para cualquier aclaración.\n\nAtentamente,\nDavid Chen",en:"Dear Ms. Vargas: I am writing to request information about the terms of the attached contract. With regard to clause 4.2, I would like to confirm whether the conditions also apply to subsidiaries. Please find the document attached. I remain at your disposal for any clarification. Sincerely, David Chen",ctx:"Formal legal inquiry email — complete structure"},
+     {es:"Estimado licenciado Fuentes:\n\nEn respuesta a su correo del día de ayer, le confirmo que la reunión queda pactada para el martes 25 a las diez de la mañana en nuestras oficinas.\n\nUn cordial saludo,\nSarah Thompson",en:"Dear Licenciado Fuentes: In response to your email from yesterday, I confirm that the meeting is set for Tuesday the 25th at ten in the morning at our offices. Best regards, Sarah Thompson",ctx:"Meeting confirmation email — concise formal response"},
+   ]
+  },
+  {id:2,title:"Business reports & executive summaries",desc:"Structuring reports, presenting findings, and writing summaries for senior readers",
+   vocab:[
+     {es:"El informe ejecutivo",ctx:"Executive report — structured document for senior leadership",en:"Executive report"},
+     {es:"El resumen ejecutivo",ctx:"Executive summary — first section, most important, written last",en:"Executive summary"},
+     {es:"Los hallazgos principales",ctx:"Key findings — what the data shows",en:"Key findings"},
+     {es:"Las conclusiones",ctx:"Conclusions — what the findings mean",en:"Conclusions"},
+     {es:"Las recomendaciones",ctx:"Recommendations — what should be done",en:"Recommendations"},
+     {es:"Con base en los datos...",ctx:"Based on the data... — evidence-based statement opener",en:"Based on the data..."},
+     {es:"Se concluye que...",ctx:"It is concluded that... — formal conclusion statement",en:"It is concluded that..."},
+     {es:"Se recomienda que...",ctx:"It is recommended that... — formal recommendation",en:"It is recommended that..."},
+     {es:"Cabe destacar que...",ctx:"It is worth noting that... — highlighting important points",en:"It is worth noting that..."},
+     {es:"En el período analizado...",ctx:"During the period analyzed... — time reference in reports",en:"During the period analyzed..."},
+   ],
+   examples:[
+     {es:"Con base en los datos del tercer trimestre, se concluye que la expansión al mercado colombiano representa la oportunidad de mayor rendimiento potencial.",en:"Based on the third quarter data, it is concluded that expansion into the Colombian market represents the highest potential return opportunity.",ctx:"Executive summary conclusion — business expansion report"},
+     {es:"Cabe destacar que, en el período analizado, los costos operativos aumentaron un doce por ciento, superando las proyecciones iniciales en cuatro puntos porcentuales.",en:"It is worth noting that, during the period analyzed, operating costs increased by twelve percent, exceeding initial projections by four percentage points.",ctx:"Key findings section — quarterly financial report"},
+     {es:"Se recomienda que el consejo directivo apruebe la asignación presupuestaria adicional antes del cierre del ejercicio fiscal.",en:"It is recommended that the board of directors approve the additional budget allocation before the close of the fiscal year.",ctx:"Recommendations section — formal board report"},
+   ]
+  },
+  {id:3,title:"Proposals & formal letters",desc:"Writing business proposals, formal requests, and official correspondence",
+   vocab:[
+     {es:"Tenemos el agrado de presentar...",ctx:"We have the pleasure of presenting... — formal proposal opening",en:"We have the pleasure of presenting..."},
+     {es:"La presente propuesta tiene como objetivo...",ctx:"This proposal aims to... — stating purpose",en:"This proposal aims to..."},
+     {es:"Los honorarios propuestos son...",ctx:"The proposed fees are... — quoting professional fees",en:"The proposed fees are..."},
+     {es:"El alcance del trabajo incluye...",ctx:"The scope of work includes... — defining deliverables",en:"The scope of work includes..."},
+     {es:"Nos complace informarle que...",ctx:"We are pleased to inform you that... — positive news opener",en:"We are pleased to inform you that..."},
+     {es:"Lamentamos informarle que...",ctx:"We regret to inform you that... — negative news opener",en:"We regret to inform you that..."},
+     {es:"En virtud de lo anterior...",ctx:"In light of the foregoing... — legal/formal transition",en:"In light of the foregoing..."},
+     {es:"Solicitamos respetuosamente...",ctx:"We respectfully request... — formal petition",en:"We respectfully request..."},
+     {es:"A los efectos pertinentes",ctx:"For all relevant purposes — formal legal closing",en:"For all relevant purposes"},
+     {es:"Sin otro particular, le saludamos atentamente",ctx:"Complete formal closing — proposal or official letter",en:"We remain yours sincerely / Without further ado, yours truly"},
+   ],
+   examples:[
+     {es:"Tenemos el agrado de presentar la siguiente propuesta de servicios legales para la revisión de los contratos de distribución en América Latina. La presente propuesta tiene como objetivo ofrecer una solución integral que garantice el cumplimiento regulatorio en los cinco mercados objetivo.",en:"We have the pleasure of presenting the following legal services proposal for the review of distribution contracts in Latin America. This proposal aims to offer a comprehensive solution that guarantees regulatory compliance in the five target markets.",ctx:"Opening of a formal legal services proposal"},
+     {es:"Solicitamos respetuosamente la prórroga del plazo de entrega por un período adicional de quince días hábiles, en virtud de las circunstancias excepcionales descritas en el anexo adjunto.",en:"We respectfully request an extension of the delivery deadline for an additional period of fifteen business days, in light of the exceptional circumstances described in the attached annex.",ctx:"Formal request letter — deadline extension"},
+   ]
+  },
+  {id:4,title:"Common writing errors & register mistakes",desc:"The mistakes professionals make most often in written Spanish — and how to fix them",
+   vocab:[
+     {es:"El calco del inglés",ctx:"English calque — word-for-word translation that sounds wrong in Spanish",en:"English calque / literal translation"},
+     {es:"El gerundio abusivo",ctx:"Overuse of -ando/-iendo forms — a common English-speaker error",en:"Gerund overuse"},
+     {es:"El registro inadecuado",ctx:"Wrong register — too informal for the written context",en:"Wrong register / inappropriate tone"},
+     {es:"La redundancia",ctx:"Redundancy — repeating the same idea unnecessarily",en:"Redundancy"},
+     {es:"La voz activa vs pasiva",ctx:"Active vs passive voice — Spanish formal writing uses more passive than English",en:"Active vs passive voice"},
+     {es:"El dequeísmo",ctx:"Incorrect use of 'de que' — 'pienso de que' is wrong, 'pienso que' is correct",en:"Dequeísmo (grammar error)"},
+     {es:"La concordancia",ctx:"Agreement — gender and number must match throughout",en:"Agreement (gender/number)"},
+     {es:"El punto y seguido vs punto y aparte",ctx:"Period within paragraph vs paragraph break — used differently in Spanish",en:"Period within / paragraph break"},
+     {es:"La mayúscula innecesaria",ctx:"Unnecessary capitals — Spanish capitalizes far less than English",en:"Unnecessary capitalization"},
+     {es:"El anglicismo",ctx:"Anglicism — English words used in Spanish text without need",en:"Anglicism / borrowed English word"},
+   ],
+   examples:[
+     {es:"INCORRECTO: 'Estamos planeando de hacer la reunión el martes.' CORRECTO: 'Tenemos prevista la reunión para el martes.'",en:"WRONG: We are planning to have the meeting on Tuesday. CORRECT: The meeting is scheduled for Tuesday.",ctx:"Gerund overuse + dequeísmo — two errors in one sentence"},
+     {es:"INCORRECTO: 'El Presidente y el Director General se reunieron en la Sala de Juntas.' CORRECTO: 'El presidente y el director general se reunieron en la sala de juntas.'",en:"WRONG: The President and the General Director met in the Conference Room. CORRECT: The president and general director met in the conference room.",ctx:"Unnecessary capitalization — Spanish only capitalizes proper nouns, not titles"},
+     {es:"INCORRECTO: 'Hacemos referencia a su email del día de ayer.' CORRECTO: 'Nos referimos a su correo electrónico del día de ayer.'",en:"WRONG: We make reference to your email from yesterday. CORRECT: We refer to your electronic mail from yesterday.",ctx:"Anglicism + calco — 'email' in formal writing should be 'correo electrónico'"},
+   ],
+   cultureTip:"Written Spanish in professional contexts is more formal than spoken Spanish and more formal than written English. Contractions do not exist in Spanish writing. Abbreviations are minimal. Sentences tend to be longer and more complex. If your written Spanish sounds like a word-for-word translation of English, it will immediately signal non-native writing to a Latin American reader."
+  },
+  {id:5,title:"AI role-play — written communication review",desc:"Practice professional writing with your Spanish Millennium AI tutor",
+   type:"roleplay",
+   scenario:"You have written a business proposal in Spanish to a Mexican law firm offering your firm's services for their US litigation needs. You want the AI tutor to review your writing, identify calques, register mistakes, and overly informal language, and suggest corrections. Then practice a full email exchange — you write the email, the tutor responds as the Mexican law firm partner, and you reply formally.",
+   cultureTip:"Written Spanish is permanent — unlike a spoken mistake that disappears in conversation, a written error in a proposal or formal letter stays there for the reader to see repeatedly. The most common mistakes are: starting sentences with gerunds (-ando), using English email conventions ('Hi' instead of 'Estimado'), unnecessary capitals, and translating English idioms literally. The AI tutor will catch all of these.",
+   prompt:"Quiero practicar el Módulo 6, Lección 5. Primero, revisa este borrador de correo en español y señala los errores de registro, calcos del inglés y problemas de formato: 'Hola señor García, Estoy escribiendo para presentar nuestra propuesta. Somos muy buenos en litigación internacional y pensamos de que podemos ayudarle. Adjunto encontrarás nuestra brochure. Esperamos su respuesta. Saludos, David.' Luego haremos un ejercicio de intercambio de correos formales."
+  }
+];
+const ALL_QUESTIONS=[
+  {q:"You need to open a formal email to a Mexican attorney whose name you know. Which opening is correct?",ctx:"Formal email — opening salutation",opts:["Estimado licenciado García,","Hola licenciado García,","Dear licenciado García,","Buenos días licenciado García:"],correct:0,why:"Option B 'Hola' is informal — never appropriate for a first formal email. Option C mixing English and Spanish is unprofessional. Option D 'Buenos días' as an email opening is used in some informal contexts but 'Estimado' is the correct formal standard."},
+  {q:"You want to say 'Please find attached the contract for your review' in a formal email. Which is correct?",ctx:"Formal email — sending attachments",opts:["Adjunto encontrará el contrato para su revisión.","Por favor mire el contrato que le mandé.","Te adjunto el contrato para que lo revises.","Aquí está el contrato adjunto para revisar."],correct:0,why:"Option B 'mire' and 'le mandé' are too informal for a formal email. Option C uses tú — never appropriate in formal B2B correspondence. Option D 'aquí está' is informal and lacks the professional structure expected."},
+  {q:"Which closing phrase is most appropriate for a formal business proposal?",ctx:"Formal writing — closing a proposal",opts:["Sin otro particular, le saludamos atentamente.","Gracias y que tenga buen día.","Espero su respuesta. Saludos.","Hasta pronto y cualquier duda me dice."],correct:0,why:"Option B 'que tenga buen día' is friendly but informal for a formal proposal. Option C 'espero su respuesta. Saludos' is acceptable in emails but too informal for a proposal document. Option D 'me dice' uses informal register and is completely inappropriate for a business proposal."},
+  {q:"You need to write 'Based on the data, it is concluded that the market is viable' in a formal report. Which is correct?",ctx:"Business report — formal conclusions",opts:["Con base en los datos, se concluye que el mercado es viable.","Basándonos en los datos, concluimos que el mercado es viable.","Los datos muestran que el mercado es viable, en nuestra opinión.","De acuerdo a los datos, el mercado parece ser viable."],correct:0,why:"Option B 'basándonos' is a gerund construction — avoid in formal written Spanish. Option C 'en nuestra opinión' weakens the conclusion — report language should present findings as facts, not opinions. Option D 'parece ser' introduces uncertainty — formal reports state conclusions definitively."},
+  {q:"Which sentence contains an error that is typical of English-speaker Spanish writing?",ctx:"Common writing errors — identifying mistakes",opts:["Se recomienda que el comité apruebe el presupuesto antes del viernes.","Estamos planeando de realizar la reunión el próximo martes en nuestras oficinas.","Los hallazgos principales del informe se presentan a continuación.","En el período analizado, los costos operativos aumentaron un ocho por ciento."],correct:1,why:"Option B contains two errors: 'estamos planeando' (gerund overuse — should be 'tenemos prevista') and 'de realizar' (dequeísmo — the 'de' is incorrect here). Options A, C, and D are all grammatically correct formal Spanish."},
+  {q:"You need to formally request a 15-day extension for a contract deadline. Which sentence is most appropriate?",ctx:"Formal letter — requesting an extension",opts:["Solicitamos respetuosamente la prórroga del plazo por un período adicional de quince días hábiles.","Necesitamos más tiempo. Pedimos quince días más para entregar el contrato.","Quisiéramos solicitar una extensión de dos semanas para el contrato si es posible.","Le pedimos que nos dé más tiempo — unos quince días — para cumplir con el plazo."],correct:0,why:"Option B 'necesitamos más tiempo' is informal and abrupt for a formal request. Option C 'si es posible' weakens a formal request unnecessarily — state it as a request, not a question. Option D 'le pedimos que nos dé' is informal and the dashes around 'unos quince días' are not appropriate in formal correspondence."},
+  {q:"Which of the following is an example of an anglicism that should be avoided in formal Spanish writing?",ctx:"Professional writing — anglicisms",opts:["Adjunto encontrará el informe ejecutivo solicitado.","Favor de revisar el email adjunto con la brochure del proyecto.","Se recomienda revisar el alcance del trabajo antes de proceder.","Los honorarios propuestos están sujetos a revisión trimestral."],correct:1,why:"Option B contains two anglicisms: 'email' (should be 'correo electrónico' in formal writing) and 'brochure' (should be 'folleto' or 'dossier'). Options A, C, and D use correct formal Spanish without borrowed English terms."},
+  {q:"How should the title 'Director General' be capitalized in the middle of a formal Spanish sentence?",ctx:"Professional writing — capitalization rules",opts:["El Director General firmará el contrato la próxima semana.","El director general firmará el contrato la próxima semana.","El Director general firmará el contrato la próxima semana.","El director General firmará el contrato la próxima semana."],correct:1,why:"Option A capitalizes both words — incorrect in Spanish, titles are not capitalized unless they begin the sentence or are a specific named institution. Option C capitalizes only the first word — inconsistent and still incorrect. Option D capitalizes only the second word — equally incorrect. Spanish capitalizes far less than English."},
+  {q:"You want to write 'It is worth noting that the deadline was extended' in a formal report. Which is correct?",ctx:"Business report — highlighting key points",opts:["Cabe destacar que el plazo fue prorrogado.","Es importante notar que el plazo fue extendido.","Vale la pena mencionar que el deadline fue extendido.","Hay que decir que el tiempo para entregar fue más largo."],correct:0,why:"Option B 'es importante notar' is a calque from English — 'cabe destacar' is the native formal expression. Option C 'deadline' is an anglicism and 'extendido' is a calque — 'prorrogado' is the correct term. Option D 'hay que decir' is informal and 'el tiempo para entregar fue más largo' is imprecise."},
+  {q:"Which phrase correctly opens a formal proposal to a new corporate client?",ctx:"Business proposal — formal opening",opts:["Tenemos el agrado de presentar la siguiente propuesta de servicios para su consideración.","Con mucho gusto le presentamos lo que podemos hacer por su empresa.","Nos complace compartir con usted nuestra propuesta de trabajo.","Estamos felices de presentarles esta propuesta para que la evalúen."],correct:0,why:"Option B 'lo que podemos hacer' is informal and vague. Option C 'compartir' is appropriate in some contexts but 'presentar' is the stronger formal verb for a proposal. Option D 'estamos felices' is too casual — 'tenemos el agrado' is the established formal expression."},
+  {q:"A report needs to recommend that the board allocate additional budget. Which sentence is formally correct?",ctx:"Executive report — formal recommendation",opts:["Se recomienda que el consejo directivo apruebe la asignación presupuestaria adicional.","Recomendamos que el consejo directivo apruebe más presupuesto para este proyecto.","El consejo directivo debería aprobar un presupuesto adicional para continuar.","Nuestra recomendación es que el consejo directivo dé más fondos al proyecto."],correct:0,why:"Option B 'recomendamos' uses first person — reports use passive or impersonal constructions. Option C 'debería' (should) is weaker than a formal recommendation. Option D 'dé más fondos' is informal — 'apruebe la asignación presupuestaria' is the correct formal term."},
+  {q:"You are writing a formal letter and need to say 'In light of the foregoing' as a transition. Which is correct?",ctx:"Formal letter — transitional phrases",opts:["En virtud de lo anterior, solicitamos la renovación del acuerdo.","Por lo tanto, queremos renovar el acuerdo que tenemos.","Con esto en mente, les pedimos que renueven el contrato.","Entonces, les pedimos que consideren renovar el acuerdo."],correct:0,why:"Option B 'queremos' is informal. Option C 'con esto en mente' is a calque from English ('with this in mind') — 'en virtud de lo anterior' is the correct formal phrase. Option D 'entonces' is too casual for formal correspondence."},
+  {q:"Which of the following correctly uses the passive voice appropriate for a formal Spanish report?",ctx:"Business report — passive voice usage",opts:["Se analizaron los datos del período comprendido entre enero y diciembre.","Nosotros analizamos los datos del período de enero a diciembre del año pasado.","El equipo analizó los datos del período entre enero y diciembre de este año.","Analizando los datos del período de enero a diciembre, encontramos lo siguiente."],correct:0,why:"Option B uses first person plural — formal reports avoid 'nosotros' in favor of passive or impersonal constructions. Option C using a named subject is acceptable but less formal than the passive. Option D 'analizando' is a gerund — avoid in formal written Spanish."},
+  {q:"What is the correct email closing when you want to express warm regards slightly more personally than 'atentamente'?",ctx:"Formal email — closing salutation",opts:["Un cordial saludo,","Besos y abrazos,","Con cariño,","Hasta pronto,"],correct:0,why:"Option B 'besos y abrazos' is for close personal relationships — never professional correspondence. Option C 'con cariño' is too personal for business emails. Option D 'hasta pronto' is informal and implies imminent contact rather than serving as a respectful closing."},
+  {q:"You need to inform a client that their application was not approved. Which opening is most appropriate for a formal letter?",ctx:"Formal letter — delivering negative news",opts:["Lamentamos informarle que su solicitud no ha sido aprobada en esta ocasión.","Lo sentimos, pero no podemos aprobar su solicitud en este momento.","Le informamos que lamentablemente no podemos seguir adelante con su solicitud.","Tenemos malas noticias: su solicitud no fue aprobada esta vez."],correct:0,why:"Option B 'lo sentimos' is conversational — 'lamentamos' is the formal expression. Option C the structure is correct but 'seguir adelante' is informal. Option D 'tenemos malas noticias' is too blunt and informal for a formal letter — it lacks the diplomatic buffer that formal correspondence requires."}
+];
+let S={cur:0,done:new Set(),quizActive:false,quizAnswers:[],quizCurrent:0,quizPassed:false,quizAttempts:0,shuffledQ:[]};
+function shuffleQuiz(){const s=[...ALL_QUESTIONS].sort(()=>Math.random()-.5);S.shuffledQ=s.slice(0,10);S.quizAnswers=[];S.quizCurrent=0;}
+function updateProg(){const p=Math.round(S.done.size/LESSONS.length*100);document.getElementById("progFill").style.width=p+"%";const q=S.quizPassed?" · Quiz passed ✓":S.done.size===LESSONS.length?" · Quiz unlocked":" · Quiz locked";document.getElementById("progLabel").textContent=S.done.size+" of "+LESSONS.length+" lessons completed"+q;}
+function renderList(){const a=S.done.size===LESSONS.length;document.getElementById("lessonList").innerHTML=LESSONS.map((l,i)=>`<button class="lesson-btn ${i===S.cur&&!S.quizActive?"active":""} ${S.done.has(i)?"done":""}" onclick="go(${i})"><div class="lnum">${S.done.has(i)?"✓":i+1}</div><div class="linfo"><div class="ltitle">${l.title}</div><div class="ldesc">${l.desc}</div></div><div class="lbadge ${S.done.has(i)?"navy":""}">${S.done.has(i)?"Done ✓":i===S.cur&&!S.quizActive?"Current":""}</div></button>`).join("")+`<button class="quiz-nav-btn ${!a?"locked":S.quizActive?"active":""}" onclick="${a?"startQuiz()":"alert('Complete all 5 lessons first.')"}"><div class="lnum">${S.quizPassed?"✓":"★"}</div><div class="linfo"><div class="ltitle">Final Quiz — Module 6</div><div class="ldesc">${S.quizPassed?"Passed — all core modules complete!":a?"10 of 15 questions · Need 8/10":"Complete all 5 lessons to unlock"}</div></div><div class="lbadge gold">${S.quizPassed?"Passed ✓":a?"Ready":"Locked 🔒"}</div></button>`;}
+function go(i){S.cur=i;S.quizActive=false;renderList();renderContent();}
+function startQuiz(){if(S.done.size<LESSONS.length)return;S.quizActive=true;S.quizAttempts++;shuffleQuiz();renderList();renderQuiz();}
+function renderContent(){const l=LESSONS[S.cur];const box=document.getElementById("contentBox");if(l.type==="roleplay"){box.innerHTML=`<div class="sec-title">${l.title}</div><div class="sec-sub" style="margin-bottom:18px">${l.desc}</div><div class="scenario-box"><div class="scenario-label">Your scenario</div><div class="culture-text">${l.scenario}</div></div><div class="culture-box"><div class="culture-label">Culture tip — read before practicing</div><div class="culture-text">${l.cultureTip}</div></div><div class="gpt-box"><div class="gpt-title">Practice with your Spanish Millennium AI Tutor</div><div class="gpt-sub">Your AI tutor will review your written Spanish, identify errors and calques, and then run an email exchange exercise with you as a Mexican law firm partner.</div><a class="gpt-btn" href="${GPT_URL}" target="_blank">Open AI Tutor → Start Writing Review</a><div class="gpt-note">Copy and paste this to start:<br><br><em>${l.prompt}</em></div></div><div class="navrow"><button class="nbtn" onclick="go(${S.cur-1})">← Previous lesson</button><button class="nbtn primary" onclick="complete(${S.cur})">Mark done · Go to quiz →</button></div>`;return;}box.innerHTML=`<div class="sec-title">${l.title}</div><div class="sec-sub">Tap each card to reveal the English. Study all examples before marking complete.</div><div class="vocab-grid">${l.vocab.map(v=>`<div class="vcard" onclick="this.classList.toggle('flipped')"><div class="ves">${v.es}</div><div class="vctx">${v.ctx}</div><div class="vtip">Tap to reveal ↓</div><div class="ven">🇺🇸 ${v.en}</div></div>`).join("")}</div><div class="section-divider">In professional context</div>${l.examples.map(e=>`<div class="ex-box"><div class="ex-es">${e.es}</div><div class="ex-en">${e.en}</div><div class="ex-ctx">📍 ${e.ctx}</div></div>`).join("")}${l.cultureTip?`<div class="culture-box" style="margin-top:16px"><div class="culture-label">Writing tip</div><div class="culture-text">${l.cultureTip}</div></div>`:""}<div class="navrow">${S.cur>0?`<button class="nbtn" onclick="go(${S.cur-1})">← Previous</button>`:"<div></div>"}<button class="nbtn primary" onclick="complete(${S.cur})">Mark complete →</button></div>`;}
+function complete(i){S.done.add(i);updateProg();if(i<LESSONS.length-1){S.cur=i+1;renderList();renderContent();}else{renderList();document.getElementById("contentBox").innerHTML=`<div style="text-align:center;padding:40px 20px"><div style="font-size:56px;margin-bottom:16px">✍️</div><div style="font-size:26px;font-weight:700;margin-bottom:8px">All 5 lessons complete!</div><div style="font-size:14px;color:#6b6878;margin-bottom:20px;line-height:1.6;max-width:500px;margin:0 auto 20px">Take the final quiz — 10 of 15 questions drawn randomly. Need 8/10 to pass.</div><br><button class="nbtn gold" style="font-size:15px;padding:14px 32px" onclick="startQuiz()">Take the Final Quiz →</button></div>`;}}
+function renderQuiz(){const box=document.getElementById("contentBox");const q=S.shuffledQ[S.quizCurrent];const a=S.quizAnswers[S.quizCurrent];box.innerHTML=`<div class="quiz-header"><div class="quiz-icon">✍️</div><div><div class="quiz-header-title">Final Quiz — Module 6: Professional Writing</div><div class="quiz-header-sub">10 of 15 questions drawn randomly. No going back. Need 8/10. Attempt #${S.quizAttempts}.</div></div></div><div class="quiz-progress"><div class="quiz-dots">${S.shuffledQ.map((_,i)=>{let c="qdot";if(i<S.quizAnswers.length)c+=S.quizAnswers[i]===S.shuffledQ[i].correct?" correct":" wrong";else if(i===S.quizCurrent)c+=" current";return`<div class="${c}"></div>`;}).join("")}</div><div class="quiz-counter">Q${S.quizCurrent+1} / 10</div></div><div class="quiz-q">${q.q}</div><div class="quiz-context">${q.ctx}</div><div class="quiz-opts">${q.opts.map((o,oi)=>{let c="qopt";if(a!==undefined){if(oi===q.correct)c+=" correct";else if(oi===a&&a!==q.correct)c+=" wrong";}return`<button class="${c}" onclick="quizAnswer(${oi})" ${a!==undefined?"disabled":""}>${o}</button>`;}).join("")}</div>${a!==undefined?`<div class="why-wrong">💡 ${q.why}</div>`:""}${a!==undefined&&S.quizCurrent<S.shuffledQ.length-1?`<div class="navrow"><div></div><button class="nbtn primary" onclick="quizNext()">Next →</button></div>`:""}${a!==undefined&&S.quizCurrent===S.shuffledQ.length-1?`<div class="navrow"><div></div><button class="nbtn gold" onclick="showResults()">See results →</button></div>`:""}`;}
+function quizAnswer(oi){if(S.quizAnswers[S.quizCurrent]!==undefined)return;S.quizAnswers[S.quizCurrent]=oi;renderQuiz();}
+function quizNext(){if(S.quizCurrent<S.shuffledQ.length-1){S.quizCurrent++;renderQuiz();}}
+function showResults(){const score=S.quizAnswers.filter((a,i)=>a===S.shuffledQ[i].correct).length;const passed=score>=8;S.quizPassed=passed;updateProg();renderList();const wrong=S.shuffledQ.map((q,i)=>({q,answered:S.quizAnswers[i]})).filter(({q,answered})=>answered!==q.correct);document.getElementById("contentBox").innerHTML=`<div class="result-screen"><div class="result-icon">${passed?"🏆":"📚"}</div><div class="result-title">${passed?"Passed — well done.":"Not this time — try again."}</div><div class="score-big ${passed?"score-pass":"score-fail"}">${score}/10</div><div class="score-label">${passed?"All 6 core modules complete!":"You need 8/10 to pass."}</div><div class="result-sub">${passed?"You've completed all 6 Professional Communication modules. You can now write, speak, and navigate professional Spanish across legal, financial, healthcare, LATAM, and business contexts.":"Review the lessons you missed and retake. Each attempt draws different questions."}</div>${wrong.length>0?`<div class="wrong-review"><div class="wrong-review-title">Review before retaking</div>${wrong.map(({q,answered})=>`<div class="wrong-item"><div class="wrong-q">${q.q}</div><div class="wrong-ans">✗ ${q.opts[answered]}</div><div class="wrong-correct">✓ ${q.opts[q.correct]}</div><div class="wrong-why">${q.why}</div></div>`).join("")}</div>`:""}${passed?`<div class="unlock-box"><div class="unlock-title">🎓 All Core Modules Complete</div><div class="unlock-sub">You have completed the full Spanish Millennium Professional Communication track. Specialization modules (Executive Spanish, Healthcare Advanced, Sales) are now available.</div></div>`:`<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px"><button class="nbtn" onclick="go(0)">← Review lessons</button><button class="nbtn gold" onclick="startQuiz()">Retake — attempt #${S.quizAttempts+1} →</button></div>`}</div>`;}
+renderList();renderContent();updateProg();
+</script>
+</body>
+</html>

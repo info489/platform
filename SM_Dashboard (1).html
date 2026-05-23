@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spanish Millennium — Student Dashboard</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f8f7f4;color:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;padding:24px 16px}
+.wrap{max-width:900px;margin:0 auto}
+
+/* HEADER */
+.header{background:#fff;border:1px solid #e8e5df;border-radius:14px;padding:28px;margin-bottom:20px}
+.header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.logo{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#c8a96e;font-weight:700}
+.student-info{display:flex;align-items:center;gap:14px}
+.avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#c8a96e,#8A6F3E);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;flex-shrink:0}
+.student-name{font-size:16px;font-weight:700;color:#1a1a1a}
+.student-meta{font-size:12px;color:#8a8799;margin-top:2px}
+.header-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.hstat{background:#f8f7f4;border:1px solid #e8e5df;border-radius:10px;padding:14px 16px}
+.hstat-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8a8799;font-weight:600;margin-bottom:5px}
+.hstat-value{font-size:24px;font-weight:700;color:#1a1a1a;line-height:1}
+.hstat-sub{font-size:11px;color:#8a8799;margin-top:4px}
+
+/* SECTION */
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;margin-top:24px}
+.section-title{font-size:18px;font-weight:700;color:#1a1a1a}
+.section-sub{font-size:13px;color:#8a8799;margin-top:2px}
+.btn{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all .15s}
+.btn-gold{background:#c8a96e;color:#fff}.btn-gold:hover{background:#b8956a}
+.btn-ghost{background:transparent;color:#8a8799;border:1px solid #e8e5df}.btn-ghost:hover{background:#f4f2ee;color:#1a1a1a}
+
+/* MODULE CARDS */
+.module-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+.mod-card{background:#fff;border:1px solid #e8e5df;border-radius:12px;padding:20px;transition:all .2s;position:relative;overflow:hidden}
+.mod-card:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.mod-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.mod-icon{font-size:28px;margin-bottom:4px}
+.mod-name{font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:2px}
+.mod-desc{font-size:12px;color:#8a8799;line-height:1.4}
+.status-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+.s-notstarted{background:#f4f2ee;color:#8a8799;border:1px solid #e8e5df}
+.s-inprogress{background:#fff8ee;color:#c8a96e;border:1px solid #f0d49a}
+.s-attempted{background:#FCEBEB;color:#B03030;border:1px solid #F09595}
+.s-passed{background:#e1f5ee;color:#085041;border:1px solid #5DCAA5}
+.mod-progress{margin-top:12px}
+.mod-prog-label{display:flex;justify-content:space-between;font-size:11px;color:#8a8799;margin-bottom:5px}
+.prog-bar{height:5px;background:#e8e5df;border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;border-radius:3px;transition:width .4s ease}
+.pf-green{background:#1D9E75}
+.pf-blue{background:#1A6BB5}
+.pf-purple{background:#534AB7}
+.pf-gold{background:#c8a96e}
+.pf-gray{background:#c8c5d0}
+.mod-lessons{margin-top:12px;display:flex;flex-direction:column;gap:5px}
+.lesson-row{display:flex;align-items:center;gap:8px;font-size:12px;color:#8a8799}
+.lesson-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ld-done{background:#1D9E75}
+.ld-current{background:#c8a96e}
+.ld-todo{background:#e8e5df}
+.quiz-result{margin-top:12px;padding:10px 12px;border-radius:8px;font-size:12px;line-height:1.5}
+.qr-pass{background:#e1f5ee;color:#085041;border:1px solid #5DCAA5}
+.qr-fail{background:#FCEBEB;color:#B03030;border:1px solid #F09595}
+.qr-pending{background:#f4f2ee;color:#8a8799;border:1px solid #e8e5df}
+.mod-btn{display:block;width:100%;margin-top:14px;padding:9px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:inherit;text-align:center;text-decoration:none;transition:all .15s}
+.mb-start{background:#1a1a1a;color:#fff}.mb-start:hover{background:#333}
+.mb-continue{background:#c8a96e;color:#fff}.mb-continue:hover{background:#b8956a}
+.mb-review{background:#f4f2ee;color:#1a1a1a;border:1px solid #e8e5df}.mb-review:hover{background:#e8e5df}
+
+/* TRACK SECTION */
+.track-card{background:#fff;border:1px solid #e8e5df;border-radius:12px;padding:20px;margin-bottom:14px}
+.track-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.track-icon{font-size:22px}
+.track-name{font-size:15px;font-weight:700;color:#1a1a1a}
+.track-sub{font-size:12px;color:#8a8799;margin-top:1px}
+.track-modules{display:flex;flex-direction:column;gap:8px}
+.track-mod-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;background:#f8f7f4;border:1px solid #e8e5df;cursor:pointer;transition:all .15s;text-decoration:none}
+.track-mod-row:hover{background:#f0f0eb;border-color:#c8a96e}
+.tmr-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.tmr-info{flex:1}
+.tmr-title{font-size:13px;font-weight:600;color:#1a1a1a}
+.tmr-sub{font-size:11px;color:#8a8799;margin-top:1px}
+.tmr-right{display:flex;align-items:center;gap:8px}
+.tmr-score{font-size:12px;font-weight:600;color:#8a8799}
+
+/* REPORT */
+.report-card{background:#fff;border:1px solid #e8e5df;border-radius:12px;padding:20px;margin-bottom:14px}
+.report-title{font-size:15px;font-weight:700;margin-bottom:4px}
+.report-sub{font-size:12px;color:#8a8799;margin-bottom:16px}
+.report-table{width:100%;border-collapse:collapse}
+.report-table th{text-align:left;padding:8px 12px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8a8799;font-weight:600;border-bottom:1px solid #e8e5df}
+.report-table td{padding:11px 12px;font-size:13px;border-bottom:1px solid rgba(232,229,223,.6);vertical-align:middle}
+.report-table tr:last-child td{border-bottom:none}
+.report-table tr:hover td{background:#f8f7f4}
+
+/* NOTIFICATION */
+.notif{background:#fff8ee;border:1px solid #f0d49a;border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:#6b4c00;display:flex;align-items:center;gap:10px}
+
+/* PRINT BUTTON */
+@media print{.no-print{display:none}.wrap{max-width:100%}}
+
+@media(max-width:640px){
+  .module-grid{grid-template-columns:1fr}
+  .header-stats{grid-template-columns:1fr 1fr}
+  body{padding:12px 8px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div class="logo">Spanish Millennium · Professional Platform</div>
+    <div class="student-info">
+      <div class="avatar">A</div>
+      <div>
+        <div class="student-name">Alexandra Chen</div>
+        <div class="student-meta">Morrison & Foerster LLP · Legal Track · Enrolled: March 2026</div>
+      </div>
+    </div>
+  </div>
+  <div class="header-stats">
+    <div class="hstat">
+      <div class="hstat-label">Modules Started</div>
+      <div class="hstat-value">3</div>
+      <div class="hstat-sub">of 6 available</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-label">Modules Passed</div>
+      <div class="hstat-value">1</div>
+      <div class="hstat-sub">Module 1 ✓</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-label">Lessons Completed</div>
+      <div class="hstat-value">11</div>
+      <div class="hstat-sub">of 25 total</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-label">Last Active</div>
+      <div class="hstat-value" style="font-size:18px">Today</div>
+      <div class="hstat-sub">May 20, 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- NOTIFICATION -->
+<div class="notif no-print">
+  💡 <strong>Tip:</strong> You can access any module in any order. Your progress and quiz scores are tracked automatically and appear in your HR report.
+</div>
+
+<!-- MODULES OVERVIEW -->
+<div class="section-header">
+  <div>
+    <div class="section-title">Professional Communication Modules</div>
+    <div class="section-sub">Access any module freely — no order required</div>
+  </div>
+  <button class="btn btn-ghost no-print" onclick="window.print()">📄 Export Report</button>
+</div>
+
+<div class="module-grid">
+
+  <!-- MODULE 1 -->
+  <div class="mod-card" style="border-top:3px solid #1D9E75">
+    <div class="mod-icon">🤝</div>
+    <div class="mod-card-top">
+      <div>
+        <div class="mod-name">Module 1 — Business Introductions</div>
+        <div class="mod-desc">Greetings, titles, self-introductions, small talk, cultural protocol</div>
+      </div>
+      <span class="status-badge s-passed">✓ Passed</span>
+    </div>
+    <div class="mod-progress">
+      <div class="mod-prog-label"><span>Lessons</span><span>5 / 5</span></div>
+      <div class="prog-bar"><div class="prog-fill pf-green" style="width:100%"></div></div>
+    </div>
+    <div class="mod-lessons">
+      <div class="lesson-row"><div class="lesson-dot ld-done"></div>Greetings & formality levels</div>
+      <div class="lesson-row"><div class="lesson-dot ld-done"></div>Titles & forms of address</div>
+      <div class="lesson-row"><div class="lesson-dot ld-done"></div>Introducing yourself professionally</div>
+      <div class="lesson-row"><div class="lesson-dot ld-done"></div>Small talk & building rapport</div>
+      <div class="lesson-row"><div class="lesson-dot ld-done"></div>AI role-play — first client meeting</div>
+    </div>
+    <div class="quiz-result qr-pass">
+      ✓ Quiz passed · Score: 9/10 · Completed May 15, 2026 · Attempt 1
+    </div>
+    <a class="mod-btn mb-review" href="SM_Module1_v3.html">Open Module 1 →</a>
+  </div>
+
+  <!-- MODULE 2 -->
+  <div class="mod-card" style="border-top:3px solid #534AB7">
+    <div class="mod-icon">⚖️</div>
+    <div class="mod-card-top">
+      <div>
+        <div class="mod-name">Module 2 — Legal Terminology</div>
+        <div class="mod-desc">Contracts, negotiations, depositions, courtroom procedure</div>
+      </div>
+      <span class="status-badge s-attempted">✗ Not passed</span>
+    </div>
+    <div class="mod-progress">
+      <div class="mod-prog-label"><span>Lessons</span><span>5 / 5</span></div>
+      <div class="prog-bar"><div class="prog-fill pf-purple" style="width:100%"></div></div>
+    </div>
+    <div class="mod-lessons">
+      <div class="lesson-row"><div class="lesson-dot ld-done"></div>Contract vocabulary</div>
+      <div class="lesson-row"><div class="lesson-dot ld-done"></div>Negotiation language</div>
+      <div class="lesson-row"><div class="lesson-dot ld-done"></div>Deposition & testimony</div>
+      <div class="lesson-row"><div class="lesson-dot ld-done"></div>Courtroom & procedural language</div>
+      <div class="lesson-row"><div class="lesson-dot ld-done"></div>AI role-play — contract negotiation</div>
+    </div>
+    <div class="quiz-result qr-fail">
+      ✗ Quiz not passed · Best score: 7/10 · Last attempt: May 18, 2026 · 2 attempts
+    </div>
+    <a class="mod-btn mb-continue" href="SM_Module2_LegalTerminology.html">Open Module 2 →</a>
+  </div>
+
+  <!-- MODULE 3 -->
+  <div class="mod-card" style="border-top:3px solid #1A6BB5">
+    <div class="mod-icon">💰</div>
+    <div class="mod-card-top">
+      <div>
+        <div class="mod-name">Module 3 — Finance & Banking</div>
+        <div class="mod-desc">Markets, transactions, reporting, M&A, boardroom presentations</div>
+      </div>
+      <span class="status-badge s-inprogress">● In Progress</span>
+    </div>
+    <div class="mod-progress">
+      <div class="mod-prog-label"><span>Lessons</span><span>3 / 5</span></div>
+      <div class="prog-bar"><div class="prog-fill pf-blue" style="width:60%"></div></div>
+    </div>
+    <div class="mod-lessons">
+      <div class="lesson-row"><div class="lesson-dot ld-done"></div>Core financial vocabulary</div>
+      <div class="lesson-row"><div class="lesson-dot ld-done"></div>Banking operations & transactions</div>
+      <div class="lesson-row"><div class="lesson-dot ld-done"></div>Presenting financial results</div>
+      <div class="lesson-row"><div class="lesson-dot ld-todo"></div>Investment & capital markets</div>
+      <div class="lesson-row"><div class="lesson-dot ld-todo"></div>AI role-play — board presentation</div>
+    </div>
+    <div class="quiz-result qr-pending">
+      ○ Quiz not yet taken · Complete all 5 lessons to unlock
+    </div>
+    <a class="mod-btn mb-continue" href="SM_Module3_FinanceBanking.html">Open Module 3 →</a>
+  </div>
+
+  <!-- MODULE 4 — COMING SOON -->
+  <div class="mod-card" style="border-top:3px solid #e8e5df;opacity:.7">
+    <div class="mod-icon">📈</div>
+    <div class="mod-card-top">
+      <div>
+        <div class="mod-name">Module 4 — Sales & Business Development</div>
+        <div class="mod-desc">Prospecting, pitching, objections, closing in Spanish markets</div>
+      </div>
+      <span class="status-badge s-notstarted">Not started</span>
+    </div>
+    <div class="mod-progress">
+      <div class="mod-prog-label"><span>Lessons</span><span>0 / 5</span></div>
+      <div class="prog-bar"><div class="prog-fill pf-gray" style="width:0%"></div></div>
+    </div>
+    <div class="quiz-result qr-pending">○ Not started</div>
+    <div class="mod-btn mb-review" style="opacity:.5;cursor:not-allowed">Coming soon</div>
+  </div>
+
+  <!-- MODULE 5 — COMING SOON -->
+  <div class="mod-card" style="border-top:3px solid #e8e5df;opacity:.7">
+    <div class="mod-icon">🌎</div>
+    <div class="mod-card-top">
+      <div>
+        <div class="mod-name">Module 5 — LATAM Business Culture</div>
+        <div class="mod-desc">Mexico, Colombia, Argentina, regional protocols & etiquette</div>
+      </div>
+      <span class="status-badge s-notstarted">Not started</span>
+    </div>
+    <div class="mod-progress">
+      <div class="mod-prog-label"><span>Lessons</span><span>0 / 5</span></div>
+      <div class="prog-bar"><div class="prog-fill pf-gray" style="width:0%"></div></div>
+    </div>
+    <div class="quiz-result qr-pending">○ Not started</div>
+    <div class="mod-btn mb-review" style="opacity:.5;cursor:not-allowed">Coming soon</div>
+  </div>
+
+  <!-- MODULE 6 — COMING SOON -->
+  <div class="mod-card" style="border-top:3px solid #e8e5df;opacity:.7">
+    <div class="mod-icon">✍️</div>
+    <div class="mod-card-top">
+      <div>
+        <div class="mod-name">Module 6 — Professional Writing</div>
+        <div class="mod-desc">Emails, reports, formal correspondence in professional Spanish</div>
+      </div>
+      <span class="status-badge s-notstarted">Not started</span>
+    </div>
+    <div class="mod-progress">
+      <div class="mod-prog-label"><span>Lessons</span><span>0 / 5</span></div>
+      <div class="prog-bar"><div class="prog-fill pf-gray" style="width:0%"></div></div>
+    </div>
+    <div class="quiz-result qr-pending">○ Not started</div>
+    <div class="mod-btn mb-review" style="opacity:.5;cursor:not-allowed">Coming soon</div>
+  </div>
+
+</div>
+
+<!-- FULL PROGRESS REPORT TABLE -->
+<div class="section-header">
+  <div>
+    <div class="section-title">Progress Report</div>
+    <div class="section-sub">Full status across all modules — exportable for HR</div>
+  </div>
+  <button class="btn btn-gold no-print" onclick="window.print()">📄 Print / Export PDF</button>
+</div>
+
+<div class="report-card">
+  <div class="report-title">Alexandra Chen — Spanish Millennium Progress Report</div>
+  <div class="report-sub">Morrison & Foerster LLP · Generated: May 20, 2026 · Professional Communication Track</div>
+  <table class="report-table">
+    <thead>
+      <tr>
+        <th>Module</th>
+        <th>Lessons</th>
+        <th>Status</th>
+        <th>Quiz Score</th>
+        <th>Attempts</th>
+        <th>Last Active</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Module 1</strong> — Business Introductions</td>
+        <td>5 / 5</td>
+        <td><span class="status-badge s-passed">✓ Passed</span></td>
+        <td style="color:#085041;font-weight:600">9 / 10</td>
+        <td>1</td>
+        <td>May 15, 2026</td>
+      </tr>
+      <tr>
+        <td><strong>Module 2</strong> — Legal Terminology</td>
+        <td>5 / 5</td>
+        <td><span class="status-badge s-attempted">✗ Not passed</span></td>
+        <td style="color:#B03030;font-weight:600">7 / 10</td>
+        <td>2</td>
+        <td>May 18, 2026</td>
+      </tr>
+      <tr>
+        <td><strong>Module 3</strong> — Finance & Banking</td>
+        <td>3 / 5</td>
+        <td><span class="status-badge s-inprogress">● In Progress</span></td>
+        <td style="color:#8a8799">Not taken</td>
+        <td>—</td>
+        <td>May 20, 2026</td>
+      </tr>
+      <tr>
+        <td><strong>Module 4</strong> — Sales & Business Dev.</td>
+        <td>0 / 5</td>
+        <td><span class="status-badge s-notstarted">Not started</span></td>
+        <td style="color:#8a8799">—</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>Module 5</strong> — LATAM Business Culture</td>
+        <td>0 / 5</td>
+        <td><span class="status-badge s-notstarted">Not started</span></td>
+        <td style="color:#8a8799">—</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>Module 6</strong> — Professional Writing</td>
+        <td>0 / 5</td>
+        <td><span class="status-badge s-notstarted">Not started</span></td>
+        <td style="color:#8a8799">—</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- RECOMMENDATION BOX -->
+<div class="report-card" style="background:#fff8ee;border-color:#f0d49a">
+  <div class="report-title" style="color:#6b4c00">📋 Instructor Recommendations</div>
+  <div class="report-sub" style="color:#8a6040">Based on current progress · May 2026</div>
+  <div style="font-size:13px;color:#6b4c00;line-height:1.8">
+    <strong>Priority 1:</strong> Retake Module 2 quiz — scored 7/10, needs 8/10. Review deposition language and courtroom procedure (lessons 3–4) before retaking.<br>
+    <strong>Priority 2:</strong> Complete Module 3 lessons 4–5 to unlock the finance quiz.<br>
+    <strong>Suggested next:</strong> Module 5 — LATAM Business Culture is highly relevant given client base at M&F.
+  </div>
+</div>
+
+</div>
+</body>
+</html>

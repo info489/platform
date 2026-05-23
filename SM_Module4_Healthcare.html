@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 4 — Healthcare Spanish | Spanish Millennium</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f8f7f4;color:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;padding:24px 16px}
+.wrap{max-width:820px;margin:0 auto}
+.back-bar{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid #e8e5df;border-radius:12px;padding:12px 20px;margin-bottom:16px}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#1a1a1a;text-decoration:none;transition:all .15s}
+.back-link:hover{color:#0D6E6E}
+.back-breadcrumb{font-size:12px;color:#8a8799}
+.back-breadcrumb span{color:#0D6E6E;font-weight:600}
+.mod-header{background:#fff;border:1px solid #e8e5df;border-radius:14px;padding:28px;margin-bottom:20px}
+.mod-logo{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#c8a96e;font-weight:700;margin-bottom:10px}
+.mod-title{font-size:26px;font-weight:700;color:#1a1a1a;margin-bottom:4px}
+.mod-sub{font-size:14px;color:#6b6878;margin-bottom:18px;line-height:1.5}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pill{padding:5px 12px;border-radius:20px;font-size:12px;border:1px solid #e8e5df;color:#6b6878;background:#f8f7f4}
+.prog-bar{height:7px;background:#e8e5df;border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:#0D6E6E;border-radius:4px;transition:width .4s ease}
+.prog-label{font-size:12px;color:#8a8799;margin-top:6px}
+.lesson-list{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
+.lesson-btn{display:flex;align-items:center;gap:14px;padding:13px 18px;border-radius:12px;border:1px solid #e8e5df;background:#fff;cursor:pointer;text-align:left;transition:all .15s;width:100%}
+.lesson-btn:hover{background:#F0FAFA;border-color:#0D6E6E}
+.lesson-btn.active{border-color:#0D6E6E;background:#F0FAFA}
+.lesson-btn.done .lnum{background:#0D6E6E;color:#fff;border-color:#0D6E6E}
+.lnum{width:30px;height:30px;border-radius:50%;border:1px solid #e8e5df;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;color:#8a8799;transition:all .2s}
+.linfo{flex:1}
+.ltitle{font-size:14px;font-weight:600;color:#1a1a1a}
+.ldesc{font-size:12px;color:#8a8799;margin-top:2px}
+.lbadge{font-size:11px;color:#8a8799;padding:3px 9px;border-radius:20px;background:#f4f2ee;white-space:nowrap}
+.lbadge.teal{background:#F0FAFA;color:#0D6E6E;border:1px solid #7EC8C8}
+.lbadge.gold{background:#fff8ee;color:#c8a96e;border:1px solid #f0d49a}
+.quiz-nav-btn{display:flex;align-items:center;gap:14px;padding:13px 18px;border-radius:12px;border:2px solid #c8a96e;background:#fff8ee;cursor:pointer;text-align:left;transition:all .15s;width:100%;margin-top:4px}
+.quiz-nav-btn:hover{background:#fff0d0}
+.quiz-nav-btn.locked{opacity:.5;cursor:not-allowed;border-color:#e8e5df;background:#f8f7f4}
+.quiz-nav-btn .lnum{background:#c8a96e;color:#fff;border-color:#c8a96e}
+.quiz-nav-btn.locked .lnum{background:#e8e5df;color:#8a8799}
+.content{background:#fff;border:1px solid #e8e5df;border-radius:14px;padding:28px}
+.sec-title{font-size:20px;font-weight:700;margin-bottom:4px}
+.sec-sub{font-size:13px;color:#6b6878;margin-bottom:20px;line-height:1.5}
+.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.vcard{border:1px solid #e8e5df;border-radius:10px;padding:14px;cursor:pointer;transition:all .2s;min-height:95px;background:#faf9f7}
+.vcard:hover{border-color:#0D6E6E;background:#fff}
+.vcard .ven{display:none;color:#0D6E6E;font-size:13px;margin-top:8px;font-weight:600;padding-top:8px;border-top:1px solid #e8e5df}
+.vcard.flipped .ven{display:block}
+.vcard.flipped .vtip{display:none}
+.ves{font-size:15px;font-weight:700;color:#1a1a1a}
+.vctx{font-size:11px;color:#8a8799;margin-top:3px;line-height:1.4}
+.vtip{font-size:11px;color:#c8c5d0;margin-top:10px;font-style:italic}
+.ex-box{background:#F0FAFA;border-left:3px solid #0D6E6E;border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:12px}
+.ex-es{font-size:14px;font-weight:700;color:#1a1a1a;line-height:1.5}
+.ex-en{font-size:13px;color:#6b6878;margin-top:5px;line-height:1.5}
+.ex-ctx{font-size:12px;color:#0D6E6E;margin-top:6px;font-style:italic;font-weight:500}
+.culture-box{background:#faf9f7;border:1px solid #e8e5df;border-radius:10px;padding:14px;margin-bottom:12px}
+.culture-label{font-size:10px;font-weight:700;color:#0D6E6E;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.culture-text{font-size:13px;color:#1a1a1a;line-height:1.6}
+.warning-box{background:#FFF8F0;border:1px solid #F0C8A0;border-radius:10px;padding:14px;margin-bottom:12px}
+.warning-label{font-size:10px;font-weight:700;color:#C87030;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.scenario-box{background:#F0FAFA;border:1px solid #7EC8C8;border-radius:10px;padding:14px;margin-bottom:12px}
+.scenario-label{font-size:10px;font-weight:700;color:#0D6E6E;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.gpt-box{border:2px solid #0D6E6E;border-radius:12px;padding:20px;text-align:center;background:#F0FAFA;margin-top:16px}
+.gpt-title{font-size:16px;font-weight:700;color:#0A4040;margin-bottom:6px}
+.gpt-sub{font-size:13px;color:#0D6E6E;margin-bottom:16px;line-height:1.5}
+.gpt-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#0D6E6E;color:#fff;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;transition:all .15s}
+.gpt-btn:hover{background:#0A4040}
+.gpt-note{font-size:12px;color:#6b6878;margin-top:12px;line-height:1.6;background:#fff;border-radius:8px;padding:10px 14px;border:1px solid #7EC8C8;text-align:left}
+.gpt-note em{color:#0A4040;font-style:normal;font-weight:600}
+.quiz-header{background:#fff8ee;border:1px solid #f0d49a;border-radius:10px;padding:16px;margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.quiz-icon{font-size:28px;flex-shrink:0}
+.quiz-header-title{font-size:16px;font-weight:700;color:#1a1a1a}
+.quiz-header-sub{font-size:12px;color:#8a8799;margin-top:2px;line-height:1.4}
+.quiz-progress{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.quiz-dots{display:flex;gap:5px;flex:1}
+.qdot{height:8px;border-radius:4px;background:#e8e5df;transition:all .3s;flex:1}
+.qdot.current{background:#c8a96e}
+.qdot.correct{background:#0D6E6E}
+.qdot.wrong{background:#e24b4a}
+.quiz-counter{font-size:13px;font-weight:600;color:#6b6878;white-space:nowrap}
+.quiz-q{font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:6px;line-height:1.5}
+.quiz-context{font-size:12px;color:#8a8799;margin-bottom:18px;font-style:italic;padding:8px 12px;background:#f8f7f4;border-radius:8px;border-left:3px solid #e8e5df}
+.quiz-opts{display:flex;flex-direction:column;gap:9px}
+.qopt{padding:13px 16px;border-radius:10px;border:1px solid #e8e5df;background:#faf9f7;cursor:pointer;font-size:13px;text-align:left;transition:all .15s;font-family:inherit;color:#1a1a1a;line-height:1.5}
+.qopt:hover:not(:disabled){background:#F0FAFA;border-color:#0D6E6E}
+.qopt.correct{border-color:#0D6E6E;background:#F0FAFA;color:#0A4040;font-weight:600}
+.qopt.wrong{border-color:#e24b4a;background:#fcebeb;color:#501313}
+.qopt:disabled{cursor:default}
+.why-wrong{font-size:12px;margin-top:10px;padding:10px 14px;border-radius:8px;background:#fff8ee;border:1px solid #f0d49a;color:#6b4c00;line-height:1.5}
+.result-screen{text-align:center;padding:32px 16px}
+.result-icon{font-size:56px;margin-bottom:16px}
+.result-title{font-size:24px;font-weight:700;margin-bottom:8px}
+.score-big{font-size:52px;font-weight:700;margin-bottom:4px}
+.score-label{font-size:14px;color:#8a8799;margin-bottom:16px}
+.score-pass{color:#0D6E6E}
+.score-fail{color:#e24b4a}
+.result-sub{font-size:14px;color:#6b6878;margin-bottom:20px;line-height:1.6;max-width:500px;margin-left:auto;margin-right:auto}
+.wrong-review{text-align:left;background:#faf9f7;border:1px solid #e8e5df;border-radius:12px;padding:18px;margin-bottom:20px;max-width:640px;margin-left:auto;margin-right:auto}
+.wrong-review-title{font-size:12px;font-weight:700;color:#e24b4a;margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em}
+.wrong-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e8e5df;font-size:13px;line-height:1.6}
+.wrong-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.wrong-q{color:#1a1a1a;font-weight:600;margin-bottom:5px}
+.wrong-ans{color:#e24b4a;margin-bottom:2px}
+.wrong-correct{color:#0D6E6E;margin-bottom:4px}
+.wrong-why{color:#8a8799;font-size:12px;font-style:italic}
+.unlock-box{background:#F0FAFA;border:2px solid #0D6E6E;border-radius:12px;padding:20px;max-width:420px;margin:16px auto 0}
+.unlock-title{font-size:14px;font-weight:700;color:#0D6E6E;margin-bottom:4px}
+.unlock-sub{font-size:13px;color:#6b6878;line-height:1.5}
+.navrow{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:10px}
+.nbtn{padding:10px 20px;border-radius:10px;border:1px solid #e8e5df;background:#faf9f7;font-size:13px;cursor:pointer;font-family:inherit;font-weight:600;color:#1a1a1a;transition:all .15s}
+.nbtn:hover{background:#f4f2ee}
+.nbtn.primary{background:#0D6E6E;color:#fff;border-color:#0D6E6E}
+.nbtn.primary:hover{background:#0A4040}
+.nbtn.gold{background:#c8a96e;color:#fff;border-color:#c8a96e}
+.nbtn.gold:hover{background:#b8956a}
+.done-screen{text-align:center;padding:40px 20px}
+.section-divider{font-size:13px;font-weight:700;color:#0D6E6E;letter-spacing:.08em;text-transform:uppercase;margin:20px 0 14px;padding-bottom:6px;border-bottom:1px solid #F0FAFA}
+@media(max-width:600px){.vocab-grid{grid-template-columns:1fr}body{padding:12px 8px}.content{padding:18px}.mod-header{padding:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="back-bar">
+  <a class="back-link" href="SM_Platform.html">← Back to Dashboard</a>
+  <div class="back-breadcrumb">Professional Communication · <span>Module 4 — Healthcare Spanish</span></div>
+</div>
+
+<div class="mod-header">
+  <div class="mod-logo">Spanish Millennium · Professional Platform</div>
+  <div class="mod-title">Module 4 — Healthcare Spanish</div>
+  <div class="mod-sub">The vocabulary, communication skills, and cultural protocols that healthcare professionals need when working with Spanish-speaking patients and colleagues. Patient intake, clinical settings, administrative language, and sensitive conversations.</div>
+  <div class="meta">
+    <span class="pill">🏥 5 lessons + final quiz</span>
+    <span class="pill">⏱ ~60 min</span>
+    <span class="pill">📊 Level B1–B2</span>
+    <span class="pill">👩‍⚕️ Physicians, nurses, administrators & allied health</span>
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="prog-label" id="progLabel">0 of 5 lessons completed · Quiz locked</div>
+</div>
+
+<div id="lessonList" class="lesson-list"></div>
+<div id="contentBox" class="content"></div>
+
+</div>
+<script>
+const GPT_URL="https://chatgpt.com/g/g-6vMAfvHz9-my-spanish-teacher-by-spanish-millennium";
+
+const LESSONS=[
+  {
+    id:1,
+    title:"Patient intake & history taking",
+    desc:"Asking about symptoms, medical history, medications, and allergies",
+    vocab:[
+      {es:"El motivo de consulta", ctx:"Chief complaint — why the patient is here today", en:"Chief complaint / reason for visit"},
+      {es:"Los antecedentes médicos", ctx:"Medical history — past conditions and surgeries", en:"Medical history"},
+      {es:"Los medicamentos actuales", ctx:"Current medications — 'toma algún medicamento?'", en:"Current medications"},
+      {es:"Las alergias", ctx:"Allergies — 'tiene alergias a algún medicamento?'", en:"Allergies"},
+      {es:"El dolor", ctx:"Pain — 'dolor de cabeza, dolor de pecho, dolor abdominal'", en:"Pain"},
+      {es:"La escala del dolor", ctx:"Pain scale — '¿del uno al diez, cómo califica su dolor?'", en:"Pain scale"},
+      {es:"Los antecedentes familiares", ctx:"Family history — hereditary conditions", en:"Family history"},
+      {es:"El seguro médico", ctx:"Health insurance — administrative intake question", en:"Health insurance"},
+      {es:"El consentimiento informado", ctx:"Informed consent — must be explained clearly in Spanish", en:"Informed consent"},
+      {es:"La fecha de nacimiento", ctx:"Date of birth — standard intake form question", en:"Date of birth"},
+    ],
+    examples:[
+      {es:"Buenos días. ¿Cuál es el motivo de su consulta hoy? ¿Desde cuándo tiene estos síntomas?", en:"Good morning. What brings you in today? How long have you had these symptoms?", ctx:"Opening a patient intake — primary care or urgent care"},
+      {es:"¿Tiene antecedentes de diabetes, hipertensión o enfermedades del corazón en su familia?", en:"Do you have a family history of diabetes, hypertension, or heart disease?", ctx:"Family history screening — common in preventive care"},
+      {es:"Antes de proceder, necesito explicarle el procedimiento y obtener su consentimiento informado. ¿Tiene alguna pregunta?", en:"Before proceeding, I need to explain the procedure and obtain your informed consent. Do you have any questions?", ctx:"Pre-procedure consent — legal and ethical requirement"},
+    ]
+  },
+  {
+    id:2,
+    title:"Clinical examination language",
+    desc:"Directing patients during physical exams, describing findings, and giving instructions",
+    vocab:[
+      {es:"Respire profundo", ctx:"Take a deep breath — pulmonary exam instruction", en:"Take a deep breath"},
+      {es:"Dígame dónde le duele", ctx:"Tell me where it hurts — directing the exam", en:"Tell me where it hurts"},
+      {es:"¿Le duele cuando presiono aquí?", ctx:"Does it hurt when I press here? — abdominal exam", en:"Does it hurt when I press here?"},
+      {es:"Abra la boca, por favor", ctx:"Open your mouth please — oropharynx exam", en:"Open your mouth, please"},
+      {es:"Levante el brazo derecho / izquierdo", ctx:"Raise your right / left arm — neuro or musculoskeletal", en:"Raise your right / left arm"},
+      {es:"Quédese quieto/a", ctx:"Stay still — imaging or procedure instruction", en:"Stay still / Don't move"},
+      {es:"Va a sentir un poco de presión", ctx:"You will feel some pressure — pre-procedure warning", en:"You will feel some pressure"},
+      {es:"Esto puede picar un poco", ctx:"This may sting a little — injection or IV warning", en:"This may sting a little"},
+      {es:"Está inflamado/a", ctx:"It is inflamed / swollen — describing a finding", en:"It is inflamed / swollen"},
+      {es:"No veo nada preocupante", ctx:"I don't see anything concerning — reassurance phrase", en:"I don't see anything concerning"},
+    ],
+    examples:[
+      {es:"Voy a examinarle el abdomen. Dígame si siente dolor. ¿Le duele cuando presiono aquí, en el lado derecho?", en:"I'm going to examine your abdomen. Tell me if you feel pain. Does it hurt when I press here, on the right side?", ctx:"Abdominal examination — guiding the patient through the process"},
+      {es:"Va a sentir un poco de presión y puede picar ligeramente. Respire hondo y quédese quieto/a, por favor.", en:"You will feel some pressure and it may sting slightly. Take a deep breath and please stay still.", ctx:"Pre-injection or IV placement instruction"},
+      {es:"He examinado la zona y está un poco inflamada, pero no veo nada preocupante por el momento.", en:"I have examined the area and it is slightly inflamed, but I don't see anything concerning at the moment.", ctx:"Reassuring a patient after a physical exam finding"},
+    ]
+  },
+  {
+    id:3,
+    title:"Diagnosis, treatment & prescriptions",
+    desc:"Communicating diagnoses, treatment plans, and medication instructions clearly",
+    vocab:[
+      {es:"El diagnóstico", ctx:"The diagnosis — 'su diagnóstico es...'", en:"The diagnosis"},
+      {es:"El tratamiento", ctx:"The treatment — 'el tratamiento consiste en...'", en:"The treatment"},
+      {es:"La receta médica", ctx:"The prescription — 'le voy a dar una receta para...'", en:"The prescription / prescription medication"},
+      {es:"Tomar en ayunas", ctx:"Take on an empty stomach — medication instruction", en:"Take on an empty stomach"},
+      {es:"Con o sin comida", ctx:"With or without food — common dosage instruction", en:"With or without food"},
+      {es:"Cada cuántas horas", ctx:"Every how many hours — dosage frequency question", en:"Every how many hours"},
+      {es:"Los efectos secundarios", ctx:"Side effects — must be explained with every prescription", en:"Side effects"},
+      {es:"La dosis", ctx:"The dose — 'la dosis es de 500 miligramos'", en:"The dose"},
+      {es:"El seguimiento", ctx:"The follow-up — 'necesita un seguimiento en dos semanas'", en:"The follow-up appointment"},
+      {es:"Si empeora, vuelva de inmediato", ctx:"If it gets worse, come back immediately — safety instruction", en:"If it gets worse, come back immediately"},
+    ],
+    examples:[
+      {es:"Su diagnóstico es una infección bacteriana. Le voy a recetar un antibiótico. Debe tomarlo cada doce horas con comida durante siete días.", en:"Your diagnosis is a bacterial infection. I'm going to prescribe an antibiotic. You should take it every twelve hours with food for seven days.", ctx:"Communicating a diagnosis and prescription — primary care"},
+      {es:"Este medicamento puede causar náuseas como efecto secundario. Si empeora o tiene alguna reacción alérgica, vuelva de inmediato o vaya a urgencias.", en:"This medication may cause nausea as a side effect. If it gets worse or you have an allergic reaction, come back immediately or go to the emergency room.", ctx:"Medication counseling — informed consent for treatment"},
+      {es:"Necesitamos hacer un seguimiento en dos semanas para ver cómo responde al tratamiento. ¿Puede venir el martes a las diez de la mañana?", en:"We need a follow-up in two weeks to see how you respond to the treatment. Can you come in Tuesday at ten in the morning?", ctx:"Scheduling a follow-up appointment"},
+    ]
+  },
+  {
+    id:4,
+    title:"Sensitive conversations & cultural protocols",
+    desc:"Delivering difficult news, end-of-life discussions, mental health, and cultural awareness",
+    vocab:[
+      {es:"Lamentablemente, los resultados indican...", ctx:"Unfortunately, the results indicate... — opening difficult news", en:"Unfortunately, the results indicate..."},
+      {es:"Quisiera hablar con usted sobre algo importante", ctx:"I'd like to talk with you about something important — pre-bad news phrase", en:"I'd like to talk with you about something important"},
+      {es:"Tenemos opciones de tratamiento", ctx:"We have treatment options — offering hope after bad news", en:"We have treatment options"},
+      {es:"¿Hay algún familiar que quiera que esté presente?", ctx:"Is there a family member you'd like present? — cultural norm in LATAM", en:"Is there a family member you'd like present?"},
+      {es:"El cuidado paliativo", ctx:"Palliative care — comfort-focused treatment", en:"Palliative care"},
+      {es:"Me preocupa su bienestar emocional", ctx:"I'm concerned about your emotional wellbeing — mental health opener", en:"I'm concerned about your emotional wellbeing"},
+      {es:"¿Se ha sentido triste o sin esperanza últimamente?", ctx:"PHQ-2 depression screening question in Spanish", en:"Have you been feeling sad or hopeless lately?"},
+      {es:"Todo lo que me diga es confidencial", ctx:"Everything you tell me is confidential — builds trust", en:"Everything you tell me is confidential"},
+      {es:"Respeto sus creencias y decisiones", ctx:"I respect your beliefs and decisions — cultural sensitivity", en:"I respect your beliefs and decisions"},
+      {es:"Estamos aquí para apoyarle", ctx:"We are here to support you — closing reassurance", en:"We are here to support you"},
+    ],
+    examples:[
+      {es:"Quisiera hablar con usted sobre algo importante. ¿Hay algún familiar que quiera que esté presente antes de continuar?", en:"I'd like to talk with you about something important. Is there a family member you'd like to have present before we continue?", ctx:"Opening a serious diagnosis conversation — LATAM family-centered protocol"},
+      {es:"Lamentablemente, los resultados indican que el tumor es maligno. Sin embargo, tenemos opciones de tratamiento que quisiera explicarle.", en:"Unfortunately, the results indicate that the tumor is malignant. However, we have treatment options that I'd like to explain to you.", ctx:"Delivering a cancer diagnosis — balancing honesty with hope"},
+      {es:"Me preocupa su bienestar emocional. ¿Se ha sentido triste o sin esperanza últimamente? Todo lo que me diga es confidencial.", en:"I'm concerned about your emotional wellbeing. Have you been feeling sad or hopeless lately? Everything you tell me is confidential.", ctx:"Mental health screening — PHQ-2 in a clinical setting"},
+    ],
+    cultureTip:"In Latin American healthcare culture, family is central to medical decisions — not just the patient. Asking 'Is there a family member you'd like present?' before delivering difficult news is not just kind, it is expected. Decisions are often made collectively, not individually. Never assume the patient will make decisions alone. Also: direct eye contact and a calm, unhurried tone are essential to building trust with Spanish-speaking patients who may already feel vulnerable navigating a foreign healthcare system."
+  },
+  {
+    id:5,
+    title:"AI role-play — patient consultation",
+    desc:"Practice a full clinical conversation with your Spanish Millennium AI tutor",
+    type:"roleplay",
+    scenario:"You are a physician seeing a new Spanish-speaking patient, Rosa Méndez, a 52-year-old woman originally from Guatemala. She speaks little English. She has come in with chest pain that started two days ago. You need to take her history, ask about symptoms, explain what tests you're ordering, and reassure her. Use formal register (usted). Be warm, clear, and patient.",
+    cultureTip:"Spanish-speaking patients, especially those from Central America, may be reluctant to ask questions or admit they don't understand — they don't want to seem disrespectful. Always ask '¿Tiene alguna pregunta?' and '¿Entendió todo?' at the end of every explanation. Speak slowly and use simple vocabulary — avoid medical jargon unless you explain it immediately. A warm, unhurried tone signals safety and trust.",
+    prompt:"Quiero practicar el Módulo 4, Lección 5. Juega el papel de Rosa Méndez, una paciente guatemalteca de 52 años que habla poco inglés. Tiene dolor en el pecho desde hace dos días. Usa registro formal (usted). Responde como una paciente real — un poco nerviosa, no siempre segura de qué decir. Corrige mis errores de español entre paréntesis. Empieza cuando yo entre a la sala de consulta."
+  }
+];
+
+const ALL_QUESTIONS=[
+  {
+    q:"A new Spanish-speaking patient arrives. What is the most professional and appropriate opening for the intake?",
+    ctx:"Patient intake — opening the consultation",
+    opts:[
+      "Buenos días. ¿Cuál es el motivo de su consulta hoy y desde cuándo tiene estos síntomas?",
+      "Hola, ¿cómo estás? ¿Qué te pasa hoy?",
+      "Buenos días. ¿Qué problema tiene usted? Tenemos poco tiempo.",
+      "Buenas. Cuénteme qué le pasó para poder ayudarle rápido."
+    ],
+    correct:0,
+    why:"Option B uses informal tú — never appropriate with an adult patient in a clinical setting. Option C 'tenemos poco tiempo' signals urgency which creates anxiety and breaks trust. Option D 'rápido' communicates impatience — the opposite of the safe, unhurried tone Spanish-speaking patients need."
+  },
+  {
+    q:"You need to ask a patient about their current medications. Which question is most appropriate?",
+    ctx:"Medical history — medication review",
+    opts:[
+      "¿Está tomando algún medicamento en este momento, ya sea recetado o de venta libre?",
+      "¿Toma pastillas o algo así?",
+      "¿Qué medicinas tiene en casa?",
+      "¿Le recetaron algo antes de venir aquí hoy?"
+    ],
+    correct:0,
+    why:"Option B 'pastillas o algo así' is vague and informal — it may miss IV medications, patches, or supplements. Option C 'tiene en casa' asks about possession, not current use. Option D only asks about medications prescribed before today's visit — misses ongoing chronic medications."
+  },
+  {
+    q:"During an abdominal exam you want to ask if pressing a specific area causes pain. What do you say?",
+    ctx:"Physical examination — abdominal palpation",
+    opts:[
+      "¿Le duele cuando presiono aquí, en el lado derecho?",
+      "¿Aquí duele? ¿Y aquí?",
+      "Dígame si duele cuando toco su estómago.",
+      "¿Siente algo raro cuando aprieto esta parte?"
+    ],
+    correct:0,
+    why:"Option B is too casual and lacks the warmth of a directed question. Option C 'toque su estómago' is informal and technically imprecise — 'abdomen' or specifying the area is more professional. Option D 'algo raro' is vague — patients need specific language to give useful answers."
+  },
+  {
+    q:"You are about to give an injection. How do you prepare the patient appropriately?",
+    ctx:"Clinical procedure — pre-injection communication",
+    opts:[
+      "Va a sentir un poco de presión y puede picar ligeramente. Respire hondo y quédese quieto/a, por favor.",
+      "Esto va a doler un poco. No se mueva.",
+      "Voy a ponerle la inyección. Es rápido.",
+      "Prepárese para un pequeño pinchazo. No pasa nada."
+    ],
+    correct:0,
+    why:"Option B 'va a doler' increases anxiety unnecessarily — 'picar ligeramente' is more accurate and less alarming. Option C gives no warning about sensation — patients need to be prepared. Option D 'no pasa nada' is dismissive — it invalidates the patient's normal anxiety about an injection."
+  },
+  {
+    q:"A patient is diagnosed with hypertension and needs to take medication twice daily with food. How do you explain this?",
+    ctx:"Prescription counseling — medication instructions",
+    opts:[
+      "Le voy a recetar un medicamento para la presión. Debe tomarlo dos veces al día, con comida, preferiblemente a la misma hora.",
+      "Tiene la presión alta. Tome estas pastillas dos veces al día con comida.",
+      "Le receto esto para la presión. Tómelo con las comidas, dos veces.",
+      "Aquí tiene su medicamento. Es para la presión alta. Con comida, dos veces al día."
+    ],
+    correct:0,
+    why:"Option B 'tome estas pastillas' is informal and doesn't specify timing precision. Option C 'dos veces' without specifying the timing or food requirement is incomplete. Option D 'aquí tiene su medicamento' is abrupt — good medication counseling begins with the diagnosis, then explains the treatment, not the other way around."
+  },
+  {
+    q:"You need to explain potential side effects of a new medication. Which approach is most appropriate?",
+    ctx:"Medication counseling — informed consent",
+    opts:[
+      "Este medicamento puede causar náuseas y mareos como efectos secundarios. Si empeoran o tiene alguna reacción alérgica, vuelva de inmediato.",
+      "Este medicamento puede tener efectos secundarios. Si se siente mal, llámenos.",
+      "Algunos pacientes sienten náuseas con este medicamento. No se preocupe, es normal.",
+      "Los efectos secundarios son raros pero posibles. Léase el prospecto del medicamento."
+    ],
+    correct:0,
+    why:"Option B 'si se siente mal' is too vague — patients need to know specifically what to watch for. Option C 'no se preocupe' followed by 'es normal' dismisses the patient's potential concern — side effects should be taken seriously. Option D referring the patient to a leaflet is insufficient — verbal explanation is required for informed consent."
+  },
+  {
+    q:"Before delivering a serious diagnosis, what is the culturally appropriate step with a Latin American patient?",
+    ctx:"Sensitive communication — serious diagnosis protocol",
+    opts:[
+      "Quisiera hablar con usted sobre algo importante. ¿Hay algún familiar que quiera que esté presente antes de continuar?",
+      "Tengo sus resultados. Siéntese, por favor. Hay malas noticias.",
+      "Los resultados no son los que esperábamos. Déjeme explicarle lo que encontramos.",
+      "Antes de que empiece, sepa que vamos a hacer todo lo posible para ayudarle."
+    ],
+    correct:0,
+    why:"Option B 'malas noticias' before any preparation is too abrupt — the SPIKES protocol and Latin American cultural norms call for a warning shot first. Option C leads with the result without asking about family presence — critical in LATAM culture. Option D is a reassurance, not a pre-disclosure check-in — it skips the essential family question."
+  },
+  {
+    q:"You need to screen a patient for depression using the PHQ-2 opening question in Spanish. Which is correct?",
+    ctx:"Mental health screening — depression assessment",
+    opts:[
+      "¿Se ha sentido triste, deprimido/a o sin esperanza durante las últimas dos semanas?",
+      "¿Está usted deprimido/a? Es importante que sea honesto/a conmigo.",
+      "¿Cómo está su estado de ánimo en general? ¿Bien o mal?",
+      "¿Tiene problemas emocionales o psicológicos que quiera mencionar?"
+    ],
+    correct:0,
+    why:"Option B 'está usted deprimido' is a closed leading question that may cause defensiveness — the PHQ-2 asks about symptoms, not labels. Option C 'bien o mal' is a binary that oversimplifies mental health screening. Option D 'problemas psicológicos' carries stigma in many Latin American cultures — 'bienestar emocional' is a safer, less stigmatizing term."
+  },
+  {
+    q:"A patient says they don't understand the treatment plan. How do you respond?",
+    ctx:"Patient communication — ensuring comprehension",
+    opts:[
+      "Claro, permítame explicarle de nuevo con más detalle. ¿Qué parte no quedó clara?",
+      "Se lo expliqué hace un momento. ¿Qué parte no entendió?",
+      "No se preocupe. Solo siga las instrucciones del papel que le dimos.",
+      "Es complicado pero no se preocupe — nosotros nos encargamos de todo."
+    ],
+    correct:0,
+    why:"Option B 'se lo expliqué hace un momento' sounds impatient and may shame the patient. Option C redirecting to a paper dismisses the patient's need for a verbal explanation. Option D 'nosotros nos encargamos' removes the patient's autonomy — informed consent requires the patient to understand and agree, not just comply."
+  },
+  {
+    q:"How do you reassure a patient that what they share with you is confidential?",
+    ctx:"Building trust — confidentiality statement",
+    opts:[
+      "Todo lo que me diga en esta consulta es confidencial. Puede hablar con confianza.",
+      "No voy a decirle nada a nadie. Puede decirme lo que quiera.",
+      "Lo que hablamos aquí se queda aquí. Es entre usted y yo.",
+      "No se preocupe por la privacidad. Estamos en un hospital serio."
+    ],
+    correct:0,
+    why:"Option B 'no voy a decirle nada a nadie' is an informal overpromise — confidentiality has legal limits (mandatory reporting). Option C 'se queda aquí' is informal and also overpromises absolute confidentiality. Option D references the institution rather than addressing the patient's personal concern — it deflects rather than reassures."
+  },
+  {
+    q:"A patient from Guatemala appears reluctant to ask questions after you explain a diagnosis. What should you do?",
+    ctx:"Cultural protocol — encouraging questions",
+    opts:[
+      "¿Tiene alguna pregunta? Tómese el tiempo que necesite. Estoy aquí para aclarar cualquier duda.",
+      "¿Entendió todo? Bien. Entonces firmamos el consentimiento.",
+      "Si tiene preguntas, puede llamar a la clínica más tarde.",
+      "No se preocupe si no entiende todo ahora — es mucha información."
+    ],
+    correct:0,
+    why:"Option B assumes understanding from silence — Central American patients often nod without actually understanding to avoid seeming disrespectful. Option C defers questions to a phone call — this creates a barrier for patients with limited English or unfamiliarity with the healthcare system. Option D 'no se preocupe si no entiende' normalizes not understanding — this undermines informed consent."
+  },
+  {
+    q:"You need to schedule a follow-up appointment and explain why it is important. Which response is most complete?",
+    ctx:"Follow-up care — post-consultation instruction",
+    opts:[
+      "Necesitamos un seguimiento en dos semanas para revisar cómo responde al tratamiento. ¿Puede venir el martes a las diez?",
+      "Venga en dos semanas para ver cómo está.",
+      "Le damos una cita de seguimiento. La enfermera le ayudará en recepción.",
+      "Si no mejora en dos semanas, vuelva a hacer una cita."
+    ],
+    correct:0,
+    why:"Option B 'para ver cómo está' is vague — patients need to know the specific clinical purpose of the follow-up. Option C delegates the scheduling without explaining why the follow-up is medically necessary. Option D makes follow-up conditional on not improving — this misses the importance of monitoring treatment response even when the patient feels better."
+  },
+  {
+    q:"A patient asks whether they should take their new blood pressure medication with food. What is the correct response?",
+    ctx:"Medication counseling — dosage instructions",
+    opts:[
+      "Sí, este medicamento debe tomarse con comida para reducir el riesgo de náuseas.",
+      "Puede tomarlo cuando quiera, con o sin comida.",
+      "Es mejor con comida, pero si se le olvida, tómelo de todas formas.",
+      "Pregúntele al farmacéutico cuando recoja el medicamento."
+    ],
+    correct:0,
+    why:"Option B 'cuando quiera' is imprecise and may lead to inconsistent dosing. Option C 'si se le olvida' introduces a secondary instruction before the primary one is clear — creates confusion. Option D deferring to the pharmacist is appropriate as a supplement, not as a substitute for the physician's direct counseling."
+  },
+  {
+    q:"During a consultation you want to check if a patient has allergies to any medications. What is the correct question?",
+    ctx:"Medical history — allergy screening",
+    opts:[
+      "¿Tiene alergia a algún medicamento conocido, como la penicilina o los antiinflamatorios?",
+      "¿Es alérgico/a a algo?",
+      "¿Ha tenido alguna reacción mala a un medicamento antes?",
+      "¿Puede tomar antibióticos y antiinflamatorios sin problema?"
+    ],
+    correct:0,
+    why:"Option B 'a algo' is too broad — it may be interpreted as food allergies only. Option C 'reacción mala' is imprecise — a bad reaction is not always an allergy. Option D is a closed yes/no question that only covers those two drug classes — an allergy to other medications would be missed."
+  },
+  {
+    q:"A patient seems anxious before a procedure. How do you address this professionally and with cultural sensitivity?",
+    ctx:"Patient communication — managing pre-procedure anxiety",
+    opts:[
+      "Entiendo que puede sentirse nervioso/a. Es completamente normal. Le explicaré cada paso antes de hacerlo para que sepa qué esperar.",
+      "No se ponga nervioso/a. Es un procedimiento sencillo y muy común.",
+      "Muchos pacientes se ponen así. Respire y trate de relajarse.",
+      "Ya hemos hecho esto miles de veces. Está en buenas manos."
+    ],
+    correct:0,
+    why:"Option B 'no se ponga nervioso/a' dismisses the patient's feeling. Option C 'muchos pacientes se ponen así' normalizes the anxiety but doesn't address it personally or offer a concrete solution. Option D 'miles de veces' may sound dismissive of this particular patient's experience — it centers the provider rather than the patient."
+  }
+];
+
+let S={
+  cur:0,done:new Set(),quizActive:false,
+  quizAnswers:[],quizCurrent:0,quizPassed:false,
+  quizAttempts:0,shuffledQ:[]
+};
+
+function shuffleQuiz(){
+  const shuffled=[...ALL_QUESTIONS].sort(()=>Math.random()-.5);
+  S.shuffledQ=shuffled.slice(0,10);
+  S.quizAnswers=[];S.quizCurrent=0;
+}
+
+function updateProg(){
+  const pct=Math.round(S.done.size/LESSONS.length*100);
+  document.getElementById("progFill").style.width=pct+"%";
+  const qs=S.quizPassed?" · Quiz passed ✓":S.done.size===LESSONS.length?" · Quiz unlocked":" · Quiz locked";
+  document.getElementById("progLabel").textContent=S.done.size+" of "+LESSONS.length+" lessons completed"+qs;
+}
+
+function renderList(){
+  const allDone=S.done.size===LESSONS.length;
+  document.getElementById("lessonList").innerHTML=
+    LESSONS.map((l,i)=>`
+      <button class="lesson-btn ${i===S.cur&&!S.quizActive?"active":""} ${S.done.has(i)?"done":""}" onclick="go(${i})">
+        <div class="lnum">${S.done.has(i)?"✓":i+1}</div>
+        <div class="linfo">
+          <div class="ltitle">${l.title}</div>
+          <div class="ldesc">${l.desc}</div>
+        </div>
+        <div class="lbadge ${S.done.has(i)?"teal":""}">${S.done.has(i)?"Done ✓":i===S.cur&&!S.quizActive?"Current":""}</div>
+      </button>
+    `).join("")+
+    `<button class="quiz-nav-btn ${!allDone?"locked":S.quizActive?"active":""}" onclick="${allDone?"startQuiz()":"alert('Complete all 5 lessons first.')"}">
+      <div class="lnum">${S.quizPassed?"✓":"★"}</div>
+      <div class="linfo">
+        <div class="ltitle">Final Quiz — Module 4</div>
+        <div class="ldesc">${S.quizPassed?"Passed — Module 5 unlocked":allDone?"10 of 15 questions drawn randomly · Need 8/10 · No going back":"Complete all 5 lessons to unlock"}</div>
+      </div>
+      <div class="lbadge gold">${S.quizPassed?"Passed ✓":allDone?"Ready":"Locked 🔒"}</div>
+    </button>`;
+}
+
+function go(i){
+  S.cur=i;S.quizActive=false;
+  renderList();renderContent();
+}
+
+function startQuiz(){
+  if(S.done.size<LESSONS.length)return;
+  S.quizActive=true;S.quizAttempts++;
+  shuffleQuiz();renderList();renderQuiz();
+}
+
+function renderContent(){
+  const l=LESSONS[S.cur];
+  const box=document.getElementById("contentBox");
+
+  if(l.type==="roleplay"){
+    box.innerHTML=`
+      <div class="sec-title">${l.title}</div>
+      <div class="sec-sub" style="margin-bottom:18px">${l.desc}</div>
+      <div class="scenario-box">
+        <div class="scenario-label">Your scenario</div>
+        <div class="culture-text">${l.scenario}</div>
+      </div>
+      <div class="culture-box">
+        <div class="culture-label">Culture tip — read before practicing</div>
+        <div class="culture-text">${l.cultureTip}</div>
+      </div>
+      <div class="gpt-box">
+        <div class="gpt-title">Practice with your Spanish Millennium AI Tutor</div>
+        <div class="gpt-sub">Your AI tutor plays Rosa Méndez — a Guatemalan patient with limited English, chest pain, and some anxiety. It speaks patient-level Spanish and corrects your clinical Spanish in real time.</div>
+        <a class="gpt-btn" href="${GPT_URL}" target="_blank">Open AI Tutor → Start Consultation</a>
+        <div class="gpt-note">Copy and paste this to start:<br><br><em>${l.prompt}</em></div>
+      </div>
+      <div class="navrow">
+        <button class="nbtn" onclick="go(${S.cur-1})">← Previous lesson</button>
+        <button class="nbtn primary" onclick="complete(${S.cur})">Mark done · Go to quiz →</button>
+      </div>`;
+    return;
+  }
+
+  box.innerHTML=`
+    <div class="sec-title">${l.title}</div>
+    <div class="sec-sub">Tap each card to reveal the English. Study all in-context examples before marking complete.</div>
+    <div class="vocab-grid">${l.vocab.map(v=>`
+      <div class="vcard" onclick="this.classList.toggle('flipped')">
+        <div class="ves">${v.es}</div>
+        <div class="vctx">${v.ctx}</div>
+        <div class="vtip">Tap to reveal ↓</div>
+        <div class="ven">🇺🇸 ${v.en}</div>
+      </div>
+    `).join("")}</div>
+    <div class="section-divider">In clinical context</div>
+    ${l.examples.map(e=>`
+      <div class="ex-box">
+        <div class="ex-es">${e.es}</div>
+        <div class="ex-en">${e.en}</div>
+        <div class="ex-ctx">📍 ${e.ctx}</div>
+      </div>
+    `).join("")}
+    ${l.cultureTip?`
+    <div class="culture-box" style="margin-top:16px">
+      <div class="culture-label">Culture tip</div>
+      <div class="culture-text">${l.cultureTip}</div>
+    </div>`:""}
+    <div class="navrow">
+      ${S.cur>0?`<button class="nbtn" onclick="go(${S.cur-1})">← Previous</button>`:"<div></div>"}
+      <button class="nbtn primary" onclick="complete(${S.cur})">I've studied this · Mark complete →</button>
+    </div>`;
+}
+
+function complete(i){
+  S.done.add(i);updateProg();
+  if(i<LESSONS.length-1){
+    S.cur=i+1;renderList();renderContent();
+  } else {
+    renderList();
+    document.getElementById("contentBox").innerHTML=`
+      <div class="done-screen">
+        <div style="font-size:56px;margin-bottom:16px">🏥</div>
+        <div style="font-size:26px;font-weight:700;margin-bottom:8px">All 5 lessons complete!</div>
+        <div style="font-size:14px;color:#6b6878;margin-bottom:20px;line-height:1.6;max-width:500px;margin:0 auto 20px">You've covered patient intake, clinical exams, diagnosis & prescriptions, and sensitive conversations including cultural protocols. Now prove it — 10 questions, no going back, 8/10 to pass.</div>
+        <br>
+        <button class="nbtn gold" style="font-size:15px;padding:14px 32px" onclick="startQuiz()">Take the Final Quiz →</button>
+      </div>`;
+  }
+}
+
+function renderQuiz(){
+  const box=document.getElementById("contentBox");
+  const q=S.shuffledQ[S.quizCurrent];
+  const answered=S.quizAnswers[S.quizCurrent];
+  box.innerHTML=`
+    <div class="quiz-header">
+      <div class="quiz-icon">🏥</div>
+      <div>
+        <div class="quiz-header-title">Final Quiz — Module 4: Healthcare Spanish</div>
+        <div class="quiz-header-sub">10 of 15 questions drawn randomly. No going back. Need 8/10 to pass. Attempt #${S.quizAttempts}.</div>
+      </div>
+    </div>
+    <div class="quiz-progress">
+      <div class="quiz-dots">${S.shuffledQ.map((_,i)=>{
+        let cls="qdot";
+        if(i<S.quizAnswers.length)cls+=S.quizAnswers[i]===S.shuffledQ[i].correct?" correct":" wrong";
+        else if(i===S.quizCurrent)cls+=" current";
+        return`<div class="${cls}"></div>`;
+      }).join("")}</div>
+      <div class="quiz-counter">Q${S.quizCurrent+1} / 10</div>
+    </div>
+    <div class="quiz-q">${q.q}</div>
+    <div class="quiz-context">${q.ctx}</div>
+    <div class="quiz-opts">${q.opts.map((opt,oi)=>{
+      let cls="qopt";
+      if(answered!==undefined){
+        if(oi===q.correct)cls+=" correct";
+        else if(oi===answered&&answered!==q.correct)cls+=" wrong";
+      }
+      return`<button class="${cls}" onclick="quizAnswer(${oi})" ${answered!==undefined?"disabled":""}>${opt}</button>`;
+    }).join("")}</div>
+    ${answered!==undefined?`<div class="why-wrong">💡 ${q.why}</div>`:""}
+    ${answered!==undefined&&S.quizCurrent<S.shuffledQ.length-1?
+      `<div class="navrow"><div></div><button class="nbtn primary" onclick="quizNext()">Next question →</button></div>`:""}
+    ${answered!==undefined&&S.quizCurrent===S.shuffledQ.length-1?
+      `<div class="navrow"><div></div><button class="nbtn gold" onclick="showResults()">See my results →</button></div>`:""}`;
+}
+
+function quizAnswer(oi){
+  if(S.quizAnswers[S.quizCurrent]!==undefined)return;
+  S.quizAnswers[S.quizCurrent]=oi;renderQuiz();
+}
+
+function quizNext(){
+  if(S.quizCurrent<S.shuffledQ.length-1){S.quizCurrent++;renderQuiz();}
+}
+
+function showResults(){
+  const score=S.quizAnswers.filter((a,i)=>a===S.shuffledQ[i].correct).length;
+  const passed=score>=8;
+  S.quizPassed=passed;updateProg();renderList();
+  const wrongItems=S.shuffledQ
+    .map((q,i)=>({q,answered:S.quizAnswers[i]}))
+    .filter(({q,answered})=>answered!==q.correct);
+  document.getElementById("contentBox").innerHTML=`
+    <div class="result-screen">
+      <div class="result-icon">${passed?"🏆":"📚"}</div>
+      <div class="result-title">${passed?"Passed — well done.":"Not this time — try again."}</div>
+      <div class="score-big ${passed?"score-pass":"score-fail"}">${score}/10</div>
+      <div class="score-label">${passed?"Module 5 is now unlocked.":"You need 8/10 to pass."}</div>
+      <div class="result-sub">${passed
+        ?"You've demonstrated solid command of healthcare Spanish — from patient intake to sensitive conversations and cultural protocols. You're ready for Module 5."
+        :"Review the questions you missed, go back over the relevant lessons, and retake. Each attempt draws a different set of 10 questions."
+      }</div>
+      ${wrongItems.length>0?`
+        <div class="wrong-review">
+          <div class="wrong-review-title">Review before retaking</div>
+          ${wrongItems.map(({q,answered})=>`
+            <div class="wrong-item">
+              <div class="wrong-q">${q.q}</div>
+              <div class="wrong-ans">✗ Your answer: ${q.opts[answered]}</div>
+              <div class="wrong-correct">✓ Correct: ${q.opts[q.correct]}</div>
+              <div class="wrong-why">${q.why}</div>
+            </div>
+          `).join("")}
+        </div>
+      `:""}
+      ${passed?`
+        <div class="unlock-box">
+          <div class="unlock-title">🔓 Module 5 Unlocked</div>
+          <div class="unlock-sub">LATAM Business Culture — Mexico, Colombia, Argentina, regional protocols and cultural intelligence for professionals working across Latin America.</div>
+        </div>
+      `:`
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px">
+          <button class="nbtn" onclick="go(0)">← Review lessons</button>
+          <button class="nbtn gold" onclick="startQuiz()">Retake — attempt #${S.quizAttempts+1} →</button>
+        </div>
+      `}
+    </div>`;
+}
+
+renderList();renderContent();updateProg();
+</script>
+</body>
+</html>

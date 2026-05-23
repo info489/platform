@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 9 — Finance Survival Kit | Spanish Millennium</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f8f7f4;color:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;padding:24px 16px}
+.wrap{max-width:820px;margin:0 auto}
+.back-bar{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid #e8e5df;border-radius:12px;padding:12px 20px;margin-bottom:16px}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#1a1a1a;text-decoration:none}
+.back-link:hover{color:#1A6BB5}
+.back-breadcrumb{font-size:12px;color:#8a8799}
+.back-breadcrumb span{color:#1A6BB5;font-weight:600}
+.mod-header{background:linear-gradient(135deg,#1A3A6B,#2D5FA8);border-radius:14px;padding:28px;margin-bottom:20px;color:#fff}
+.mod-logo{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:700;margin-bottom:10px}
+.mod-title{font-size:26px;font-weight:700;margin-bottom:4px}
+.mod-sub{font-size:14px;color:rgba(255,255,255,.75);margin-bottom:18px;line-height:1.5}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pill{padding:5px 12px;border-radius:20px;font-size:12px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);background:rgba(255,255,255,.1)}
+.prog-bar{height:7px;background:rgba(255,255,255,.2);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:#fff;border-radius:4px;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.6);margin-top:6px}
+.lesson-list{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
+.lesson-btn{display:flex;align-items:center;gap:14px;padding:13px 18px;border-radius:12px;border:1px solid #e8e5df;background:#fff;cursor:pointer;text-align:left;transition:all .15s;width:100%}
+.lesson-btn:hover{background:#EEF4FC;border-color:#1A6BB5}
+.lesson-btn.active{border-color:#1A6BB5;background:#EEF4FC}
+.lesson-btn.done .lnum{background:#1A6BB5;color:#fff;border-color:#1A6BB5}
+.lnum{width:30px;height:30px;border-radius:50%;border:1px solid #e8e5df;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;color:#8a8799}
+.linfo{flex:1}
+.ltitle{font-size:14px;font-weight:600;color:#1a1a1a}
+.ldesc{font-size:12px;color:#8a8799;margin-top:2px}
+.lbadge{font-size:11px;color:#8a8799;padding:3px 9px;border-radius:20px;background:#f4f2ee;white-space:nowrap}
+.lbadge.blue{background:#EEF4FC;color:#1A6BB5;border:1px solid #A8C8EC}
+.lbadge.gold{background:#fff8ee;color:#c8a96e;border:1px solid #f0d49a}
+.quiz-nav-btn{display:flex;align-items:center;gap:14px;padding:13px 18px;border-radius:12px;border:2px solid #c8a96e;background:#fff8ee;cursor:pointer;text-align:left;transition:all .15s;width:100%;margin-top:4px}
+.quiz-nav-btn:hover{background:#fff0d0}
+.quiz-nav-btn.locked{opacity:.5;cursor:not-allowed;border-color:#e8e5df;background:#f8f7f4}
+.quiz-nav-btn .lnum{background:#c8a96e;color:#fff}
+.quiz-nav-btn.locked .lnum{background:#e8e5df;color:#8a8799}
+.content{background:#fff;border:1px solid #e8e5df;border-radius:14px;padding:28px}
+.sec-title{font-size:20px;font-weight:700;margin-bottom:4px;color:#1a1a1a}
+.sec-sub{font-size:13px;color:#6b6878;margin-bottom:20px;line-height:1.5}
+.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.vcard{border:1px solid #e8e5df;border-radius:10px;padding:14px;cursor:pointer;transition:all .2s;min-height:95px;background:#faf9f7}
+.vcard:hover{border-color:#1A6BB5;background:#fff}
+.vcard .ven{display:none;color:#1A6BB5;font-size:13px;margin-top:8px;font-weight:600;padding-top:8px;border-top:1px solid #e8e5df}
+.vcard.flipped .ven{display:block}
+.vcard.flipped .vtip{display:none}
+.ves{font-size:15px;font-weight:700;color:#1a1a1a}
+.vctx{font-size:11px;color:#8a8799;margin-top:3px;line-height:1.4}
+.vtip{font-size:11px;color:#c8c5d0;margin-top:10px;font-style:italic}
+.ex-box{background:#EEF4FC;border-left:3px solid #1A6BB5;border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:12px}
+.ex-es{font-size:14px;font-weight:700;color:#1a1a1a;line-height:1.5}
+.ex-en{font-size:13px;color:#6b6878;margin-top:5px;line-height:1.5}
+.ex-ctx{font-size:12px;color:#1A6BB5;margin-top:6px;font-style:italic;font-weight:500}
+.culture-box{background:#faf9f7;border:1px solid #e8e5df;border-radius:10px;padding:14px;margin-bottom:12px}
+.culture-label{font-size:10px;font-weight:700;color:#1A6BB5;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.culture-text{font-size:13px;color:#1a1a1a;line-height:1.6}
+.phrase-box{background:#EEF4FC;border:1px solid #A8C8EC;border-radius:10px;padding:14px;margin-bottom:10px}
+.phrase-es{font-size:14px;font-weight:700;color:#1A3A6B;line-height:1.5}
+.phrase-en{font-size:13px;color:#6b6878;margin-top:4px;line-height:1.5}
+.phrase-ctx{font-size:11px;color:#1A6BB5;margin-top:5px;font-style:italic}
+.download-box{border:2px solid #1A6BB5;border-radius:12px;padding:20px;background:#EEF4FC;margin-bottom:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.download-icon{font-size:40px;flex-shrink:0}
+.download-info{flex:1}
+.download-title{font-size:16px;font-weight:700;color:#1A3A6B;margin-bottom:4px}
+.download-sub{font-size:13px;color:#1A6BB5;line-height:1.5}
+.download-btn{padding:10px 20px;background:#1A3A6B;color:#fff;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;flex-shrink:0}
+.download-btn:hover{background:#0d2044}
+.quiz-header{background:#fff8ee;border:1px solid #f0d49a;border-radius:10px;padding:16px;margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.quiz-icon{font-size:28px;flex-shrink:0}
+.quiz-header-title{font-size:16px;font-weight:700}
+.quiz-header-sub{font-size:12px;color:#8a8799;margin-top:2px;line-height:1.4}
+.quiz-progress{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.quiz-dots{display:flex;gap:5px;flex:1}
+.qdot{height:8px;border-radius:4px;background:#e8e5df;transition:all .3s;flex:1}
+.qdot.current{background:#c8a96e}
+.qdot.correct{background:#1A6BB5}
+.qdot.wrong{background:#e24b4a}
+.quiz-counter{font-size:13px;font-weight:600;color:#6b6878;white-space:nowrap}
+.quiz-q{font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:6px;line-height:1.5}
+.quiz-context{font-size:12px;color:#8a8799;margin-bottom:18px;font-style:italic;padding:8px 12px;background:#f8f7f4;border-radius:8px;border-left:3px solid #e8e5df}
+.quiz-opts{display:flex;flex-direction:column;gap:9px}
+.qopt{padding:13px 16px;border-radius:10px;border:1px solid #e8e5df;background:#faf9f7;cursor:pointer;font-size:13px;text-align:left;transition:all .15s;font-family:inherit;color:#1a1a1a;line-height:1.5}
+.qopt:hover:not(:disabled){background:#EEF4FC;border-color:#1A6BB5}
+.qopt.correct{border-color:#1A6BB5;background:#EEF4FC;color:#1A3A6B;font-weight:600}
+.qopt.wrong{border-color:#e24b4a;background:#fcebeb;color:#501313}
+.qopt:disabled{cursor:default}
+.why-wrong{font-size:12px;margin-top:10px;padding:10px 14px;border-radius:8px;background:#fff8ee;border:1px solid #f0d49a;color:#6b4c00;line-height:1.5}
+.result-screen{text-align:center;padding:32px 16px}
+.result-icon{font-size:56px;margin-bottom:16px}
+.result-title{font-size:24px;font-weight:700;margin-bottom:8px}
+.score-big{font-size:52px;font-weight:700;margin-bottom:4px}
+.score-label{font-size:14px;color:#8a8799;margin-bottom:16px}
+.score-pass{color:#1A6BB5}
+.score-fail{color:#e24b4a}
+.result-sub{font-size:14px;color:#6b6878;margin-bottom:20px;line-height:1.6;max-width:500px;margin-left:auto;margin-right:auto}
+.wrong-review{text-align:left;background:#faf9f7;border:1px solid #e8e5df;border-radius:12px;padding:18px;margin-bottom:20px;max-width:640px;margin-left:auto;margin-right:auto}
+.wrong-review-title{font-size:12px;font-weight:700;color:#e24b4a;margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em}
+.wrong-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e8e5df;font-size:13px;line-height:1.6}
+.wrong-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.wrong-q{color:#1a1a1a;font-weight:600;margin-bottom:5px}
+.wrong-ans{color:#e24b4a;margin-bottom:2px}
+.wrong-correct{color:#1A6BB5;margin-bottom:4px}
+.wrong-why{color:#8a8799;font-size:12px;font-style:italic}
+.navrow{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:10px}
+.nbtn{padding:10px 20px;border-radius:10px;border:1px solid #e8e5df;background:#faf9f7;font-size:13px;cursor:pointer;font-family:inherit;font-weight:600;color:#1a1a1a;transition:all .15s}
+.nbtn:hover{background:#f4f2ee}
+.nbtn.primary{background:#1A3A6B;color:#fff;border-color:#1A3A6B}
+.nbtn.primary:hover{background:#0d2044}
+.nbtn.gold{background:#c8a96e;color:#fff;border-color:#c8a96e}
+.nbtn.gold:hover{background:#b8956a}
+.section-divider{font-size:13px;font-weight:700;color:#1A6BB5;letter-spacing:.08em;text-transform:uppercase;margin:20px 0 14px;padding-bottom:6px;border-bottom:1px solid #EEF4FC}
+@media(max-width:600px){.vocab-grid{grid-template-columns:1fr}body{padding:12px 8px}.content{padding:18px}.mod-header{padding:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="back-bar">
+  <a class="back-link" href="SM_Platform.html">← Back to Dashboard</a>
+  <div class="back-breadcrumb">Reference · <span>Module 9 — Finance Survival Kit</span></div>
+</div>
+
+<div class="mod-header">
+  <div class="mod-logo">Spanish Millennium · Finance Series</div>
+  <div class="mod-title">Module 9 — Finance Survival Kit</div>
+  <div class="mod-sub">The complete Spanish toolkit for finance professionals — bankers, advisors, wealth managers, and M&A specialists. Essential phrases, vocabulary, and cultural notes drawn from the published Spanish Millennium Survival Kit.</div>
+  <div class="meta">
+    <span class="pill">💵 6 lessons + quiz</span>
+    <span class="pill">⏱ ~60 min</span>
+    <span class="pill">📊 All levels</span>
+    <span class="pill">🏦 Banking · Investment · M&A · Wealth</span>
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="prog-label" id="progLabel">0 of 6 lessons completed · Quiz locked</div>
+</div>
+
+<div id="lessonList" class="lesson-list"></div>
+<div id="contentBox" class="content"></div>
+
+</div>
+<script>
+const LESSONS=[
+  {
+    id:1, title:"Client onboarding & greetings",
+    desc:"First impressions, professional greetings, and starting a financial consultation",
+    vocab:[
+      {es:"Bienvenido/a al banco",ctx:"Welcome to the bank — first words to a new client",en:"Welcome to the bank"},
+      {es:"Soy su asesor financiero",ctx:"I am your financial advisor — professional introduction",en:"I am your financial advisor"},
+      {es:"Esta consulta es completamente confidencial",ctx:"This consultation is completely confidential — builds immediate trust",en:"This consultation is completely confidential"},
+      {es:"Vamos a repasar su información personal",ctx:"We are going to review your personal information — intake opener",en:"We are going to review your personal information"},
+      {es:"¿Podría mostrarme una identificación con foto?",ctx:"Could you show me a photo ID? — KYC requirement",en:"Could you show me a photo ID?"},
+      {es:"¿Cuánto ingreso recibe al mes?",ctx:"How much income do you receive monthly? — income verification",en:"How much income do you receive monthly?"},
+      {es:"Necesitamos una constancia de ingresos",ctx:"We need proof of income — documentation request",en:"We need proof of income"},
+      {es:"¿Declara impuestos cada año?",ctx:"Do you file taxes each year? — standard financial intake question",en:"Do you file taxes each year?"},
+    ],
+    examples:[
+      {es:"Buenos días. Soy su asesor financiero. Esta consulta es completamente confidencial. ¿En qué puedo ayudarle hoy?",en:"Good morning. I am your financial advisor. This consultation is completely confidential. How can I help you today?",ctx:"Opening a client consultation — bank or advisory office"},
+      {es:"Vamos a repasar su información personal. ¿Podría mostrarme una identificación con foto y un comprobante de domicilio?",en:"We are going to review your personal information. Could you show me a photo ID and proof of address?",ctx:"Client onboarding — KYC documentation"},
+      {es:"Para poder asesorarle mejor, necesito entender su situación financiera. ¿Cuánto ingreso recibe al mes y tiene otras fuentes de ingreso?",en:"To better advise you, I need to understand your financial situation. How much monthly income do you receive, and do you have other sources of income?",ctx:"Income verification — financial planning intake"},
+    ]
+  },
+  {
+    id:2, title:"Banking & transactions",
+    desc:"Opening accounts, handling deposits and withdrawals, explaining fees and services",
+    vocab:[
+      {es:"¿Quiere abrir una cuenta corriente o de ahorros?",ctx:"Would you like to open a checking or savings account?",en:"Checking or savings account?"},
+      {es:"El saldo",ctx:"The balance — 'su saldo actual es de...'",en:"The balance"},
+      {es:"El sobregiro",ctx:"Overdraft — 'su cuenta está en sobregiro'",en:"Overdraft"},
+      {es:"La transferencia bancaria",ctx:"Wire transfer — 'desea hacer una transferencia bancaria?'",en:"Wire transfer"},
+      {es:"El depósito directo",ctx:"Direct deposit — 'puede configurar un depósito directo de nómina'",en:"Direct deposit"},
+      {es:"El estado de cuenta",ctx:"Bank statement — 'le enviamos el estado de cuenta mensualmente'",en:"Bank statement / account statement"},
+      {es:"La tarifa mensual",ctx:"Monthly fee — 'esta cuenta tiene una tarifa mensual de $15'",en:"Monthly fee"},
+      {es:"¿Desea activar la banca en línea?",ctx:"Would you like to activate online banking?",en:"Would you like to activate online banking?"},
+      {es:"El comprobante de domicilio",ctx:"Proof of address — required for account opening",en:"Proof of address"},
+      {es:"El beneficiario",ctx:"Beneficiary — 'debe designar un beneficiario en su cuenta'",en:"Beneficiary"},
+    ],
+    examples:[
+      {es:"Su cuenta corriente tiene una tarifa mensual de diez dólares, pero se elimina si mantiene un saldo mínimo de quinientos dólares.",en:"Your checking account has a monthly fee of ten dollars, but it is waived if you maintain a minimum balance of five hundred dollars.",ctx:"Explaining account fees — retail banking"},
+      {es:"¿Desea hacer un depósito o un retiro hoy? También puede transferir fondos entre sus cuentas desde la banca en línea.",en:"Would you like to make a deposit or a withdrawal today? You can also transfer funds between your accounts through online banking.",ctx:"Teller interaction — banking services"},
+    ]
+  },
+  {
+    id:3, title:"Credit, loans & debt",
+    desc:"Explaining credit scores, loan options, interest rates, and debt management",
+    vocab:[
+      {es:"El puntaje de crédito",ctx:"Credit score — 'su puntaje de crédito es de 720 puntos'",en:"Credit score"},
+      {es:"La tasa de interés fija",ctx:"Fixed interest rate — 'este préstamo tiene una tasa de interés fija del 6%'",en:"Fixed interest rate"},
+      {es:"El plazo del préstamo",ctx:"Loan term — 'el plazo del préstamo es de 30 años'",en:"Loan term"},
+      {es:"El pago mensual",ctx:"Monthly payment — 'su pago mensual sería de $1,200'",en:"Monthly payment"},
+      {es:"El saldo pendiente",ctx:"Outstanding balance — 'su saldo pendiente es de $45,000'",en:"Outstanding balance"},
+      {es:"El período de gracia",ctx:"Grace period — 'tiene un período de gracia de 30 días'",en:"Grace period"},
+      {es:"La consolidación de deudas",ctx:"Debt consolidation — 'podemos ayudarle a consolidar sus deudas'",en:"Debt consolidation"},
+      {es:"El incumplimiento",ctx:"Default — 'si no paga, entrará en incumplimiento'",en:"Default"},
+      {es:"La garantía",ctx:"Collateral — 'este préstamo requiere una garantía'",en:"Collateral / security"},
+      {es:"El refinanciamiento",ctx:"Refinancing — '¿le interesa refinanciar su hipoteca?'",en:"Refinancing"},
+    ],
+    examples:[
+      {es:"Su puntaje de crédito es de 720, lo que le califica para una tasa de interés preferencial. El plazo del préstamo sería de 15 años con un pago mensual aproximado de mil doscientos dólares.",en:"Your credit score is 720, which qualifies you for a preferred interest rate. The loan term would be 15 years with an approximate monthly payment of one thousand two hundred dollars.",ctx:"Presenting a loan offer — mortgage or personal loan"},
+      {es:"Le ayudamos a consolidar sus deudas en un solo préstamo con una tasa de interés más baja, lo que reduciría su pago mensual considerablemente.",en:"We help you consolidate your debts into a single loan with a lower interest rate, which would reduce your monthly payment considerably.",ctx:"Debt consolidation pitch — financial advisory"},
+    ]
+  },
+  {
+    id:4, title:"Investments & wealth management",
+    desc:"Portfolio discussions, risk tolerance, investment products, and wealth planning",
+    vocab:[
+      {es:"La tolerancia al riesgo",ctx:"Risk tolerance — '¿cuál es su tolerancia al riesgo: conservadora, moderada o agresiva?'",en:"Risk tolerance"},
+      {es:"La diversificación",ctx:"Diversification — 'la diversificación es clave para proteger su portafolio'",en:"Diversification"},
+      {es:"El rendimiento",ctx:"Return / yield — 'el rendimiento anual de este fondo es del 7%'",en:"Return / yield"},
+      {es:"El horizonte de inversión",ctx:"Investment horizon — '¿cuál es su horizonte de inversión?'",en:"Investment horizon"},
+      {es:"La renta fija",ctx:"Fixed income — bonds and guaranteed instruments",en:"Fixed income"},
+      {es:"La renta variable",ctx:"Equities / variable income — stocks with fluctuating value",en:"Equities / variable income"},
+      {es:"El fondo indexado",ctx:"Index fund — 'los fondos indexados tienen comisiones más bajas'",en:"Index fund"},
+      {es:"El patrimonio neto",ctx:"Net worth — 'su patrimonio neto actual es de...'",en:"Net worth"},
+      {es:"El fideicomiso",ctx:"Trust — 'podemos establecer un fideicomiso revocable para su familia'",en:"Trust"},
+      {es:"La planificación de sucesión",ctx:"Succession planning — 'la planificación de sucesión es esencial para proteger a sus herederos'",en:"Succession planning"},
+    ],
+    examples:[
+      {es:"Hablaremos de su tolerancia al riesgo y su horizonte de inversión. Con esa información, podemos construir una cartera diversificada que maximice el rendimiento ajustado al riesgo.",en:"We will discuss your risk tolerance and investment horizon. With that information, we can build a diversified portfolio that maximizes risk-adjusted returns.",ctx:"Opening a wealth management consultation"},
+      {es:"Para clientes de alto patrimonio, recomendamos establecer un fideicomiso irrevocable combinado con una estrategia de planificación de sucesión para proteger a sus herederos y optimizar fiscalmente la transferencia de patrimonio.",en:"For high-net-worth clients, we recommend establishing an irrevocable trust combined with a succession planning strategy to protect your heirs and optimize the wealth transfer from a tax perspective.",ctx:"Estate planning pitch — private wealth management"},
+    ],
+    cultureTip:"In wealth management conversations with Latin American clients, family is always central. Decisions are rarely individual — they involve spouses, adult children, and sometimes extended family. Always ask 'Is there a family member you would like to include in this discussion?' before presenting major estate or investment decisions. This shows cultural intelligence and builds long-term trust."
+  },
+  {
+    id:5, title:"Taxes & financial reporting",
+    desc:"Tax documents, filing requirements, key financial statement vocabulary",
+    vocab:[
+      {es:"La declaración de impuestos",ctx:"Tax return — '¿tiene su declaración de impuestos del año pasado?'",en:"Tax return"},
+      {es:"La deducción",ctx:"Deduction — 'esta inversión es deducible de impuestos'",en:"Deduction / tax deduction"},
+      {es:"El reembolso",ctx:"Refund — 'su reembolso será de aproximadamente $2,400'",en:"Tax refund"},
+      {es:"El ingreso imponible",ctx:"Taxable income — 'su ingreso imponible después de deducciones es de...'",en:"Taxable income"},
+      {es:"La utilidad neta",ctx:"Net profit / net income — in financial statements",en:"Net profit / net income"},
+      {es:"Las cuentas por cobrar",ctx:"Accounts receivable — in balance sheet",en:"Accounts receivable"},
+      {es:"Los activos intangibles",ctx:"Intangible assets — patents, goodwill, brand value",en:"Intangible assets"},
+      {es:"El flujo de caja",ctx:"Cash flow — 'revisemos el estado de flujo de caja del trimestre'",en:"Cash flow"},
+      {es:"El cumplimiento fiscal",ctx:"Tax compliance — 'debemos asegurar el cumplimiento fiscal en todos los mercados'",en:"Tax compliance"},
+      {es:"La auditoría",ctx:"Audit — 'su empresa está siendo objeto de una auditoría externa'",en:"Audit"},
+    ],
+    examples:[
+      {es:"Para poder preparar su declaración de impuestos necesito su formulario W-2 o 1099, los comprobantes de deducciones, y una copia de la declaración del año anterior.",en:"To prepare your tax return I need your W-2 or 1099 form, proof of deductions, and a copy of last year's return.",ctx:"Tax preparation intake — CPA or tax advisor"},
+      {es:"El estado de flujo de caja del tercer trimestre muestra una utilidad neta positiva, aunque las cuentas por cobrar han aumentado un 18%, lo que podría afectar la liquidez a corto plazo.",en:"The third quarter cash flow statement shows positive net income, although accounts receivable have increased 18%, which could affect short-term liquidity.",ctx:"Presenting quarterly financial results to a client"},
+    ]
+  },
+  {
+    id:6, title:"Mergers, acquisitions & deal language",
+    desc:"Corporate deal vocabulary — due diligence, negotiation, and closing",
+    vocab:[
+      {es:"La debida diligencia",ctx:"Due diligence — 'vamos a realizar la debida diligencia antes de cerrar'",en:"Due diligence"},
+      {es:"La carta de intención",ctx:"Letter of intent (LOI) — 'necesitamos una carta de intención antes de continuar'",en:"Letter of intent (LOI)"},
+      {es:"La valoración",ctx:"Valuation — '¿cuál es la valoración actual de la empresa objetivo?'",en:"Valuation"},
+      {es:"La empresa objetivo",ctx:"Target company — the company being acquired",en:"Target company"},
+      {es:"La fusión",ctx:"Merger — 'estamos negociando los términos de la fusión'",en:"Merger"},
+      {es:"La adquisición hostil",ctx:"Hostile takeover — 'el objetivo es una adquisición amigable, no hostil'",en:"Hostile takeover"},
+      {es:"El acuerdo de confidencialidad",ctx:"NDA — 'todas las partes deben firmar el acuerdo de confidencialidad'",en:"Non-disclosure agreement (NDA)"},
+      {es:"La sinergia",ctx:"Synergy — 'esperamos generar sinergias significativas post-fusión'",en:"Synergy"},
+      {es:"La participación mayoritaria",ctx:"Majority stake — 'adquiriremos una participación mayoritaria del 60%'",en:"Majority stake"},
+      {es:"La aprobación regulatoria",ctx:"Regulatory approval — 'la transacción está sujeta a aprobación regulatoria'",en:"Regulatory approval"},
+    ],
+    examples:[
+      {es:"Antes de proceder, todas las partes deben firmar el acuerdo de confidencialidad. Una vez firmado, comenzaremos el proceso de debida diligencia, que incluye auditoría legal, fiscal y financiera.",en:"Before proceeding, all parties must sign the non-disclosure agreement. Once signed, we will begin the due diligence process, which includes legal, tax, and financial auditing.",ctx:"Opening an M&A process — investment bank or corporate lawyer"},
+      {es:"La oferta incluye una prima del 15% sobre el valor de mercado actual. La transacción está sujeta a la aprobación regulatoria de las autoridades antimonopolio de ambos países.",en:"The offer includes a 15% premium over current market value. The transaction is subject to regulatory approval from the antitrust authorities of both countries.",ctx:"Presenting a formal M&A offer — deal team negotiation"},
+    ],
+    cultureTip:"In Latin American M&A deals, relationships matter as much as numbers. Before presenting a formal offer, invest time building personal rapport with the target company's decision-makers. Sending a formal letter of intent without prior relationship is considered abrupt. Deals are built over multiple meetings, often over meals. The legal and financial work comes after the personal trust is established — not before."
+  }
+];
+
+const ALL_QUESTIONS=[
+  {q:"A new Spanish-speaking client arrives at your bank for the first time. How do you open the consultation professionally?",ctx:"Client onboarding — first interaction",opts:["Buenos días. Soy su asesor financiero. Esta consulta es completamente confidencial. ¿En qué puedo ayudarle?","Hola, ¿qué necesita hoy?","Buenos días. ¿Tiene cita?","Siéntese. ¿Cómo se llama?"],correct:0,why:"Option B is too informal. Option C sounds like a receptionist, not an advisor. Option D 'siéntese' without a greeting is abrupt and does not establish trust — the most important element in any first financial interaction."},
+  {q:"A client asks about the difference between a checking and savings account. How do you ask which one they need?",ctx:"Banking — account types",opts:["¿Quiere abrir una cuenta corriente o de ahorros?","¿Quiere una cuenta normal o para guardar dinero?","¿Qué tipo de cuenta tiene en mente?","¿Prefiere una cuenta básica o de ahorro?"],correct:0,why:"Option B 'normal o para guardar dinero' is informal and imprecise. Option C is vague. Option D 'cuenta básica' is not a standard banking term in Spanish — 'cuenta corriente' and 'cuenta de ahorros' are the correct formal terms."},
+  {q:"You need to explain that a client's account has a monthly fee that is waived with a minimum balance. Which is correct?",ctx:"Banking — fee explanation",opts:["Esta cuenta tiene una tarifa mensual que se elimina si mantiene el saldo mínimo requerido.","Esta cuenta cobra dinero cada mes, pero si tiene bastante puede evitarlo.","Hay una comisión mensual, pero con buen saldo no paga.","La cuenta tiene costos mensuales que se quitan si tiene dinero suficiente."],correct:0,why:"Option B 'bastante' is imprecise and informal. Option C 'buen saldo' is vague. Option D 'costos que se quitan' is informal — 'tarifa mensual' and 'saldo mínimo requerido' are the correct professional terms."},
+  {q:"A client asks about their credit score and whether they qualify for a loan. Which phrase correctly presents the information?",ctx:"Credit — presenting loan eligibility",opts:["Su puntaje de crédito es de 720, lo que le califica para una tasa de interés preferencial.","Tiene buen crédito, así que probablemente le den el préstamo.","Su puntuación está bien, puede aplicar para el préstamo.","El crédito está en orden, se puede proceder con la solicitud."],correct:0,why:"Option B 'probablemente le den' is uncertain and informal. Option C 'puede aplicar' is a calque from English ('can apply') — the correct Spanish is 'puede solicitar'. Option D 'el crédito está en orden' is too casual for a formal lending conversation."},
+  {q:"A client wants to understand risk tolerance for investing. How do you ask them about it professionally?",ctx:"Investments — risk tolerance assessment",opts:["¿Cuál es su tolerancia al riesgo: conservadora, moderada o agresiva?","¿Prefiere inversiones seguras o arriesgadas?","¿Le gusta correr riesgos con su dinero?","¿Qué tanto riesgo está dispuesto a correr?"],correct:0,why:"Option B 'seguras o arriesgadas' oversimplifies and lacks professional terminology. Option C 'le gusta correr riesgos' sounds casual. Option D is better but lacks the standard three-option framework (conservative/moderate/aggressive) which is the industry standard for risk profiling."},
+  {q:"What is the correct Spanish for 'net worth' in a wealth management context?",ctx:"Wealth management — key terminology",opts:["El patrimonio neto","El valor total","El dinero que tiene","Sus activos totales"],correct:0,why:"Option B 'valor total' is vague and not the technical term. Option C 'el dinero que tiene' is colloquial — net worth includes all assets and liabilities, not just cash. Option D 'activos totales' describes total assets only — net worth subtracts liabilities."},
+  {q:"Before starting an M&A process, what must all parties sign first?",ctx:"M&A — deal process protocol",opts:["El acuerdo de confidencialidad","La carta de intención","El contrato de compraventa","La hoja de términos"],correct:0,why:"Option B — the letter of intent comes after the NDA, not before. Option C — the purchase agreement is the final document, signed at closing. Option D — the term sheet is later in the process. The NDA is always first because it protects confidential information during all subsequent discussions."},
+  {q:"A client asks what 'due diligence' means in the context of an acquisition. Which explanation is most accurate?",ctx:"M&A — due diligence definition",opts:["Es el proceso de auditoría legal, fiscal y financiera que se realiza antes de cerrar una adquisición.","Es cuando revisamos los números de la empresa que queremos comprar.","Es la inspección de los documentos legales del negocio.","Es el análisis de riesgos que hacemos antes de invertir."],correct:0,why:"Option B is too informal and incomplete. Option C covers only legal documents — due diligence also includes financial and tax audits. Option D describes risk analysis, which is part of due diligence but not the complete definition."},
+  {q:"A client wants to know about consolidating their debts. Which phrase correctly presents this service?",ctx:"Credit — debt consolidation",opts:["Le ayudamos a consolidar sus deudas en un solo préstamo con una tasa de interés más baja.","Podemos juntar todas sus deudas en un solo pago más manejable.","Unimos sus deudas para que pague menos cada mes.","Consolidamos sus créditos en un producto más conveniente."],correct:0,why:"Option B 'juntar' is informal. Option C 'unimos' is too colloquial and doesn't mention the interest rate benefit. Option D 'más conveniente' is vague — the key benefit to communicate is lower interest rate, which Option A states explicitly."},
+  {q:"You are presenting quarterly results and need to say the company had positive net income but accounts receivable increased. Which is correct?",ctx:"Financial reporting — quarterly results",opts:["El estado de resultados muestra una utilidad neta positiva, aunque las cuentas por cobrar aumentaron un 18%.","Las ganancias fueron buenas pero la gente debe más dinero a la empresa.","El reporte financiero es positivo pero los clientes deben más.","Tuvimos buenos resultados pero el dinero que nos deben subió bastante."],correct:0,why:"Options B, C, and D are all informal and lack the professional financial terminology required in a formal client report — 'cuentas por cobrar' (accounts receivable) and 'utilidad neta' (net income) are the required terms."},
+  {q:"For a high-net-worth Latin American client, when should you include family in estate planning discussions?",ctx:"Cultural protocol — wealth management",opts:["Siempre pregunte si hay algún familiar que quisiera incluir en la conversación antes de presentar decisiones importantes.","Solo cuando el cliente lo solicite — la privacidad es prioritaria.","Al final de la reunión, para no perder tiempo con decisiones preliminares.","Solo con clientes de edad avanzada o con condiciones médicas."],correct:0,why:"Option B misapplies North American individualism to a Latin American context — family is central to financial decisions in LATAM culture. Option C puts family at the end, which misses the point — family involvement shapes the entire decision-making process. Option D applies only to elderly or ill clients, which is too narrow."},
+  {q:"A client asks what happens if they miss a loan payment. Which response is most complete and professional?",ctx:"Credit — explaining default consequences",opts:["Si no realiza el pago a tiempo, aplicará un cargo por pago tardío y podría afectar negativamente su puntaje de crédito.","Si no paga, le cobraremos más y puede bajar su crédito.","Los pagos tardíos tienen penalidades y afectan el historial.","Si falta un pago, habrá consecuencias financieras y crediticias."],correct:0,why:"Option B 'le cobraremos más' is informal. Option C is incomplete — 'las penalidades' is vague without specifying the late fee and credit score impact. Option D 'consecuencias financieras' is too vague to be useful to the client."},
+  {q:"Which phrase correctly asks a client about their investment horizon?",ctx:"Investments — planning questions",opts:["¿Cuál es su horizonte de inversión?","¿Por cuánto tiempo quiere tener su dinero invertido?","¿Cuántos años piensa mantener la inversión?","¿A qué plazo le interesa invertir?"],correct:0,why:"Option B is informal and uses possessive language. Option C 'piensa mantener' is conversational. Option D is acceptable but less precise — 'horizonte de inversión' is the established technical term used universally in Spanish-language wealth management."},
+  {q:"What does 'el flujo de caja' refer to in a financial statement context?",ctx:"Financial reporting — terminology",opts:["El movimiento de efectivo entrante y saliente de la empresa en un período determinado.","El saldo de la cuenta bancaria de la empresa.","El total de ingresos de la empresa menos sus gastos.","El dinero disponible para pagar deudas a corto plazo."],correct:0,why:"Option B confuses cash flow with bank balance — different concepts. Option C describes net income (utilidad neta), not cash flow. Option D describes liquidity or working capital — related but not the definition of cash flow, which tracks all cash movements in and out across operating, investing, and financing activities."},
+  {q:"In an M&A negotiation, what does 'la prima sobre el valor de mercado' mean?",ctx:"M&A — deal terms",opts:["El porcentaje adicional que el comprador paga sobre el precio de mercado de las acciones de la empresa objetivo.","Los beneficios extra que recibe el equipo de dirección tras la fusión.","Los honorarios legales adicionales que genera la transacción.","El valor agregado que la fusión genera para los accionistas de ambas empresas."],correct:0,why:"Option B describes a management bonus, not a deal premium. Option C describes legal fees. Option D describes synergy value — related but not the definition of acquisition premium, which is specifically the percentage above market price the buyer pays to acquire control."}
+];
+
+let S={cur:0,done:new Set(),quizActive:false,quizAnswers:[],quizCurrent:0,quizPassed:false,quizAttempts:0,shuffledQ:[]};
+function shuffleQuiz(){const s=[...ALL_QUESTIONS].sort(()=>Math.random()-.5);S.shuffledQ=s.slice(0,10);S.quizAnswers=[];S.quizCurrent=0;}
+function updateProg(){const p=Math.round(S.done.size/LESSONS.length*100);document.getElementById("progFill").style.width=p+"%";const q=S.quizPassed?" · Quiz passed ✓":S.done.size===LESSONS.length?" · Quiz unlocked":" · Quiz locked";document.getElementById("progLabel").textContent=S.done.size+" of "+LESSONS.length+" lessons completed"+q;}
+function renderList(){const a=S.done.size===LESSONS.length;document.getElementById("lessonList").innerHTML=LESSONS.map((l,i)=>`<button class="lesson-btn ${i===S.cur&&!S.quizActive?"active":""} ${S.done.has(i)?"done":""}" onclick="go(${i})"><div class="lnum">${S.done.has(i)?"✓":i+1}</div><div class="linfo"><div class="ltitle">${l.title}</div><div class="ldesc">${l.desc}</div></div><div class="lbadge ${S.done.has(i)?"blue":""}">${S.done.has(i)?"Done ✓":i===S.cur&&!S.quizActive?"Current":""}</div></button>`).join("")+`<button class="quiz-nav-btn ${!a?"locked":S.quizActive?"active":""}" onclick="${a?"startQuiz()":"alert('Complete all 6 lessons first.')"}"><div class="lnum">${S.quizPassed?"✓":"★"}</div><div class="linfo"><div class="ltitle">Final Quiz — Module 9</div><div class="ldesc">${S.quizPassed?"Passed ✓":a?"10 of 15 questions · Need 8/10":"Complete all 6 lessons to unlock"}</div></div><div class="lbadge gold">${S.quizPassed?"Passed ✓":a?"Ready":"Locked 🔒"}</div></button>`;}
+function go(i){S.cur=i;S.quizActive=false;renderList();renderContent();}
+function startQuiz(){if(S.done.size<LESSONS.length)return;S.quizActive=true;S.quizAttempts++;shuffleQuiz();renderList();renderQuiz();}
+function renderContent(){
+  const l=LESSONS[S.cur];const box=document.getElementById("contentBox");
+  let html=`<div class="download-box"><div class="download-icon">📖</div><div class="download-info"><div class="download-title">Spanish Survival Kit for Finance Professionals</div><div class="download-sub">Published by Spanish Millennium · ISBN 9798296686749 · 73 pages · Full reference guide</div></div><a class="download-btn" href="survival_kit_for_Finance_professionals.pdf" target="_blank">📥 Download Full PDF</a></div>`;
+  html+=`<div class="sec-title">${l.title}</div><div class="sec-sub">Tap each card to reveal English. Study all phrase examples before marking complete.</div>`;
+  html+=`<div class="vocab-grid">${l.vocab.map(v=>`<div class="vcard" onclick="this.classList.toggle('flipped')"><div class="ves">${v.es}</div><div class="vctx">${v.ctx}</div><div class="vtip">Tap to reveal ↓</div><div class="ven">🇺🇸 ${v.en}</div></div>`).join("")}</div>`;
+  html+=`<div class="section-divider">In professional context</div>`;
+  html+=l.examples.map(e=>`<div class="ex-box"><div class="ex-es">${e.es}</div><div class="ex-en">${e.en}</div><div class="ex-ctx">📍 ${e.ctx}</div></div>`).join("");
+  if(l.cultureTip) html+=`<div class="culture-box" style="margin-top:16px"><div class="culture-label">Culture tip</div><div class="culture-text">${l.cultureTip}</div></div>`;
+  html+=`<div class="navrow">${S.cur>0?`<button class="nbtn" onclick="go(${S.cur-1})">← Previous</button>`:"<div></div>"}<button class="nbtn primary" onclick="complete(${S.cur})">Mark complete →</button></div>`;
+  box.innerHTML=html;
+}
+function complete(i){S.done.add(i);updateProg();if(i<LESSONS.length-1){S.cur=i+1;renderList();renderContent();}else{renderList();document.getElementById("contentBox").innerHTML=`<div style="text-align:center;padding:40px 20px"><div style="font-size:56px;margin-bottom:16px">💵</div><div style="font-size:26px;font-weight:700;margin-bottom:8px">All 6 lessons complete!</div><div style="font-size:14px;color:#6b6878;margin-bottom:20px;line-height:1.6;max-width:500px;margin:0 auto 20px">You've covered all core areas of financial Spanish. Take the final quiz — 10 of 15 questions drawn randomly. Need 8/10 to pass.</div><br><button class="nbtn gold" style="font-size:15px;padding:14px 32px" onclick="startQuiz()">Take the Final Quiz →</button></div>`;}}
+function renderQuiz(){const box=document.getElementById("contentBox");const q=S.shuffledQ[S.quizCurrent];const a=S.quizAnswers[S.quizCurrent];box.innerHTML=`<div class="quiz-header"><div class="quiz-icon">💵</div><div><div class="quiz-header-title">Final Quiz — Module 9: Finance Survival Kit</div><div class="quiz-header-sub">10 of 15 questions. No going back. Need 8/10. Attempt #${S.quizAttempts}.</div></div></div><div class="quiz-progress"><div class="quiz-dots">${S.shuffledQ.map((_,i)=>{let c="qdot";if(i<S.quizAnswers.length)c+=S.quizAnswers[i]===S.shuffledQ[i].correct?" correct":" wrong";else if(i===S.quizCurrent)c+=" current";return`<div class="${c}"></div>`;}).join("")}</div><div class="quiz-counter">Q${S.quizCurrent+1} / 10</div></div><div class="quiz-q">${q.q}</div><div class="quiz-context">${q.ctx}</div><div class="quiz-opts">${q.opts.map((o,oi)=>{let c="qopt";if(a!==undefined){if(oi===q.correct)c+=" correct";else if(oi===a&&a!==q.correct)c+=" wrong";}return`<button class="${c}" onclick="quizAnswer(${oi})" ${a!==undefined?"disabled":""}>${o}</button>`;}).join("")}</div>${a!==undefined?`<div class="why-wrong">💡 ${q.why}</div>`:""}${a!==undefined&&S.quizCurrent<S.shuffledQ.length-1?`<div class="navrow"><div></div><button class="nbtn primary" onclick="quizNext()">Next →</button></div>`:""}${a!==undefined&&S.quizCurrent===S.shuffledQ.length-1?`<div class="navrow"><div></div><button class="nbtn gold" onclick="showResults()">See results →</button></div>`:""}`;}
+function quizAnswer(oi){if(S.quizAnswers[S.quizCurrent]!==undefined)return;S.quizAnswers[S.quizCurrent]=oi;renderQuiz();}
+function quizNext(){if(S.quizCurrent<S.shuffledQ.length-1){S.quizCurrent++;renderQuiz();}}
+function showResults(){const score=S.quizAnswers.filter((a,i)=>a===S.shuffledQ[i].correct).length;const passed=score>=8;S.quizPassed=passed;updateProg();renderList();const wrong=S.shuffledQ.map((q,i)=>({q,answered:S.quizAnswers[i]})).filter(({q,answered})=>answered!==q.correct);document.getElementById("contentBox").innerHTML=`<div class="result-screen"><div class="result-icon">${passed?"🏆":"📚"}</div><div class="result-title">${passed?"Passed — well done.":"Not this time — try again."}</div><div class="score-big ${passed?"score-pass":"score-fail"}">${score}/10</div><div class="score-label">${passed?"Module complete.":"You need 8/10 to pass."}</div><div class="result-sub">${passed?"You've demonstrated solid command of financial Spanish across banking, investment, taxes, M&A, and wealth management.":"Review the lessons and retake. Each attempt draws a different set of questions."}</div>${wrong.length>0?`<div class="wrong-review"><div class="wrong-review-title">Review before retaking</div>${wrong.map(({q,answered})=>`<div class="wrong-item"><div class="wrong-q">${q.q}</div><div class="wrong-ans">✗ ${q.opts[answered]}</div><div class="wrong-correct">✓ ${q.opts[q.correct]}</div><div class="wrong-why">${q.why}</div></div>`).join("")}</div>`:""}${passed?"":`<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px"><button class="nbtn" onclick="go(0)">← Review lessons</button><button class="nbtn gold" onclick="startQuiz()">Retake →</button></div>`}</div>`;}
+renderList();renderContent();updateProg();
+</script>
+</body>
+</html>

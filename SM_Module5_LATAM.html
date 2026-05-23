@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 5 — LATAM Business Culture | Spanish Millennium</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f8f7f4;color:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;padding:24px 16px}
+.wrap{max-width:820px;margin:0 auto}
+.back-bar{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid #e8e5df;border-radius:12px;padding:12px 20px;margin-bottom:16px}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#1a1a1a;text-decoration:none}
+.back-link:hover{color:#C65C00}
+.back-breadcrumb{font-size:12px;color:#8a8799}
+.back-breadcrumb span{color:#C65C00;font-weight:600}
+.mod-header{background:#fff;border:1px solid #e8e5df;border-radius:14px;padding:28px;margin-bottom:20px}
+.mod-logo{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#c8a96e;font-weight:700;margin-bottom:10px}
+.mod-title{font-size:26px;font-weight:700;color:#1a1a1a;margin-bottom:4px}
+.mod-sub{font-size:14px;color:#6b6878;margin-bottom:18px;line-height:1.5}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pill{padding:5px 12px;border-radius:20px;font-size:12px;border:1px solid #e8e5df;color:#6b6878;background:#f8f7f4}
+.prog-bar{height:7px;background:#e8e5df;border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:#C65C00;border-radius:4px;transition:width .4s ease}
+.prog-label{font-size:12px;color:#8a8799;margin-top:6px}
+.lesson-list{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
+.lesson-btn{display:flex;align-items:center;gap:14px;padding:13px 18px;border-radius:12px;border:1px solid #e8e5df;background:#fff;cursor:pointer;text-align:left;transition:all .15s;width:100%}
+.lesson-btn:hover{background:#FFF5EE;border-color:#C65C00}
+.lesson-btn.active{border-color:#C65C00;background:#FFF5EE}
+.lesson-btn.done .lnum{background:#C65C00;color:#fff;border-color:#C65C00}
+.lnum{width:30px;height:30px;border-radius:50%;border:1px solid #e8e5df;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;color:#8a8799}
+.linfo{flex:1}
+.ltitle{font-size:14px;font-weight:600;color:#1a1a1a}
+.ldesc{font-size:12px;color:#8a8799;margin-top:2px}
+.lbadge{font-size:11px;color:#8a8799;padding:3px 9px;border-radius:20px;background:#f4f2ee;white-space:nowrap}
+.lbadge.orange{background:#FFF5EE;color:#C65C00;border:1px solid #F0B080}
+.lbadge.gold{background:#fff8ee;color:#c8a96e;border:1px solid #f0d49a}
+.quiz-nav-btn{display:flex;align-items:center;gap:14px;padding:13px 18px;border-radius:12px;border:2px solid #c8a96e;background:#fff8ee;cursor:pointer;text-align:left;transition:all .15s;width:100%;margin-top:4px}
+.quiz-nav-btn:hover{background:#fff0d0}
+.quiz-nav-btn.locked{opacity:.5;cursor:not-allowed;border-color:#e8e5df;background:#f8f7f4}
+.quiz-nav-btn .lnum{background:#c8a96e;color:#fff}
+.quiz-nav-btn.locked .lnum{background:#e8e5df;color:#8a8799}
+.content{background:#fff;border:1px solid #e8e5df;border-radius:14px;padding:28px}
+.sec-title{font-size:20px;font-weight:700;margin-bottom:4px}
+.sec-sub{font-size:13px;color:#6b6878;margin-bottom:20px;line-height:1.5}
+.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.vcard{border:1px solid #e8e5df;border-radius:10px;padding:14px;cursor:pointer;transition:all .2s;min-height:95px;background:#faf9f7}
+.vcard:hover{border-color:#C65C00;background:#fff}
+.vcard .ven{display:none;color:#C65C00;font-size:13px;margin-top:8px;font-weight:600;padding-top:8px;border-top:1px solid #e8e5df}
+.vcard.flipped .ven{display:block}
+.vcard.flipped .vtip{display:none}
+.ves{font-size:15px;font-weight:700;color:#1a1a1a}
+.vctx{font-size:11px;color:#8a8799;margin-top:3px;line-height:1.4}
+.vtip{font-size:11px;color:#c8c5d0;margin-top:10px;font-style:italic}
+.ex-box{background:#FFF5EE;border-left:3px solid #C65C00;border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:12px}
+.ex-es{font-size:14px;font-weight:700;color:#1a1a1a;line-height:1.5}
+.ex-en{font-size:13px;color:#6b6878;margin-top:5px;line-height:1.5}
+.ex-ctx{font-size:12px;color:#C65C00;margin-top:6px;font-style:italic;font-weight:500}
+.culture-box{background:#faf9f7;border:1px solid #e8e5df;border-radius:10px;padding:14px;margin-bottom:12px}
+.culture-label{font-size:10px;font-weight:700;color:#C65C00;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.culture-text{font-size:13px;color:#1a1a1a;line-height:1.6}
+.region-box{background:#FFF5EE;border:1px solid #F0B080;border-radius:10px;padding:14px;margin-bottom:12px}
+.region-label{font-size:10px;font-weight:700;color:#C65C00;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.scenario-box{background:#FFF5EE;border:1px solid #F0B080;border-radius:10px;padding:14px;margin-bottom:12px}
+.scenario-label{font-size:10px;font-weight:700;color:#C65C00;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.gpt-box{border:2px solid #C65C00;border-radius:12px;padding:20px;text-align:center;background:#FFF5EE;margin-top:16px}
+.gpt-title{font-size:16px;font-weight:700;color:#7A2E00;margin-bottom:6px}
+.gpt-sub{font-size:13px;color:#C65C00;margin-bottom:16px;line-height:1.5}
+.gpt-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#C65C00;color:#fff;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;transition:all .15s}
+.gpt-btn:hover{background:#7A2E00}
+.gpt-note{font-size:12px;color:#6b6878;margin-top:12px;line-height:1.6;background:#fff;border-radius:8px;padding:10px 14px;border:1px solid #F0B080;text-align:left}
+.gpt-note em{color:#7A2E00;font-style:normal;font-weight:600}
+.quiz-header{background:#fff8ee;border:1px solid #f0d49a;border-radius:10px;padding:16px;margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.quiz-icon{font-size:28px;flex-shrink:0}
+.quiz-header-title{font-size:16px;font-weight:700}
+.quiz-header-sub{font-size:12px;color:#8a8799;margin-top:2px;line-height:1.4}
+.quiz-progress{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.quiz-dots{display:flex;gap:5px;flex:1}
+.qdot{height:8px;border-radius:4px;background:#e8e5df;transition:all .3s;flex:1}
+.qdot.current{background:#c8a96e}
+.qdot.correct{background:#C65C00}
+.qdot.wrong{background:#e24b4a}
+.quiz-counter{font-size:13px;font-weight:600;color:#6b6878;white-space:nowrap}
+.quiz-q{font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:6px;line-height:1.5}
+.quiz-context{font-size:12px;color:#8a8799;margin-bottom:18px;font-style:italic;padding:8px 12px;background:#f8f7f4;border-radius:8px;border-left:3px solid #e8e5df}
+.quiz-opts{display:flex;flex-direction:column;gap:9px}
+.qopt{padding:13px 16px;border-radius:10px;border:1px solid #e8e5df;background:#faf9f7;cursor:pointer;font-size:13px;text-align:left;transition:all .15s;font-family:inherit;color:#1a1a1a;line-height:1.5}
+.qopt:hover:not(:disabled){background:#FFF5EE;border-color:#C65C00}
+.qopt.correct{border-color:#C65C00;background:#FFF5EE;color:#7A2E00;font-weight:600}
+.qopt.wrong{border-color:#e24b4a;background:#fcebeb;color:#501313}
+.qopt:disabled{cursor:default}
+.why-wrong{font-size:12px;margin-top:10px;padding:10px 14px;border-radius:8px;background:#fff8ee;border:1px solid #f0d49a;color:#6b4c00;line-height:1.5}
+.result-screen{text-align:center;padding:32px 16px}
+.result-icon{font-size:56px;margin-bottom:16px}
+.result-title{font-size:24px;font-weight:700;margin-bottom:8px}
+.score-big{font-size:52px;font-weight:700;margin-bottom:4px}
+.score-label{font-size:14px;color:#8a8799;margin-bottom:16px}
+.score-pass{color:#C65C00}
+.score-fail{color:#e24b4a}
+.result-sub{font-size:14px;color:#6b6878;margin-bottom:20px;line-height:1.6;max-width:500px;margin-left:auto;margin-right:auto}
+.wrong-review{text-align:left;background:#faf9f7;border:1px solid #e8e5df;border-radius:12px;padding:18px;margin-bottom:20px;max-width:640px;margin-left:auto;margin-right:auto}
+.wrong-review-title{font-size:12px;font-weight:700;color:#e24b4a;margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em}
+.wrong-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e8e5df;font-size:13px;line-height:1.6}
+.wrong-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.wrong-q{color:#1a1a1a;font-weight:600;margin-bottom:5px}
+.wrong-ans{color:#e24b4a;margin-bottom:2px}
+.wrong-correct{color:#C65C00;margin-bottom:4px}
+.wrong-why{color:#8a8799;font-size:12px;font-style:italic}
+.unlock-box{background:#FFF5EE;border:2px solid #C65C00;border-radius:12px;padding:20px;max-width:420px;margin:16px auto 0}
+.unlock-title{font-size:14px;font-weight:700;color:#C65C00;margin-bottom:4px}
+.unlock-sub{font-size:13px;color:#6b6878;line-height:1.5}
+.navrow{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:10px}
+.nbtn{padding:10px 20px;border-radius:10px;border:1px solid #e8e5df;background:#faf9f7;font-size:13px;cursor:pointer;font-family:inherit;font-weight:600;color:#1a1a1a;transition:all .15s}
+.nbtn:hover{background:#f4f2ee}
+.nbtn.primary{background:#C65C00;color:#fff;border-color:#C65C00}
+.nbtn.primary:hover{background:#7A2E00}
+.nbtn.gold{background:#c8a96e;color:#fff;border-color:#c8a96e}
+.nbtn.gold:hover{background:#b8956a}
+.done-screen{text-align:center;padding:40px 20px}
+.section-divider{font-size:13px;font-weight:700;color:#C65C00;letter-spacing:.08em;text-transform:uppercase;margin:20px 0 14px;padding-bottom:6px;border-bottom:1px solid #FFF5EE}
+@media(max-width:600px){.vocab-grid{grid-template-columns:1fr}body{padding:12px 8px}.content{padding:18px}.mod-header{padding:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="back-bar">
+  <a class="back-link" href="SM_Platform.html">← Back to Dashboard</a>
+  <div class="back-breadcrumb">Cultural Intelligence · <span>Module 5 — LATAM Business Culture</span></div>
+</div>
+<div class="mod-header">
+  <div class="mod-logo">Spanish Millennium · Professional Platform</div>
+  <div class="mod-title">Module 5 — LATAM Business Culture</div>
+  <div class="mod-sub">The cultural intelligence professionals need to build relationships and close deals across Latin America. Mexico, Colombia, Argentina, regional differences, and what is universal across all LATAM markets.</div>
+  <div class="meta">
+    <span class="pill">🌎 5 lessons + final quiz</span>
+    <span class="pill">⏱ ~55 min</span>
+    <span class="pill">📊 Level B1+</span>
+    <span class="pill">💼 All professionals working with Latin America</span>
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="prog-label" id="progLabel">0 of 5 lessons completed · Quiz locked</div>
+</div>
+<div id="lessonList" class="lesson-list"></div>
+<div id="contentBox" class="content"></div>
+</div>
+<script>
+const GPT_URL="https://chatgpt.com/g/g-6vMAfvHz9-my-spanish-teacher-by-spanish-millennium";
+const LESSONS=[
+  {id:1,title:"Universal LATAM business principles",desc:"What is true across all Latin American markets regardless of country",
+   vocab:[
+     {es:"La confianza",ctx:"Trust — the foundation of all LATAM business relationships",en:"Trust / trustworthiness"},
+     {es:"El personalismo",ctx:"Personal relationships over institutions — who you know matters more than what",en:"Personalism / relationship-first culture"},
+     {es:"La jerarquía",ctx:"Hierarchy — always identify and respect the most senior person",en:"Hierarchy"},
+     {es:"El respeto",ctx:"Respect — shown through titles, punctuality from visitors, and listening",en:"Respect"},
+     {es:"Hacer negocios con amigos",ctx:"Doing business with friends — business follows relationship, not vice versa",en:"Doing business with friends"},
+     {es:"La agenda flexible",ctx:"Flexible agenda — meetings rarely start or end on time in LATAM",en:"Flexible agenda / schedule"},
+     {es:"El silencio como respeto",ctx:"Silence means listening and thinking — not disagreement",en:"Silence as respect"},
+     {es:"La sobremesa",ctx:"Post-meal conversation — do not rush away after lunch or dinner",en:"After-meal conversation / lingering"},
+     {es:"El trato personal",ctx:"Personal treatment — using someone's name, asking about family",en:"Personal treatment / personal touch"},
+     {es:"La tarjeta de presentación",ctx:"Business card — present with both hands, receive with both hands, read it",en:"Business card"},
+   ],
+   examples:[
+     {es:"En América Latina, la confianza se construye antes del negocio, no durante.",en:"In Latin America, trust is built before the business, not during it.",ctx:"Fundamental principle — never rush to the deal"},
+     {es:"Antes de hablar de negocios, es importante conocer a la persona: su familia, sus intereses, su trayectoria.",en:"Before talking business, it is important to get to know the person: their family, interests, career path.",ctx:"Relationship-first protocol for first meetings"},
+     {es:"La jerarquía es fundamental. Siempre identifique a la persona de mayor rango y diríjase a ella primero.",en:"Hierarchy is fundamental. Always identify the most senior person and address them first.",ctx:"Protocol for entering a meeting room in LATAM"},
+   ]
+  },
+  {id:2,title:"Mexico — protocols & business culture",desc:"Specific customs, etiquette, and communication styles for Mexican business",
+   vocab:[
+     {es:"La puntualidad del visitante",ctx:"Visitors are expected to be on time — locals may be late, you may not",en:"Visitor punctuality"},
+     {es:"El licenciado",ctx:"Title used widely in Mexico for attorneys and graduates — use it",en:"Licenciado (professional title)"},
+     {es:"La indirecta",ctx:"Indirect communication — Mexicans rarely say no directly",en:"Indirect communication / hint"},
+     {es:"El compromiso",ctx:"Commitment — be careful, saying 'sí' can mean 'I heard you' not 'I agree'",en:"Commitment / agreement"},
+     {es:"La comida de negocios",ctx:"Business lunch — typically 2–3 hours, the real decisions happen here",en:"Business lunch"},
+     {es:"El tequila de bienvenida",ctx:"Welcome tequila — refusing may offend, accepting builds bond",en:"Welcome tequila / hospitality drink"},
+     {es:"El compadrazgo",ctx:"Godparent network — overlapping personal and professional obligations",en:"Godfather network / close circle"},
+     {es:"No hay prisa",ctx:"There is no rush — pressure tactics backfire badly in Mexico",en:"There is no rush"},
+   ],
+   examples:[
+     {es:"En México, un 'lo vemos' o 'ahorita' no significa que algo se hará de inmediato. Aprenda a leer las señales indirectas.",en:"In Mexico, 'lo vemos' or 'ahorita' does not mean something will happen immediately. Learn to read indirect signals.",ctx:"Understanding Mexican communication style"},
+     {es:"La comida de negocios en México puede durar tres horas. Es donde se construye la confianza y se toman las decisiones reales.",en:"The business lunch in Mexico can last three hours. It is where trust is built and real decisions are made.",ctx:"Business lunch protocol — never rush it"},
+     {es:"Al entregar su tarjeta, hágalo con ambas manos y tómese un momento para leer la tarjeta que le entreguen. No la guarde de inmediato.",en:"When presenting your card, do it with both hands and take a moment to read the card you receive. Do not put it away immediately.",ctx:"Business card etiquette in Mexico and across LATAM"},
+   ],
+   cultureTip:"Mexico has one of the highest 'relationship-before-business' cultures in the world. Your first meeting is almost never about the deal — it is about the relationship. Asking about their family, their city, their football team shows genuine interest. Never open your laptop in the first meeting unless asked."
+  },
+  {id:3,title:"Colombia & the Andean region",desc:"Business culture in Colombia, Peru, Ecuador, and Bolivia",
+   vocab:[
+     {es:"La calidez",ctx:"Warmth — Colombians are known for exceptional warmth toward visitors",en:"Warmth / friendliness"},
+     {es:"La formalidad profesional",ctx:"Professional formality — despite warmth, professional titles are always used",en:"Professional formality"},
+     {es:"Bogotá vs las regiones",ctx:"Bogotá is more formal than coastal cities like Cartagena or Barranquilla",en:"Regional differences within Colombia"},
+     {es:"La seguridad en reuniones",ctx:"Security awareness — Bogotá meetings often held in private club settings",en:"Security-conscious meeting settings"},
+     {es:"El madrugador",ctx:"Early riser — meetings start earlier in Bogotá than in Mexico or Argentina",en:"Early riser / early meeting culture"},
+     {es:"El protocolo andino",ctx:"Andean protocol — conservative dress, formal address, hierarchical",en:"Andean business protocol"},
+     {es:"La hospitalidad costeña",ctx:"Coastal hospitality — more relaxed, warm, music and food-oriented",en:"Coastal hospitality style"},
+     {es:"El tratamiento de usted",ctx:"Usted is used more persistently in Colombia than in other LATAM countries",en:"Formal 'usted' — used longer than elsewhere"},
+   ],
+   examples:[
+     {es:"En Colombia, la calidez es genuina pero la formalidad profesional no se abandona. Use 'licenciado', 'doctor' o 'ingeniero' hasta que le inviten a cambiar.",en:"In Colombia, warmth is genuine but professional formality is not abandoned. Use titles until invited to change.",ctx:"Colombia protocol — warmth does not equal informality"},
+     {es:"Bogotá tiene una cultura de negocios más formal y madrugadora que otras ciudades colombianas. Las reuniones suelen empezar a las ocho de la mañana.",en:"Bogotá has a more formal and early-rising business culture than other Colombian cities. Meetings often begin at eight in the morning.",ctx:"Regional difference — Bogotá vs coastal Colombia"},
+   ],
+   cultureTip:"Colombia is one of the most business-friendly countries in Latin America for US professionals. Colombians admire American directness more than most LATAM cultures — but still expect warmth first. Security is a real consideration in Bogotá — meetings are typically held in private business clubs or offices, not street-level cafés."
+  },
+  {id:4,title:"Argentina & the Southern Cone",desc:"Business culture in Argentina, Chile, and Uruguay",
+   vocab:[
+     {es:"El porteño",ctx:"Person from Buenos Aires — sophisticated, European-influenced, proud",en:"Porteño (Buenos Aires native)"},
+     {es:"La puntualidad relativa",ctx:"Relative punctuality — 15–30 minutes late is normal in Argentina",en:"Relative punctuality / fashionably late"},
+     {es:"El debate intelectual",ctx:"Intellectual debate — Argentines enjoy arguing ideas, it is not conflict",en:"Intellectual debate"},
+     {es:"El asado",ctx:"The barbecue — deepest form of business hospitality in Argentina",en:"The asado / barbecue"},
+     {es:"El trato igualitario",ctx:"Egalitarian treatment — less hierarchy than Mexico, more peer-to-peer",en:"Egalitarian treatment"},
+     {es:"El vos",ctx:"Vos replaces tú in Argentina and Uruguay — different conjugations",en:"Vos (informal pronoun in Argentina)"},
+     {es:"La conversación como arte",ctx:"Conversation as art — small talk is sophisticated, not superficial",en:"Sophisticated small talk"},
+     {es:"La crisis económica",ctx:"Economic crisis — Argentines have lived through multiple, do not mention unless they do",en:"Economic crisis sensitivity"},
+   ],
+   examples:[
+     {es:"En Argentina, si alguien le invita a un asado, es una señal de confianza profunda. Acepte siempre si puede.",en:"In Argentina, if someone invites you to an asado, it is a signal of deep trust. Always accept if you can.",ctx:"Asado invitation — the highest form of Argentine hospitality"},
+     {es:"Los argentinos disfrutan del debate intelectual. Si no está de acuerdo, dígalo con argumentos. El desacuerdo respetuoso genera respeto.",en:"Argentines enjoy intellectual debate. If you disagree, say so with arguments. Respectful disagreement earns respect.",ctx:"Argentine communication style — directness and debate"},
+     {es:"En Chile, la cultura de negocios es más formal y puntual que en Argentina. La jerarquía se respeta más y las decisiones son más conservadoras.",en:"In Chile, business culture is more formal and punctual than in Argentina. Hierarchy is more respected and decisions are more conservative.",ctx:"Chile vs Argentina — important Southern Cone distinction"},
+   ],
+   cultureTip:"Argentina is the most European-influenced business culture in Latin America. Porteños (Buenos Aires residents) are sophisticated, well-traveled, and expect intellectual engagement — not just small talk. Chile, by contrast, is more conservative, punctual, and hierarchical. If you treat Chile like Argentina you will seem too casual. If you treat Argentina like Chile you will seem too stiff."
+  },
+  {id:5,title:"AI role-play — cross-cultural business meeting",desc:"Practice navigating cultural differences in a real LATAM business scenario",
+   type:"roleplay",
+   scenario:"You are a US attorney visiting Mexico City for the first time to meet a potential corporate client, Licenciado Andrés Fuentes, the general counsel of a large Mexican conglomerate. This is a first meeting — no agenda has been set. Your goal is to build the relationship, not close a deal. Navigate the cultural protocols: use correct titles, offer to reciprocate hospitality, avoid rushing to business, and read the indirect signals when he is not ready to commit.",
+   cultureTip:"In Mexico, the first meeting is a test of character, not competence. Licenciado Fuentes already knows your credentials — that is why you got the meeting. What he is evaluating is whether he can trust you, whether you respect his culture, and whether he would enjoy doing business with you long-term. Rushing to your pitch will end the relationship before it begins.",
+   prompt:"Quiero practicar el Módulo 5, Lección 5. Juega el papel de Licenciado Andrés Fuentes, consejero general de un gran conglomerado mexicano. Es nuestra primera reunión. Sé cálido pero formal. Usa señales indirectas cuando no estés listo para comprometerte. Corrige mis errores de español entre paréntesis. Empieza cuando yo entre a tu oficina en Ciudad de México."
+  }
+];
+const ALL_QUESTIONS=[
+  {q:"You arrive for a business meeting in Mexico City 5 minutes early. Your host arrives 20 minutes late. What is the correct response?",ctx:"Mexican business protocol — punctuality",opts:["Express mild frustration to signal you value your time professionally.","Greet them warmly as if nothing happened — lateness is normal for hosts, not visitors.","Mention that you had been waiting to establish a clear record of the delay.","Reschedule the meeting to establish that your time has equal value."],correct:1,why:"Option A expressing frustration will immediately damage the relationship — the host's lateness is culturally normal. Option C 'establish a record' is adversarial — it signals you are tracking faults rather than building a relationship. Option D rescheduling over normal lateness would be considered extremely rude."},
+  {q:"A Mexican business contact says 'lo vemos' about a proposal you submitted last week. What does this most likely mean?",ctx:"Mexican communication style — indirect responses",opts:["The proposal is under serious review and a decision is imminent.","It is a polite way of saying they are not interested without saying no directly.","They want to schedule a follow-up meeting specifically to discuss it.","They have not had time to review it yet but will prioritize it."],correct:1,why:"Option A 'decision is imminent' is wishful — 'lo vemos' rarely means imminent action. Option C a scheduled follow-up would be communicated directly. Option D is possible but 'lo vemos' in a business context is more commonly a soft non-commitment than a genuine timeline."},
+  {q:"You are invited to a business lunch in Bogotá. It runs two and a half hours. When should you start discussing the contract terms?",ctx:"Colombian business lunch protocol",opts:["After the appetizers — once the social ice is broken, business is appropriate.","Only if your host brings it up — the lunch itself is the relationship building.","At the end of the meal when the relationship foundation has been laid.","Business lunches in Colombia are social only — always wait for a formal meeting."],correct:1,why:"Option A 'after appetizers' is too soon — the relationship has barely started. Option C 'end of meal' is better but still prescriptive — the host controls when business enters. Option D 'always wait' is too absolute — sometimes business does come up at lunch, but only when the host initiates it."},
+  {q:"An Argentine business contact disagrees strongly with your analysis during a meeting. They argue their position with energy and detail. What does this signal?",ctx:"Argentine communication style — debate culture",opts:["They are offended by your position and the relationship is at risk.","They are intellectually engaged and respect you enough to argue — this is positive.","They are using debate as a negotiation tactic to weaken your position.","The cultural norm requires you to back down to preserve harmony."],correct:1,why:"Option A offense is the opposite of what is happening — Argentine intellectual debate signals engagement. Option C assuming a tactic misreads the cultural norm — this is genuine engagement, not strategy. Option D backing down is wrong — Argentines respect those who hold their position with good arguments."},
+  {q:"You are presenting your business card to a Mexican executive. What is the correct protocol?",ctx:"Business card etiquette — Mexico and LATAM",opts:["Present it with your right hand and place theirs directly in your card holder.","Present with both hands, receive with both hands, read their card before putting it away.","Email your digital contact card afterward — physical cards are outdated in Mexico.","Place both cards on the table face up so you can reference them during the meeting."],correct:1,why:"Option A single hand and immediate storage shows disrespect — the card represents the person. Option C digital cards do not replace physical cards in formal Mexican business settings. Option D placing cards on the table is done in Japan, not Mexico — it may seem odd."},
+  {q:"In Colombia, a new business contact is very warm and friendly from the first meeting. Should you immediately switch to using their first name?",ctx:"Colombian protocol — warmth vs formality",opts:["Yes — Colombian warmth signals that informal address is welcome from the start.","No — warmth is genuine but professional titles are maintained until explicitly invited to change.","Only if they are younger than you or in a junior role.",  "Yes if the meeting is in a coastal city like Cartagena but not in Bogotá."],correct:1,why:"Option A confuses warmth with informality — these are different cultural signals in Colombia. Option C age-based assumptions are not the determining factor. Option D while coastal Colombia is more relaxed, the rule to wait for an invitation to use first names applies broadly across the country."},
+  {q:"You are hosting an Argentine business contact in Washington DC for dinner. They arrive 25 minutes late. What is the correct response?",ctx:"Argentine punctuality — in a US context",opts:["Greet them warmly and do not mention the wait — lateness is normal in Argentine culture.","Politely note the time to establish that in the US context, punctuality is expected.","Ask if everything is okay, as extreme lateness in a foreign city may indicate a real problem.","Adjust future meetings by telling them a start time 30 minutes earlier than intended."],correct:2,why:"Option A ignoring it entirely is fine culturally but 25 minutes in an unfamiliar city could genuinely indicate a problem. Option B correcting a guest on cultural norms is inappropriate and risks embarrassment. Option D the 30-minute trick is passive-aggressive and condescending."},
+  {q:"A Chilean business contact consistently arrives exactly on time and rarely engages in extended small talk. What does this tell you?",ctx:"Chile vs Argentina — Southern Cone differences",opts:["They are not interested in building a relationship with your organization.","Chile has a more formal and punctual business culture than Argentina — this is normal.","The contact is being deliberately cold to test your reaction under pressure.","You should mirror their formality and skip small talk entirely in all future meetings."],correct:1,why:"Option A reading punctuality and focus as disinterest is a cultural misreading. Option C assuming a test is projecting — Chilean professionals are simply more formal and efficient. Option D mirroring is somewhat correct but 'skip small talk entirely' goes too far — some warmth is always appropriate even in Chile."},
+  {q:"You want to build a long-term relationship with a Mexican client. Which strategy is most effective?",ctx:"Relationship building — Mexican business culture",opts:["Send a detailed proposal within 24 hours of meeting to demonstrate professionalism and urgency.","Follow up consistently, remember personal details, and invest in multiple face-to-face meetings before expecting commitment.","Emphasize your firm's credentials and track record in every communication to reinforce credibility.","Propose a short-term pilot project to demonstrate results before asking for a larger commitment."],correct:1,why:"Option A urgency and proposals after a first meeting signal you are transactional — the opposite of what builds trust in Mexico. Option C credentials are assumed — repeatedly emphasizing them suggests insecurity. Option D pilot projects may come eventually but proposing them immediately skips the relationship phase entirely."},
+  {q:"The concept of 'personalismo' in Latin American business means which of the following?",ctx:"LATAM cultural intelligence — core concept",opts:["Personal space is prioritized in meetings — maintain more distance than in the US.","Business relationships are built with people, not institutions — who you know matters more than where you work.","Personal information should not be shared in professional contexts to maintain boundaries.","Decisions are made personally by the most senior leader without consulting the team."],correct:1,why:"Option A 'personal space' confuses personalismo with a physical concept. Option C is the opposite — sharing personal information and building personal connections is exactly what personalismo encourages. Option D describes a different cultural pattern (autocratic decision-making) not the concept of personalismo."},
+  {q:"An Argentine contact invites you to their asado on a Saturday. You have other plans. What is the correct response?",ctx:"Argentine hospitality — asado invitation",opts:["Decline politely explaining you have personal commitments — they will understand.","Accept and rearrange your plans if at all possible — an asado invitation signals deep trust.","Suggest a restaurant dinner instead as a more neutral and professional alternative.","Ask if you can bring a colleague to make it a more formal business occasion."],correct:1,why:"Option A declining an asado is culturally acceptable but a missed relationship-building opportunity — it signals you do not prioritize the relationship. Option C suggesting a restaurant misses the point entirely — the asado is precisely because it is personal and non-corporate. Option D bringing a colleague to a personal invitation without asking first is presumptuous."},
+  {q:"In a pan-Latin America context, what does 'la sobremesa' refer to and why does it matter?",ctx:"Universal LATAM culture — post-meal protocol",opts:["The tablecloth arrangement — seating by hierarchy matters for formal dinners.","The conversation that continues after the meal — leaving immediately after eating is rude.","The after-dinner digestif — accepting it is mandatory in formal business settings.","The dessert course — skipping it signals you are in a hurry to leave."],correct:1,why:"Option A seating hierarchy is real but that is not sobremesa. Option C after-dinner drinks may be offered but sobremesa is specifically the conversation, not the drink. Option D dessert has nothing to do with sobremesa — it is purely about the post-meal conversation continuing organically."},
+  {q:"You send a follow-up email to a Peruvian business contact two days after a first meeting. They do not respond for a week. What is the most appropriate interpretation?",ctx:"Andean business communication — response timelines",opts:["The lack of response signals disinterest and you should seek a different contact.","Email response times vary widely in Latin America — follow up warmly once more before drawing conclusions.","Send a more formal letter to signal urgency and the importance of the relationship.","Call them directly — phone communication is preferred over email in the Andean region."],correct:1,why:"Option A one week is not a signal of disinterest in Andean business culture — relationship time moves differently. Option C a formal letter would be unusual and may seem excessive for a first follow-up. Option D calling without first establishing whether phone contact is welcome can be intrusive."},
+  {q:"A Mexican executive says 'muy interesante' and nods when you present your proposal. What is the most accurate interpretation?",ctx:"Mexican indirect communication — reading signals",opts:["Strong positive signal — they are impressed and likely to move forward.","A polite acknowledgment that does not necessarily indicate agreement or commitment.","They need more detail before forming an opinion — ask if they have questions.","A signal that they want to discuss the proposal further with their team internally."],correct:1,why:"Option A 'muy interesante' is a classic indirect response — it acknowledges the presentation without committing. Option C asking for more detail assumes a specific meaning that may not be there. Option D internal discussion may happen but reading 'muy interesante' as specifically signaling this overinterprets a vague response."},
+  {q:"What is the single most important factor for long-term business success across all Latin American markets?",ctx:"Pan-LATAM business intelligence — fundamental principle",opts:["Competitive pricing and clear contractual terms that protect both parties equally.","Building genuine personal relationships and trust before and throughout the business relationship.","Demonstrating technical expertise and professional credentials in every interaction.","Adapting communication style to each country's specific cultural norms and preferences."],correct:1,why:"Option A pricing and contracts are important but secondary to the relationship — a trusted partner gets better terms. Option C expertise is assumed — it got you in the room but it does not keep you there. Option D cultural adaptation is important but it is a tool in service of the deeper principle, which is trust and genuine relationship."}
+];
+let S={cur:0,done:new Set(),quizActive:false,quizAnswers:[],quizCurrent:0,quizPassed:false,quizAttempts:0,shuffledQ:[]};
+function shuffleQuiz(){const s=[...ALL_QUESTIONS].sort(()=>Math.random()-.5);S.shuffledQ=s.slice(0,10);S.quizAnswers=[];S.quizCurrent=0;}
+function updateProg(){const p=Math.round(S.done.size/LESSONS.length*100);document.getElementById("progFill").style.width=p+"%";const q=S.quizPassed?" · Quiz passed ✓":S.done.size===LESSONS.length?" · Quiz unlocked":" · Quiz locked";document.getElementById("progLabel").textContent=S.done.size+" of "+LESSONS.length+" lessons completed"+q;}
+function renderList(){const a=S.done.size===LESSONS.length;document.getElementById("lessonList").innerHTML=LESSONS.map((l,i)=>`<button class="lesson-btn ${i===S.cur&&!S.quizActive?"active":""} ${S.done.has(i)?"done":""}" onclick="go(${i})"><div class="lnum">${S.done.has(i)?"✓":i+1}</div><div class="linfo"><div class="ltitle">${l.title}</div><div class="ldesc">${l.desc}</div></div><div class="lbadge ${S.done.has(i)?"orange":""}">${S.done.has(i)?"Done ✓":i===S.cur&&!S.quizActive?"Current":""}</div></button>`).join("")+`<button class="quiz-nav-btn ${!a?"locked":S.quizActive?"active":""}" onclick="${a?"startQuiz()":"alert('Complete all 5 lessons first.')"}"><div class="lnum">${S.quizPassed?"✓":"★"}</div><div class="linfo"><div class="ltitle">Final Quiz — Module 5</div><div class="ldesc">${S.quizPassed?"Passed — Module 6 unlocked":a?"10 of 15 questions · Need 8/10":"Complete all 5 lessons to unlock"}</div></div><div class="lbadge gold">${S.quizPassed?"Passed ✓":a?"Ready":"Locked 🔒"}</div></button>`;}
+function go(i){S.cur=i;S.quizActive=false;renderList();renderContent();}
+function startQuiz(){if(S.done.size<LESSONS.length)return;S.quizActive=true;S.quizAttempts++;shuffleQuiz();renderList();renderQuiz();}
+function renderContent(){const l=LESSONS[S.cur];const box=document.getElementById("contentBox");if(l.type==="roleplay"){box.innerHTML=`<div class="sec-title">${l.title}</div><div class="sec-sub" style="margin-bottom:18px">${l.desc}</div><div class="scenario-box"><div class="scenario-label">Your scenario</div><div class="culture-text">${l.scenario}</div></div><div class="culture-box"><div class="culture-label">Culture tip — read before practicing</div><div class="culture-text">${l.cultureTip}</div></div><div class="gpt-box"><div class="gpt-title">Practice with your Spanish Millennium AI Tutor</div><div class="gpt-sub">Your AI tutor plays Licenciado Andrés Fuentes — senior Mexican general counsel. Formal, warm, indirect, and watching whether you understand the culture.</div><a class="gpt-btn" href="${GPT_URL}" target="_blank">Open AI Tutor → Start Meeting</a><div class="gpt-note">Copy and paste this to start:<br><br><em>${l.prompt}</em></div></div><div class="navrow"><button class="nbtn" onclick="go(${S.cur-1})">← Previous lesson</button><button class="nbtn primary" onclick="complete(${S.cur})">Mark done · Go to quiz →</button></div>`;return;}box.innerHTML=`<div class="sec-title">${l.title}</div><div class="sec-sub">Tap each card to reveal the English. Study all examples before marking complete.</div><div class="vocab-grid">${l.vocab.map(v=>`<div class="vcard" onclick="this.classList.toggle('flipped')"><div class="ves">${v.es}</div><div class="vctx">${v.ctx}</div><div class="vtip">Tap to reveal ↓</div><div class="ven">🇺🇸 ${v.en}</div></div>`).join("")}</div><div class="section-divider">In context</div>${l.examples.map(e=>`<div class="ex-box"><div class="ex-es">${e.es}</div><div class="ex-en">${e.en}</div><div class="ex-ctx">📍 ${e.ctx}</div></div>`).join("")}${l.cultureTip?`<div class="culture-box" style="margin-top:16px"><div class="culture-label">Culture tip</div><div class="culture-text">${l.cultureTip}</div></div>`:""}<div class="navrow">${S.cur>0?`<button class="nbtn" onclick="go(${S.cur-1})">← Previous</button>`:"<div></div>"}<button class="nbtn primary" onclick="complete(${S.cur})">Mark complete →</button></div>`;}
+function complete(i){S.done.add(i);updateProg();if(i<LESSONS.length-1){S.cur=i+1;renderList();renderContent();}else{renderList();document.getElementById("contentBox").innerHTML=`<div class="done-screen"><div style="font-size:56px;margin-bottom:16px">🌎</div><div style="font-size:26px;font-weight:700;margin-bottom:8px">All 5 lessons complete!</div><div style="font-size:14px;color:#6b6878;margin-bottom:20px;line-height:1.6;max-width:500px;margin:0 auto 20px">Take the final quiz — 10 questions drawn randomly from 15. Need 8/10 to pass.</div><br><button class="nbtn gold" style="font-size:15px;padding:14px 32px" onclick="startQuiz()">Take the Final Quiz →</button></div>`;}}
+function renderQuiz(){const box=document.getElementById("contentBox");const q=S.shuffledQ[S.quizCurrent];const a=S.quizAnswers[S.quizCurrent];box.innerHTML=`<div class="quiz-header"><div class="quiz-icon">🌎</div><div><div class="quiz-header-title">Final Quiz — Module 5: LATAM Business Culture</div><div class="quiz-header-sub">10 of 15 questions drawn randomly. No going back. Need 8/10. Attempt #${S.quizAttempts}.</div></div></div><div class="quiz-progress"><div class="quiz-dots">${S.shuffledQ.map((_,i)=>{let c="qdot";if(i<S.quizAnswers.length)c+=S.quizAnswers[i]===S.shuffledQ[i].correct?" correct":" wrong";else if(i===S.quizCurrent)c+=" current";return`<div class="${c}"></div>`;}).join("")}</div><div class="quiz-counter">Q${S.quizCurrent+1} / 10</div></div><div class="quiz-q">${q.q}</div><div class="quiz-context">${q.ctx}</div><div class="quiz-opts">${q.opts.map((o,oi)=>{let c="qopt";if(a!==undefined){if(oi===q.correct)c+=" correct";else if(oi===a&&a!==q.correct)c+=" wrong";}return`<button class="${c}" onclick="quizAnswer(${oi})" ${a!==undefined?"disabled":""}>${o}</button>`;}).join("")}</div>${a!==undefined?`<div class="why-wrong">💡 ${q.why}</div>`:""}${a!==undefined&&S.quizCurrent<S.shuffledQ.length-1?`<div class="navrow"><div></div><button class="nbtn primary" onclick="quizNext()">Next →</button></div>`:""}${a!==undefined&&S.quizCurrent===S.shuffledQ.length-1?`<div class="navrow"><div></div><button class="nbtn gold" onclick="showResults()">See results →</button></div>`:""}`;}
+function quizAnswer(oi){if(S.quizAnswers[S.quizCurrent]!==undefined)return;S.quizAnswers[S.quizCurrent]=oi;renderQuiz();}
+function quizNext(){if(S.quizCurrent<S.shuffledQ.length-1){S.quizCurrent++;renderQuiz();}}
+function showResults(){const score=S.quizAnswers.filter((a,i)=>a===S.shuffledQ[i].correct).length;const passed=score>=8;S.quizPassed=passed;updateProg();renderList();const wrong=S.shuffledQ.map((q,i)=>({q,answered:S.quizAnswers[i]})).filter(({q,answered})=>answered!==q.correct);document.getElementById("contentBox").innerHTML=`<div class="result-screen"><div class="result-icon">${passed?"🏆":"📚"}</div><div class="result-title">${passed?"Passed — well done.":"Not this time — try again."}</div><div class="score-big ${passed?"score-pass":"score-fail"}">${score}/10</div><div class="score-label">${passed?"Module 6 is now unlocked.":"You need 8/10 to pass."}</div><div class="result-sub">${passed?"You've demonstrated solid cultural intelligence across Mexico, Colombia, Argentina, and pan-LATAM markets. Ready for Module 6.":"Review the lessons and retake. Each attempt draws different questions."}</div>${wrong.length>0?`<div class="wrong-review"><div class="wrong-review-title">Review before retaking</div>${wrong.map(({q,answered})=>`<div class="wrong-item"><div class="wrong-q">${q.q}</div><div class="wrong-ans">✗ ${q.opts[answered]}</div><div class="wrong-correct">✓ ${q.opts[q.correct]}</div><div class="wrong-why">${q.why}</div></div>`).join("")}</div>`:""}${passed?`<div class="unlock-box"><div class="unlock-title">🔓 Module 6 Unlocked</div><div class="unlock-sub">Professional Writing — Emails, reports, proposals, and formal correspondence in professional Spanish.</div></div>`:`<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px"><button class="nbtn" onclick="go(0)">← Review lessons</button><button class="nbtn gold" onclick="startQuiz()">Retake — attempt #${S.quizAttempts+1} →</button></div>`}</div>`;}
+renderList();renderContent();updateProg();
+</script>
+</body>
+</html>
